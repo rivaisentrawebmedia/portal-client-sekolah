@@ -21,16 +21,17 @@ export default function AuthLayout({
 			<div
 				className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
 				style={{
-					background: "#16225999",
+					background: "#16591E99",
+
 					backdropFilter: "blur(1px)",
 				}}
 			>
 				<div className="w-11/12 flex flex-col gap-3 bg-white md:w-[500px] rounded-lg p-4">
-					<div className="flex items-center justify-center gap-2 text-xl">
-						<FaGraduationCap />
+					<div className="flex items-center text-[#1E5916] justify-center gap-2 text-xl">
+						<FaGraduationCap color="#1E5916" />
 						<p>Manajemen Sekolah</p>
 					</div>
-					<Separator />
+					<Separator color="#1E5916" />
 					<p className="text-[#646464]">{description}</p>
 					{children}
 				</div>

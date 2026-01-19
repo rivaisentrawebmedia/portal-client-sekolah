@@ -80,7 +80,7 @@ export function FormLogin() {
 									return toast.error(invalidFields?.[0]?.error?.toString());
 								}
 							}}
-							className="bg-[#162259] text-white flex items-center gap-2 rounded-full hover:bg-[#162259]/80"
+							className="bg-[#1E5916] text-white flex items-center gap-2 rounded-full hover:bg-[#1E5916]/80"
 						>
 							<LogIn />
 							<p>Masuk</p>
