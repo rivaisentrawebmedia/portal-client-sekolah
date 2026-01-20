@@ -9,16 +9,21 @@ import {
 } from "@/components/ui/menubar";
 import { DialogLogout } from "./dialogLogout";
 import { useState } from "react";
-import { useGetProfile } from "@/pages/modules/profile/controller";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getInitials } from "@/utils/helpers";
 import { FaCaretDown, FaKeyboard, FaUser } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { Profile } from "@/pages/modules/profile/model";
 
-export function MenubarProfil() {
+export function MenubarProfil({
+	data,
+	loading,
+}: {
+	data: Profile | undefined;
+	loading: boolean;
+}) {
 	const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-	const { loading, data } = useGetProfile();
 
 	const navigate = useNavigate();
 	return (

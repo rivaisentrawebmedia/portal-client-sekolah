@@ -1,18 +1,18 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { Dashboard, PaginatedResponse } from "../model";
-import { getDashboard } from "../model/dataAPI";
+import type { Modul, PaginatedResponse } from "../model";
+import { getModul, type GetModulParams } from "../model/dataAPI";
 
-export function useGetDashboard() {
-	const query = useQuery<PaginatedResponse<Dashboard>>({
-		queryKey: ["dashboard"],
-		queryFn: () => getDashboard(),
+export function useGetModul(params: GetModulParams) {
+	const query = useQuery<PaginatedResponse<Modul>>({
+		queryKey: ["modul", params],
+		queryFn: () => getModul(params),
 		staleTime: 5 * 60 * 1000,
 		refetchOnWindowFocus: false,
-		placeholderData: keepPreviousData,
+		placeholderData: keepPreviousData, // ✅ v5 replacement
 	});
 
 	return {
-		data: query.data?.data,
+		data: query.data?.data ?? [],
 		loading: query.isLoading || query.isFetching,
 		error: query.error,
 	};

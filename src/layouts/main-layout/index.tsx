@@ -24,6 +24,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useHeaderTitle } from "./hooks/headerContext";
 import { MenubarProfil, TimeNow } from "./components";
 import "dayjs/locale/id";
+import { useGetProfile } from "@/pages/modules/profile/controller";
+import { Pencil } from "lucide-react";
 
 const MENU_ROW =
 	"flex h-10 w-full items-center  justify-between rounded-md px-3 text-sm font-normal text-white hover:bg-white/10";
@@ -34,19 +36,60 @@ export default function MainLayout() {
 
 	const { title } = useHeaderTitle();
 
+	const { loading, data } = useGetProfile();
+
 	return (
 		<SidebarProvider defaultOpen>
 			<div className="flex min-h-svh w-full">
 				{/* SIDEBAR */}
 				<Sidebar>
-					<SidebarHeader className="px-4 py-3 flex flex-row justify-start items-center gap-2 w-full bg-[#01001A] text-white font-semibold">
-						<div className="h-8 w-8 flex items-center justify-center rounded-full bg-white text-[#01001A]">
-							<FaGraduationCap size={20} />
-						</div>
-						<Link to={"/modules"}>Manajamen Sekolah</Link>
+					<SidebarHeader className="px-4 py-3 bg-[#021A00] text-white">
+						<Link
+							to={"/modules"}
+							className="flex flex-row justify-start items-center gap-2 w-full"
+						>
+							{data?.photo_sekolah ? (
+								<img src={data?.photo_sekolah} className="h-8 w-8" />
+							) : (
+								<div className="h-8 w-8 flex items-center justify-center rounded-full bg-white text-[#01001A]">
+									<FaGraduationCap size={20} />
+								</div>
+							)}
+							<div className="flex flex-col gap-0">
+								<p className="text-md font-medium">{data?.nama_sekolah}</p>
+								<p className="text-xs">{data?.email}</p>
+							</div>
+						</Link>
 					</SidebarHeader>
 
-					<SidebarContent className="bg-[#01001A] text-white">
+					<hr className="border-t w-full border-[#1E5916]" />
+
+					<div className="flex flex-col gap-4 py-4 bg-[#021A00] items-center justify-center">
+						{data?.photo_sekolah && (
+							<img
+								src={data?.photo_sekolah}
+								alt={data?.nama_sekolah}
+								className="w-1/3"
+							/>
+						)}
+
+						<div className="flex flex-col gap-0 text-white items-center justify-center">
+							<p className="">{data?.nama}</p>
+							<p className="text-xs">{data?.email}</p>
+						</div>
+						<button
+							type="button"
+							onClick={() => {
+								navigate("/profile");
+							}}
+							className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-white text-xs"
+						>
+							<Pencil size={14} />
+							Edit Profil
+						</button>
+					</div>
+
+					<SidebarContent className="bg-[#021A00] text-white">
 						<ScrollArea className="h-[calc(100svh-64px)] py-3">
 							<SidebarMenu className="gap-1">
 								{sidebarItems.map((item) => {
@@ -62,7 +105,7 @@ export default function MainLayout() {
 															navigate("/modules");
 														} else {
 															navigate(
-																`/modules/${convertToSlug(item?.label)}`
+																`/modules/${convertToSlug(item?.label)}`,
 															);
 														}
 													}}
@@ -73,7 +116,7 @@ export default function MainLayout() {
 															"flex items-center gap-2 duration-300 transition-colors",
 															{
 																"text-[#70F2B6]": isActive,
-															}
+															},
 														)}
 													>
 														{item.icon && (
@@ -104,7 +147,7 @@ export default function MainLayout() {
 												>
 													<div
 														className={clsx(
-															"flex items-center gap-2 duration-300 transition-colors"
+															"flex items-center gap-2 duration-300 transition-colors",
 														)}
 													>
 														{item.icon && (
@@ -128,13 +171,13 @@ export default function MainLayout() {
 																			"text-[#70F2B6]": isActive,
 																			"hover:text-emerald-400 text-white/80 ":
 																				!isActive,
-																		}
+																		},
 																	)}
 																	onClick={() => {
 																		navigate(
 																			`/modules/${convertToSlug(
-																				item?.label
-																			)}/${convertToSlug(child?.label)}`
+																				item?.label,
+																			)}/${convertToSlug(child?.label)}`,
 																		);
 																	}}
 																>
@@ -170,7 +213,7 @@ export default function MainLayout() {
 							</p>
 							<TimeNow className="text-[#888]" />
 						</div>
-						<MenubarProfil />
+						<MenubarProfil data={data} loading={loading} />
 					</header>
 
 					{/* CONTENT */}

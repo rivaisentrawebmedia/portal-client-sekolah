@@ -1,8 +1,18 @@
 import AxiosClient from "@/provider/axios";
-import type { Dashboard, PaginatedResponse } from "./dataTypes";
+import type { Modul, PaginatedResponse } from "./dataTypes";
 
-export const getDashboard = async (): Promise<PaginatedResponse<Dashboard>> => {
-	const res = await AxiosClient.get("/dashboard");
+export type GetModulParams = {
+	search?: string;
+};
+
+export const getModul = async ({
+	search,
+}: GetModulParams): Promise<PaginatedResponse<Modul>> => {
+	const res = await AxiosClient.get("/portal-sekolah/modul", {
+		params: {
+			search,
+		},
+	});
 
 	return res.data;
 };
