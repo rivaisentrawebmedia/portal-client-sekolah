@@ -24,7 +24,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useHeaderTitle } from "./hooks/headerContext";
 import { MenubarProfil, TimeNow } from "./components";
 import "dayjs/locale/id";
-import { useGetProfile } from "@/pages/modules/profile/controller";
+import { useGetProfile } from "@/pages/modules/portal-sekolah/profile/controller";
 import { Pencil } from "lucide-react";
 
 const MENU_ROW =

@@ -14,7 +14,7 @@ import { getInitials } from "@/utils/helpers";
 import { FaCaretDown, FaKeyboard, FaUser } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { Profile } from "@/pages/modules/profile/model";
+import type { Profile } from "@/pages/modules/portal-sekolah/profile/model";
 
 export function MenubarProfil({
 	data,
