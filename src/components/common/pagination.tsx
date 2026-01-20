@@ -92,8 +92,8 @@ function PageButton({
 			className={cn(
 				"min-w-[32px] rounded-md border px-2 py-1 transition",
 				active
-					? "bg-[#162259] text-white border-[#162259]"
-					: "bg-white hover:bg-[#F5F5FF]"
+					? "bg-[#1E5916] text-white border-[#1E5916]"
+					: "bg-white hover:bg-[#F5F5FF]",
 			)}
 		>
 			{children}
@@ -104,7 +104,7 @@ function PageButton({
 function getPaginationRange(
 	currentPage: number,
 	lastPage: number,
-	maxVisible = 5
+	maxVisible = 5,
 ) {
 	const half = Math.floor(maxVisible / 2);
 

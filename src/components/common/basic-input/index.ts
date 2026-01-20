@@ -3,3 +3,4 @@ export * from "./SelectCommon";
 export * from "./SelectCommonGroup";
 export * from "./TextAreaCommon";
 export * from "./TextEditorCommon";
+export * from "./InputTanggalLahir";

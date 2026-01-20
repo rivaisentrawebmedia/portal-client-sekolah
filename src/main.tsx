@@ -13,5 +13,5 @@ createRoot(document.getElementById("root")!).render(
 			closeOnClick={true}
 			limit={1500}
 		/>
-	</Providers>
+	</Providers>,
 );

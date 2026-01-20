@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import { Router } from "./pages/modules/portal-sekolah/profile";
+import { Router } from "./router";
 import { ErrorBoundary } from "./pages/error";
 
 function App() {

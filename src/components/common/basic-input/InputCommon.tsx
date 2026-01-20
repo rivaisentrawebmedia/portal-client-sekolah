@@ -36,7 +36,17 @@ export function InputCommon({
 				name={name}
 				render={({ field }) => (
 					<FormItem className={className}>
-						{label && <FormLabel className={labelClassname}>{label}</FormLabel>}
+						{label && (
+							<FormLabel
+								className={labelClassname}
+								style={{
+									fontWeight: "lighter",
+									letterSpacing: "1px",
+								}}
+							>
+								{label}
+							</FormLabel>
+						)}
 						<FormControl>
 							<div className="relative flex-1	">
 								<Input

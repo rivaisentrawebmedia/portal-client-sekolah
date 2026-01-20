@@ -34,11 +34,22 @@ export function TextareaCommon({
 			name={name}
 			render={({ field }) => (
 				<FormItem className={className}>
-					{label && <FormLabel className={labelClassname}>{label}</FormLabel>}
+					{label && (
+						<FormLabel
+							className={labelClassname}
+							style={{
+								fontWeight: "lighter",
+								letterSpacing: "1px",
+							}}
+						>
+							{label}
+						</FormLabel>
+					)}
 
 					<FormControl>
 						<Textarea
 							{...field}
+							className="flex-1"
 							rows={rows}
 							disabled={disabled}
 							placeholder={placeholder || "Masukkan teks"}

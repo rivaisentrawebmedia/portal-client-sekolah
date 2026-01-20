@@ -5,7 +5,7 @@ export async function uploadFile(file: File): Promise<UploadFileResponse> {
 	const formData = new FormData();
 	formData.append("file", file);
 
-	const { data } = await AxiosClient.post("/file", formData, {
+	const { data } = await AxiosClient.post("/portal-sekolah/file", formData, {
 		headers: {
 			"Content-Type": "multipart/form-data",
 		},

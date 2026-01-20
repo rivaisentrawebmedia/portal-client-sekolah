@@ -61,7 +61,7 @@ export default function DashboardPage() {
 							<p className="font-medium">{item?.nama}</p>
 
 							<div className="absolute top-0 right-0 text-xs flex items-center gap-1 m-3">
-								{item?.berlangganan ? (
+								{!item?.berlangganan ? (
 									<>
 										<div className="w-3 h-3 bg-rose-500 rounded-full" />
 										<p>Tidak Aktif</p>
