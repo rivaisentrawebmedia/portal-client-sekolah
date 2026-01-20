@@ -54,7 +54,7 @@ export function usePostLogin() {
 		const toastId = toast.loading("Sedang login...");
 
 		try {
-			const res = await AxiosClient.post("/login", payload);
+			const res = await AxiosClient.post("/portal-sekolah/login", payload);
 
 			if (res.status === 200) {
 				Cookies.set("token", res?.data?.data?.token);

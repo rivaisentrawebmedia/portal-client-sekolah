@@ -1,16 +1,33 @@
-import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
+import {
+	Menubar,
+	MenubarContent,
+	MenubarItem,
+	MenubarLabel,
+	MenubarMenu,
+	MenubarSeparator,
+	MenubarTrigger,
+} from "@/components/ui/menubar";
 import { DialogLogout } from "./dialogLogout";
 import { useState } from "react";
+import { useGetProfile } from "@/pages/modules/profile/controller";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getInitials } from "@/utils/helpers";
+import { FaCaretDown, FaKeyboard, FaUser } from "react-icons/fa";
+import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function MenubarProfil() {
 	const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+	const { loading, data } = useGetProfile();
+
+	const navigate = useNavigate();
 	return (
 		<>
 			<Menubar>
 				<MenubarMenu>
 					<MenubarTrigger className="group">
 						<div className="flex items-center gap-2">
-							{/* {loading ? (
+							{loading ? (
 								<>
 									<Skeleton className="h-7 w-7 rounded-full" />
 									<Skeleton className="h-4 w-24" />
@@ -19,10 +36,10 @@ export function MenubarProfil() {
 							) : (
 								<>
 									<div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#162259] text-white">
-										{getInitials(profile?.nama || "Joko Susilo")}
+										{getInitials(data?.nama || "Joko Susilo")}
 									</div>
 
-									<p>{profile?.nama}</p>
+									<p>{data?.nama}</p>
 
 									<div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5F5FF]">
 										<FaCaretDown
@@ -31,22 +48,22 @@ export function MenubarProfil() {
 										/>
 									</div>
 								</>
-							)} */}
+							)}
 						</div>
 					</MenubarTrigger>
 
-					{/* {!loading && (
+					{!loading && (
 						<MenubarContent align="end" className="min-w-[220px]">
 							<MenubarLabel>
 								<div className="flex items-center gap-2">
 									<div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#162259] text-white">
-										{getInitials(profile?.nama || "Joko Susilo")}
+										{getInitials(data?.nama || "Joko Susilo")}
 									</div>
 
 									<div className="flex flex-col">
-										<p>{profile?.nama}</p>
+										<p>{data?.nama}</p>
 										<p className="font-light text-[#2769CD]">
-											{profile?.level_pengguna}
+											{data?.username}
 										</p>
 									</div>
 								</div>
@@ -87,7 +104,7 @@ export function MenubarProfil() {
 								Logout
 							</MenubarItem>
 						</MenubarContent>
-					)} */}
+					)}
 				</MenubarMenu>
 			</Menubar>
 

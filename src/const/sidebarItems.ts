@@ -1,3 +1,12 @@
+import { JokoAccountTree } from "@/assets/icons/JokoAccountTree";
+import { JokoBusiness } from "@/assets/icons/JokoBusiness";
+import { JokoDashboard } from "@/assets/icons/JokoDashboard";
+import { JokoHeadsetMic } from "@/assets/icons/JokoHeadsetMic";
+import { JokoHelpCenter } from "@/assets/icons/JokoHelpCenter";
+import { JokoListAlt } from "@/assets/icons/JokoListAlt";
+import { JokoMenuBook } from "@/assets/icons/JokoMenuBook";
+import { JokoPeople } from "@/assets/icons/JokoPeople";
+
 export type SidebarItem = {
 	label: string;
 	icon?: React.ElementType;
@@ -7,105 +16,42 @@ export type SidebarItem = {
 export const sidebarItems: SidebarItem[] = [
 	{
 		label: "Dashboard",
-	},
-	{
-		label: "Identitas",
+		icon: JokoDashboard,
 	},
 	{
 		label: "Manajemen User",
-		children: [
-			{ label: "Daftar User" },
-			{ label: "Role/Level" },
-			{ label: "Recovery" },
-		],
+		icon: JokoPeople,
 	},
 	{
-		label: "Manajemen Client",
+		label: "Struktur Organisasi",
+		icon: JokoAccountTree,
+	},
+	{
+		label: "Log Aktivitas",
+		icon: JokoListAlt,
+	},
+	{
+		label: "Profil Organisasi",
+		icon: JokoBusiness,
+	},
+	{
+		label: "Hubungi Kami",
+		icon: JokoHeadsetMic,
 		children: [
 			{
-				label: "Daftar Client",
+				label: "F.A.Q Pusat",
 			},
 			{
-				label: "Logins As",
-			},
-
-			{
-				label: "Aset Client",
-			},
-			{
-				label: "Sektor Bisnis",
-			},
-			{
-				label: "Industri",
-			},
-			{
-				label: "Recovery",
+				label: "Ajukan Pertanyaan",
 			},
 		],
 	},
 	{
-		label: "Wilayah",
-		children: [
-			{
-				label: "Provinsi",
-			},
-			{
-				label: "Kabupaten/Kota",
-			},
-			{
-				label: "Kecamatan",
-			},
-			{
-				label: "Kelurahan/Desa",
-			},
-			{ label: "Recovery" },
-		],
+		label: "Pusat Bantuan",
+		icon: JokoHelpCenter,
 	},
 	{
-		label: "Aset",
-		children: [
-			{
-				label: "Modul",
-			},
-			{
-				label: "Kategori",
-			},
-			{ label: "Recovery" },
-		],
-	},
-	{
-		label: "Referensi",
-		children: [
-			{
-				label: "Jenis Kepegawaian",
-			},
-			{
-				label: "Kategori Kepegawaian",
-			},
-			{
-				label: "Jenis KTK",
-			},
-			{
-				label: "Pangkat/Golongan",
-			},
-			{
-				label: "Status Aktif",
-			},
-			{
-				label: "Suku",
-			},
-			{
-				label: "Agama",
-			},
-			{
-				label: "Golongan Darah",
-			},
-			{
-				label: "Akreditasi",
-			},
-			{
-				label: "Penyelenggaraan Operasional",
-			},
-		],
+		label: "Dokumentasi",
+		icon: JokoMenuBook,
 	},
 ];
