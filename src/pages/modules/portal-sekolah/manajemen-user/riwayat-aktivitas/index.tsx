@@ -42,7 +42,10 @@ export default function RiwayatAktivitasPage() {
 		page: Number(page) || 1,
 		limit: Number(limit) || 10,
 		search: search || undefined,
-		jangka_waktu: jangka_waktu || "",
+		jangka_waktu:
+			jangka_waktu === "tampilkan-semua"
+				? undefined
+				: jangka_waktu || undefined,
 		id: user_id || "",
 	};
 
