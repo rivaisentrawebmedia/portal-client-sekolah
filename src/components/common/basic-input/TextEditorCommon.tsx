@@ -19,6 +19,10 @@ import { cn } from "@/utils/cn";
 import { EditorToolbar } from "./editor/EditorToolbar";
 import { LinkModal } from "./editor/LinkModal";
 
+import Color from "@tiptap/extension-color";
+import { FontSize } from "./editor/FontSize";
+import { TextStyle } from "@tiptap/extension-text-style";
+
 export function TextEditorCommon({
 	form,
 	name,
@@ -51,6 +55,9 @@ export function TextEditorCommon({
 						StarterKit.configure({
 							heading: { levels: [1, 2, 3] },
 						}),
+						TextStyle,
+						Color,
+						FontSize,
 						Underline,
 						Image.configure({ allowBase64: true }),
 						Link.configure({ openOnClick: false }),
@@ -120,7 +127,7 @@ export function TextEditorCommon({
 									editor={editor}
 									className={cn(
 										"prose prose-sm max-w-none px-3 py-2 focus:outline-none",
-										"min-h-[240px]"
+										"min-h-[240px]",
 									)}
 									style={{ minHeight }}
 								/>
