@@ -74,3 +74,17 @@ export type KontrolAksesMenu = {
 export type PaginatedResponseKontrolAksesMenu<T> = {
 	data: T[];
 };
+
+export type RiwayatAktivitas = {
+	id: string;
+	created_at: string;
+	device: string;
+	modul: string;
+	aktifitas: string;
+	deskripsi: string;
+};
+
+export type PaginatedResponseRiwayatAktivitas<T> = {
+	data: T[];
+	meta: MetaPagination;
+};

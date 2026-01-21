@@ -8,12 +8,22 @@ import type {
 	PaginatedResponseKontrolAkses,
 	PaginatedResponseKontrolAksesMenu,
 	PaginatedResponseManajamenUserByID,
+	PaginatedResponseRiwayatAktivitas,
+	RiwayatAktivitas,
 } from "./dataTypes";
 
 export type GetManajemenUserParams = {
 	page: number;
 	limit?: number;
 	search?: string;
+};
+
+export type GetRiwayatAktivitasParams = {
+	id: string;
+	page: number;
+	limit?: number;
+	search?: string;
+	jangka_waktu?: string;
 };
 
 export const getManajemenUser = async ({
@@ -60,5 +70,28 @@ export const getKontrolAksesMenu = async (
 			modul_id,
 		},
 	});
+	return res.data;
+};
+
+export const getRiwayatAktivitas = async ({
+	id,
+	page,
+	jangka_waktu,
+	limit,
+	search,
+}: GetRiwayatAktivitasParams): Promise<
+	PaginatedResponseRiwayatAktivitas<RiwayatAktivitas>
+> => {
+	const res = await AxiosClient.get(
+		`/portal-sekolah/user/${id}/riwayat-aktifitas`,
+		{
+			params: {
+				page,
+				limit,
+				search,
+				jangka_waktu,
+			},
+		},
+	);
 	return res.data;
 };

@@ -61,3 +61,11 @@ export const UpdateManajemenUserSchema = z
 export type UpdateManajemenUserFormValues = z.infer<
 	typeof UpdateManajemenUserSchema
 >;
+
+export const FilterRiwayatAktivitasSchema = z.object({
+	jangka_waktu: z.string().optional().nullable().nullish(),
+});
+
+export type FilterRiwayatAktivitasFormValues = z.infer<
+	typeof FilterRiwayatAktivitasSchema
+>;

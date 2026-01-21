@@ -7,3 +7,5 @@ export * from "./useGetKontrolAkses";
 export * from "./usePostToggle";
 export * from "./useGetKontrolAksesMenu";
 export * from "./usePostToggleMenu";
+export * from "./useGetRiwayatAktivitas";
+export * from "./useGetRiwayatAktivitas";
