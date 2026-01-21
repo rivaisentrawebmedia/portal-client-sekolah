@@ -16,7 +16,7 @@ export function ArrowBack({ link, title }: { title: string; link: string }) {
 			<div className="flex border border-[#9EDAA0] bg-[#F6FFF5] rounded-full items-center justify-center w-10 h-10">
 				<JokoArrowBack />
 			</div>
-			<p className="text-2xl text-[#1E5916] font-medium">{title}</p>
+			<p className="text-2xl text-left text-[#1E5916] font-medium">{title}</p>
 		</button>
 	);
 }

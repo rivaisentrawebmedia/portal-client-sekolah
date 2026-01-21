@@ -68,7 +68,17 @@ export function SelectCommon({
 
 				return (
 					<FormItem className={className}>
-						{label && <FormLabel className={labelClassName}>{label}</FormLabel>}
+						{label && (
+							<FormLabel
+								className={labelClassName}
+								style={{
+									fontWeight: "lighter",
+									letterSpacing: "1px",
+								}}
+							>
+								{label}
+							</FormLabel>
+						)}
 
 						<FormControl>
 							<Select

@@ -4,49 +4,43 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	KelompokSchema,
-	type Kelompok,
-	type KelompokFormValues,
-} from "../model";
+import { JabatanSchema, type Jabatan, type JabatanFormValues } from "../model";
 import AxiosClient from "@/provider/axios";
+import dayjs from "dayjs";
 
 type UpdatePayload = {
 	id: string;
-	data: KelompokFormValues;
+	data: JabatanFormValues;
 };
 
-export function useUpdateKelompok() {
-	const [selected, setSelected] = useState<Kelompok | null>(null);
+export function useUpdateJabatan() {
+	const [selected, setSelected] = useState<Jabatan | null>(null);
 	const [isShow, setIsShow] = useState(false);
 
 	const queryClient = useQueryClient();
 
-	const form = useForm<zod.infer<typeof KelompokSchema>>({
-		resolver: zodResolver(KelompokSchema),
+	const form = useForm<zod.infer<typeof JabatanSchema>>({
+		resolver: zodResolver(JabatanSchema),
 		mode: "onSubmit",
 	});
 
 	const mutation = useMutation({
 		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(
-				`/portal-sekolah/kelompok-jabatan/${id}`,
-				data,
-			);
+			const res = await AxiosClient.put(`/portal-sekolah/jabatan/${id}`, data);
 			return res.data;
 		},
 
 		onMutate: () => {
-			return toast.loading("Memperbarui data kelompok...");
+			return toast.loading("Memperbarui data jabatan...");
 		},
 
 		onSuccess: async (res, _variables, toastId) => {
 			await queryClient.invalidateQueries({
-				queryKey: ["kelompok"],
+				queryKey: ["jabatan"],
 			});
 
 			toast.update(toastId, {
-				render: res?.message || "Berhasil memperbarui kelompok",
+				render: res?.message || "Berhasil memperbarui jabatan",
 				type: "success",
 				isLoading: false,
 				autoClose: 3000,
@@ -74,6 +68,13 @@ export function useUpdateKelompok() {
 			id: selected.id,
 			data: {
 				nama: values.nama,
+				is_mapel: values.is_mapel,
+				is_utama: values.is_utama,
+				is_walas: values.is_walas,
+				kelompok_jabatan_id: values.kelompok_jabatan_id,
+				mulai: values.mulai,
+				pejabat_id: values.pejabat_id,
+				selesai: values.selesai,
 			},
 		});
 	});
@@ -82,6 +83,17 @@ export function useUpdateKelompok() {
 		if (selected) {
 			form.reset({
 				nama: selected.nama,
+				is_mapel: selected.is_mapel,
+				is_utama: selected.is_utama,
+				is_walas: selected.is_walas,
+				kelompok_jabatan_id: selected.kelompok_jabatan_id,
+				mulai: selected.mulai
+					? dayjs(selected?.mulai).locale("id").format("YYYY-MM-DD")
+					: "",
+				pejabat_id: selected.pejabat_id,
+				selesai: selected.selesai
+					? dayjs(selected?.selesai).locale("id").format("YYYY-MM-DD")
+					: "",
 			});
 		}
 	}, [selected, form]);

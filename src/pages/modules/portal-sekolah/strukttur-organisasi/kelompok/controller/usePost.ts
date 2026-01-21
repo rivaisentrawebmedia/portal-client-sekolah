@@ -26,7 +26,7 @@ export function usePostKelompok() {
 		},
 
 		onMutate: () => {
-			return toast.loading("Menyimpan data kategori modul...");
+			return toast.loading("Menyimpan data kelompok...");
 		},
 
 		onSuccess: async (data, _variables, toastId) => {
@@ -35,7 +35,7 @@ export function usePostKelompok() {
 			});
 
 			toast.update(toastId, {
-				render: data?.message || "Berhasil menambahkan kategori modul",
+				render: data?.message || "Berhasil menambahkan kelompok",
 				type: "success",
 				isLoading: false,
 				autoClose: 3000,

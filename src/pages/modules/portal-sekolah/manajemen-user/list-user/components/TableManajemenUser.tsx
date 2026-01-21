@@ -7,6 +7,8 @@ import { getInitials } from "@/utils/helpers";
 import { ButtonEdit } from "./ButtonEdit";
 import { ButtonDelete } from "./ButtonDelete";
 import { ButtonDetail } from "./ButtonDetail";
+import clsx from "clsx";
+import { badgeColors } from "../../../strukttur-organisasi/jabatan/components";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
@@ -71,7 +73,21 @@ export function TableManajemenUser({
 					header: "Akses",
 					className: "font-light text-[#1E5916]",
 					render: (item) => (
-						<p>{item?.akses?.map((item) => item)?.join(", ") || "-"}</p>
+						<div className="flex flex-wrap gap-2">
+							{item?.akses?.map((item, idx) => {
+								return (
+									<p
+										className={clsx(
+											"px-3 py-1.5 rounded-md text-white text-xs",
+											badgeColors[idx] ?? "bg-gray-400",
+										)}
+										key={idx}
+									>
+										{item}
+									</p>
+								);
+							})}
+						</div>
 					),
 				},
 				{

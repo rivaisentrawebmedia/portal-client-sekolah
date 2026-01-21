@@ -1,52 +1,43 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	KelompokSchema,
-	type Kelompok,
-	type KelompokFormValues,
-} from "../model";
+import { JabatanSchema, type JabatanFormValues } from "../model";
 import AxiosClient from "@/provider/axios";
 
-type UpdatePayload = {
-	id: string;
-	data: KelompokFormValues;
-};
-
-export function useUpdateKelompok() {
-	const [selected, setSelected] = useState<Kelompok | null>(null);
+export function usePostJabatan() {
 	const [isShow, setIsShow] = useState(false);
-
 	const queryClient = useQueryClient();
 
-	const form = useForm<zod.infer<typeof KelompokSchema>>({
-		resolver: zodResolver(KelompokSchema),
+	const form = useForm<zod.infer<typeof JabatanSchema>>({
+		resolver: zodResolver(JabatanSchema),
 		mode: "onSubmit",
+		defaultValues: {
+			is_mapel: false,
+			is_utama: false,
+			is_walas: false,
+		},
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(
-				`/portal-sekolah/kelompok-jabatan/${id}`,
-				data,
-			);
+		mutationFn: async (payload: JabatanFormValues) => {
+			const res = await AxiosClient.post("/portal-sekolah/jabatan", payload);
 			return res.data;
 		},
 
 		onMutate: () => {
-			return toast.loading("Memperbarui data kelompok...");
+			return toast.loading("Menyimpan data jabatan...");
 		},
 
-		onSuccess: async (res, _variables, toastId) => {
+		onSuccess: async (data, _variables, toastId) => {
 			await queryClient.invalidateQueries({
-				queryKey: ["kelompok"],
+				queryKey: ["jabatan"],
 			});
 
 			toast.update(toastId, {
-				render: res?.message || "Berhasil memperbarui kelompok",
+				render: data?.message || "Berhasil menambahkan jabatan",
 				type: "success",
 				isLoading: false,
 				autoClose: 3000,
@@ -54,10 +45,11 @@ export function useUpdateKelompok() {
 
 			form.reset();
 			setIsShow(false);
-			setSelected(null);
 		},
 
 		onError: (err: any, _variables, toastId) => {
+			console.log(err);
+
 			toast.update(toastId || "", {
 				render: err?.response?.data?.error || "Terjadi kesalahan",
 				type: "error",
@@ -68,23 +60,17 @@ export function useUpdateKelompok() {
 	});
 
 	const onSubmit = form.handleSubmit((values) => {
-		if (!selected?.id) return;
-
 		mutation.mutate({
-			id: selected.id,
-			data: {
-				nama: values.nama,
-			},
+			nama: values.nama,
+			is_mapel: values.is_mapel,
+			is_utama: values.is_utama,
+			is_walas: values.is_walas,
+			kelompok_jabatan_id: values.kelompok_jabatan_id,
+			mulai: values.mulai,
+			pejabat_id: values.pejabat_id,
+			selesai: values.selesai,
 		});
 	});
-
-	useEffect(() => {
-		if (selected) {
-			form.reset({
-				nama: selected.nama,
-			});
-		}
-	}, [selected, form]);
 
 	return {
 		form,
@@ -92,7 +78,5 @@ export function useUpdateKelompok() {
 		setIsShow,
 		onSubmit,
 		disabled: mutation.isPending,
-		setSelected,
-		selected,
 	};
 }

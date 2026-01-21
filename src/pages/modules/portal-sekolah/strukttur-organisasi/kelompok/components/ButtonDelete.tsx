@@ -50,7 +50,7 @@ export function ButtonDelete({ rowData }: { rowData?: Kelompok }) {
 						</DialogDescription>
 					</DialogHeader>
 
-					<div className="flex flex-col gap-4 p-3 bg-primary/10">
+					<div className="flex flex-col gap-4 p-3 bg-[#F6FFF5] border border-[#9EDAA0] rounded-md">
 						<div className="flex flex-col font-sans text-sm rounded-md md:flex-row md:items-center md:gap-2">
 							<p className="w-full md:w-1/3 text-[#888]">Kelompok</p>
 							<p className="flex-1">{selected?.nama || "-"}</p>
