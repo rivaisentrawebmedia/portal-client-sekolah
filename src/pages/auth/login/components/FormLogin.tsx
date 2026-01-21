@@ -51,7 +51,7 @@ export function FormLogin() {
 										console.log(e);
 										handleCheckedIsRemember(e.target.checked);
 									}}
-									className=" accent-[#162259]"
+									className=" accent-[#1E5916]"
 									id="toggle"
 								/>
 								<Label htmlFor="toggle" className="pb-1">
