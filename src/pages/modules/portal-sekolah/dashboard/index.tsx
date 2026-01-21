@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useGetModul } from "./controller";
 import { SearchInput } from "@/components/common/searchInput";
 import {
@@ -9,6 +9,17 @@ import {
 } from "@/components/ui/empty";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FaImage } from "react-icons/fa";
+import { useState } from "react";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import type { Modul } from "./model";
 
 export default function DashboardPage() {
 	const [searchParams] = useSearchParams();
@@ -19,6 +30,21 @@ export default function DashboardPage() {
 	};
 
 	const { data, loading } = useGetModul(paramsDefault);
+
+	const [isShow, setIsShow] = useState<boolean>(false);
+
+	const [selected, setSelected] = useState<Modul>();
+
+	const formatDate = (iso?: string) => {
+		if (!iso) return "-";
+		return new Date(iso).toLocaleDateString("id-ID", {
+			day: "2-digit",
+			month: "long",
+			year: "numeric",
+		});
+	};
+
+	const navigate = useNavigate();
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -50,6 +76,14 @@ export default function DashboardPage() {
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 					{data.map((item, idx) => (
 						<div
+							onClick={() => {
+								if (item?.berlangganan && item?.dapat_diakses) {
+									navigate(`/modules${selected?.slug}`);
+								} else {
+									setSelected(item);
+									setIsShow(true);
+								}
+							}}
 							key={idx}
 							className="min-h-48 flex-col relative hover:text-[#1E5916] text-[#444444] flex items-center justify-center gap-2 rounded-lg border border-[#DFDFDF] hover:border-[#9EDAA0] hover:bg-[#F6FFF5] duration-300 transition-colors cursor-pointer"
 						>
@@ -77,6 +111,58 @@ export default function DashboardPage() {
 					))}
 				</div>
 			)}
+
+			<Dialog open={isShow} onOpenChange={setIsShow}>
+				<DialogContent className="w-[95vw] max-w-md rounded-lg p-6 max-h-[90vh]">
+					<DialogHeader>
+						{/* TITLE */}
+						<DialogTitle>
+							{selected?.berlangganan && !selected?.dapat_diakses
+								? "Modul Tidak Dapat Diakses"
+								: !selected?.berlangganan
+									? "Akses Modul Dibatasi"
+									: ""}
+						</DialogTitle>
+
+						{/* DESCRIPTION */}
+						<DialogDescription className="leading-relaxed">
+							{selected?.berlangganan && !selected?.dapat_diakses ? (
+								<>
+									Langganan Anda untuk modul ini telah berakhir.
+									<br />
+									Masa aktif:{" "}
+									<strong>
+										{formatDate(selected.aktif_dari)} –{" "}
+										{formatDate(selected.aktif_sampai)}
+									</strong>
+									.
+									<br />
+									Silakan perpanjang langganan untuk kembali mengakses modul
+									ini.
+								</>
+							) : !selected?.berlangganan ? (
+								<>
+									Anda belum berlangganan modul ini.
+									<br />
+									Silakan berlangganan terlebih dahulu untuk mendapatkan akses
+									penuh.
+								</>
+							) : null}
+						</DialogDescription>
+					</DialogHeader>
+
+					<DialogFooter className="flex gap-2 flex-row justify-end">
+						<Button
+							type="button"
+							variant="outline"
+							disabled={loading}
+							onClick={() => setIsShow(false)}
+						>
+							Tutup
+						</Button>
+					</DialogFooter>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 }
