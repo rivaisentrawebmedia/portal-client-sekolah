@@ -11,7 +11,9 @@ export function DetailUser({
 	data: ManajemenUserByID | undefined;
 	loading: boolean;
 }) {
-	const { data: pangkatGolonganOptions } = useGetReferensi("pangkat-golongan");
+	const { data: pangkatGolonganOptions } = useGetReferensi({
+		url: "pangkat-golongan",
+	});
 
 	const pangkat = pangkatGolonganOptions?.find(
 		(item) => item?.id === data?.pangkat_golongan_id,

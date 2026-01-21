@@ -8,24 +8,41 @@ export type Referensi = {
 	nama: string;
 	nama_pangkat: string;
 	nama_golongan: string;
+	provinsi_id: string;
+	kabupaten_id: string;
+	kecamatan_id: string;
+	desa_id: string;
 };
 
-export const getReferensi = async (
-	url: string,
-): Promise<{ data: Referensi[] }> => {
+export type GetReferensiParams = {
+	url: string;
+	provinsi_id?: string;
+	kabupaten_id?: string;
+	kecamatan_id?: string;
+};
+
+export const getReferensi = async ({
+	url,
+	kabupaten_id,
+	kecamatan_id,
+	provinsi_id,
+}: GetReferensiParams): Promise<{ data: Referensi[] }> => {
 	const res = await AxiosClient.get(`/referensi/${url}`, {
 		params: {
 			page: 1,
+			provinsi_id,
+			kabupaten_id,
+			kecamatan_id,
 		},
 	});
 	return res.data;
 };
 
-export function useGetReferensi(url: string) {
+export function useGetReferensi(params: GetReferensiParams) {
 	const query = useQuery({
-		queryKey: ["referensi", url],
-		queryFn: () => getReferensi(url || ""),
-		enabled: !!url, // ⬅️ penting
+		queryKey: ["referensi", params],
+		queryFn: () => getReferensi(params),
+		enabled: !!params, // ⬅️ penting
 		staleTime: 5 * 60 * 1000,
 		refetchOnWindowFocus: false,
 	});

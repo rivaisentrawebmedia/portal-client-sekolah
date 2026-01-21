@@ -3,7 +3,7 @@ import type { LogAktivitas } from "../model";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/id";
 import dayjs from "dayjs";
-import { convertFromSnakeCase } from "@/utils/helpers";
+import { convertFromSnakeCase, getInitials } from "@/utils/helpers";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
@@ -59,7 +59,27 @@ export function TableLogAktivitas({
 				{
 					header: "Nama User",
 					className: "font-light text-[#1E5916]",
-					render: (item) => <p>{item?.user_nama || "-"}</p>,
+					render: (item) => (
+						<div className="flex gap-2">
+							{item?.user_photo ? (
+								<img
+									src={item?.user_photo}
+									alt={item?.user_nama}
+									className="w-9 h-9 rounded-full"
+								/>
+							) : (
+								<div className="flex w-9 h-9 items-center justify-center bg-primary text-white text-xs">
+									{getInitials(item?.user_nama)}
+								</div>
+							)}
+							<div className="flex-1 flex-col flex">
+								<p>{item?.user_nama}</p>
+								<p className="text-wrap text-[#888]">
+									{item?.user_jabatan || "-"}
+								</p>
+							</div>
+						</div>
+					),
 				},
 				{
 					header: "Modul",

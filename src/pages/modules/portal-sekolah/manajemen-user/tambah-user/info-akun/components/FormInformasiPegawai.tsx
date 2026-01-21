@@ -12,18 +12,30 @@ export function FormInformasiPegawai({
 	disabled: boolean;
 }) {
 	const { data: statusAktifOptions, loading: loadingStatusAktif } =
-		useGetReferensi("status-aktif");
+		useGetReferensi({
+			url: "status-aktif",
+		});
 	const { data: golonganDarahOptions, loading: loadingGolonganDarah } =
-		useGetReferensi("golongan-darah");
-	const { data: agamaOptions, loading: loadingAgama } =
-		useGetReferensi("agama");
-	const { data: sukuOptions, loading: loadingSuku } = useGetReferensi("suku");
+		useGetReferensi({
+			url: "golongan-darah",
+		});
+	const { data: agamaOptions, loading: loadingAgama } = useGetReferensi({
+		url: "agama",
+	});
+	const { data: sukuOptions, loading: loadingSuku } = useGetReferensi({
+		url: "suku",
+	});
 	const { data: pangkatGolonganOptions, loading: loadingPangkatGolongan } =
-		useGetReferensi("pangkat-golongan");
-	const { data: jenisKTKOptions, loading: loadingJenisKTK } =
-		useGetReferensi("jenis-ktk");
+		useGetReferensi({
+			url: "pangkat-golongan",
+		});
+	const { data: jenisKTKOptions, loading: loadingJenisKTK } = useGetReferensi({
+		url: "jenis-ktk",
+	});
 	const { data: jenisKepegawaianOptions, loading: loadingJenisKepegawaian } =
-		useGetReferensi("jenis-kepegawaian");
+		useGetReferensi({
+			url: "jenis-kepegawaian",
+		});
 
 	return (
 		<>
