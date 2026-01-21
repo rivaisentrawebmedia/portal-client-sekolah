@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { getInitials } from "@/utils/helpers";
 import { ButtonEdit } from "./ButtonEdit";
 import { ButtonDelete } from "./ButtonDelete";
+import { ButtonDetail } from "./ButtonDetail";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
@@ -77,7 +78,7 @@ export function TableManajemenUser({
 					header: "Terakhir Online",
 					className: "font-light text-[#1E5916]",
 					render: (item) => (
-						<p>
+						<p className="text-[#2769CD] italic">
 							{item?.terakhir_online
 								? dayjs(item.terakhir_online).fromNow()
 								: "-"}
@@ -100,6 +101,7 @@ export function TableManajemenUser({
 					className: "w-[100px]",
 					render: (item) => (
 						<div className="flex justify-center gap-2">
+							<ButtonDetail rowData={item} />
 							<ButtonEdit rowData={item} />
 							<ButtonDelete rowData={item} />
 						</div>

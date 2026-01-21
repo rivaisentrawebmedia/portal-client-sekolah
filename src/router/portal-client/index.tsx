@@ -1,6 +1,7 @@
 import EditUserPage from "@/pages/modules/portal-sekolah/manajemen-user/edit-user";
 import EditInformasiAkunPage from "@/pages/modules/portal-sekolah/manajemen-user/edit-user/info-akun";
 import ManajemenUserPage from "@/pages/modules/portal-sekolah/manajemen-user/list-user";
+import RiwayatAktivitasPage from "@/pages/modules/portal-sekolah/manajemen-user/riwayat-aktivitas";
 import TambahUserPage from "@/pages/modules/portal-sekolah/manajemen-user/tambah-user";
 import TambahInformasiAkunPage from "@/pages/modules/portal-sekolah/manajemen-user/tambah-user/info-akun";
 import KontrolAksesPage from "@/pages/modules/portal-sekolah/manajemen-user/tambah-user/kontrol-akses";
@@ -46,5 +47,9 @@ export const routePortalClient = [
 				element: <NotFoundPage />,
 			},
 		],
+	},
+	{
+		path: "manajemen-user/detail-user",
+		element: <RiwayatAktivitasPage />,
 	},
 ];
