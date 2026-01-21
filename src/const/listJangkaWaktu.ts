@@ -1,8 +1,18 @@
-import { convertToSnakeCase } from "@/utils/helpers";
+import { convertFromSnakeCase } from "@/utils/helpers";
 
-export const JangkaWaktuOptions = ["Hari Ini", "Bulan Ini"]?.map((item) => {
+export const JangkaWaktuOptions = [
+	"hari_ini",
+	"kemarin",
+	"minggu_ini",
+	"bulan_ini",
+	"tahun_ini",
+	"7_hari",
+	"30_hari",
+	"minggu_lalu",
+	"bulan_lalu",
+]?.map((item) => {
 	return {
-		label: item,
-		value: convertToSnakeCase(item),
+		label: convertFromSnakeCase(item),
+		value: item,
 	};
 });

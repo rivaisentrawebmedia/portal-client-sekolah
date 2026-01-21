@@ -24,8 +24,8 @@ export function TableRiwayatAktivitas({
 			data={data}
 			loading={loading}
 			search={search}
-			emptyTitle="Belum ada data Jabatan"
-			emptyDescription="Silakan tambahkan data Jabatan terlebih dahulu"
+			emptyTitle="Belum ada data riwayat aktivitas"
+			emptyDescription="Silakan tambahkan data riwayat aktivitas terlebih dahulu"
 			columns={[
 				{
 					header: "#",
