@@ -7,6 +7,7 @@ export type Profile = {
 	nama_sekolah: string;
 	sekolah_id: string;
 	photo_sekolah: string | null;
+	is_superadmin: boolean;
 };
 
 export type PaginatedResponse<T> = {

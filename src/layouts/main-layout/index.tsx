@@ -75,12 +75,14 @@ export default function MainLayout() {
 
 						<div className="flex flex-col gap-0 text-white items-center justify-center">
 							<p className="">{data?.nama}</p>
-							<p className="text-xs">{data?.email}</p>
+							<p className="text-xs">
+								{data?.is_superadmin ? "Superadmin" : "Admin"}
+							</p>
 						</div>
 						<button
 							type="button"
 							onClick={() => {
-								navigate("/profile");
+								navigate("/modules/profile");
 							}}
 							className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-white text-xs"
 						>
@@ -92,7 +94,10 @@ export default function MainLayout() {
 					<SidebarContent className="bg-[#021A00] text-white">
 						<ScrollArea className="h-[calc(100svh-64px)] py-3">
 							<SidebarMenu className="gap-1">
-								{sidebarItems.map((item) => {
+								{(data?.is_superadmin
+									? sidebarItems
+									: sidebarItems?.slice(0, 1)
+								)?.map((item) => {
 									if (!item.children) {
 										const isActive =
 											convertToSlug(item?.label) === secondPathname ||

@@ -11,10 +11,11 @@ import { DialogLogout } from "./dialogLogout";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getInitials } from "@/utils/helpers";
-import { FaCaretDown, FaKeyboard, FaUser } from "react-icons/fa";
+import { FaCaretDown, FaUser } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { Profile } from "@/pages/modules/portal-sekolah/profile/model";
+import { ButtonGantiPassword } from "./ButtonResetPassword";
 
 export function MenubarProfil({
 	data,
@@ -68,7 +69,7 @@ export function MenubarProfil({
 									<div className="flex flex-col">
 										<p>{data?.nama}</p>
 										<p className="font-light text-[#2769CD]">
-											{data?.username}
+											{data?.is_superadmin ? "Superadmin" : "Admin"}
 										</p>
 									</div>
 								</div>
@@ -79,9 +80,8 @@ export function MenubarProfil({
 							<MenubarItem asChild>
 								<button
 									onClick={() => {
-										navigate("/profil");
+										navigate("/modules/profile");
 									}}
-									disabled
 									className="flex w-full items-center gap-2"
 								>
 									<FaUser color="#2769CD" />
@@ -89,18 +89,7 @@ export function MenubarProfil({
 								</button>
 							</MenubarItem>
 
-							<MenubarItem asChild>
-								<button
-									onClick={() => {
-										navigate("/reset-password");
-									}}
-									disabled
-									className="flex w-full items-center gap-2"
-								>
-									<FaKeyboard color="#CDA327" />
-									Reset Password
-								</button>
-							</MenubarItem>
+							<ButtonGantiPassword />
 
 							<MenubarSeparator />
 

@@ -9,6 +9,7 @@ import DashboardPage from "@/pages/modules/portal-sekolah/dashboard";
 import { ErrorBoundary } from "@/pages/error";
 import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
 import { routePortalClient } from "./portal-client";
+import ProfilePage from "@/pages/modules/portal-sekolah/profile";
 
 export const Router = createBrowserRouter([
 	{
@@ -47,6 +48,7 @@ export const Router = createBrowserRouter([
 				children: [
 					{ path: "", element: <DashboardPage /> },
 					{ path: "dashboard", element: <DashboardPage /> },
+					{ path: "profile", element: <ProfilePage /> },
 
 					...routePortalClient,
 					{
