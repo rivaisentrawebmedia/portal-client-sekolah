@@ -44,7 +44,7 @@ export function BaseTable<T>({
 	const isSearching = Boolean(search?.trim());
 
 	return (
-		<Table className="w-full border border-[#C8C8C8]">
+		<Table className="w-full md:table-fixed overflow-auto border border-[#C8C8C8]">
 			<TableHeader className="bg-[#F6FFF5]">
 				<TableRow>
 					{columns.map((col, idx) => (
