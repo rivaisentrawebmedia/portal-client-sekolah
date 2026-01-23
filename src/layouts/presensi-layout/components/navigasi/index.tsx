@@ -71,7 +71,7 @@ export function NavigasiPresensiDesa({
 	return (
 		<div
 			ref={menuRef}
-			className="relative md:flex md:items-center gap-6 bg-white px-4 md:px-24 text-sm hidden"
+			className="relative md:flex md:items-center gap-6 border-b-2 bg-white px-4 md:px-24 text-sm hidden"
 		>
 			{loading ? (
 				<NavigationSkeleton />
@@ -86,7 +86,7 @@ export function NavigasiPresensiDesa({
 							<div
 								onClick={() => onClickL1(item)}
 								className={clsx(
-									"cursor-pointer border-b-2 py-2 transition-colors",
+									"cursor-pointer border-b-2 py-3 transition-colors",
 									{
 										"border-primary text-primary":
 											isActive || activeL1 === item?.id,
@@ -174,7 +174,7 @@ export function NavigasiPresensiDesa({
 
 function NavigationSkeleton() {
 	return (
-		<div className="flex items-center gap-6 py-2">
+		<div className="flex items-center gap-6 py-3">
 			{Array.from({ length: 4 }).map((_, idx) => (
 				<div key={idx} className="h-4 w-20 rounded bg-gray-200 animate-pulse" />
 			))}

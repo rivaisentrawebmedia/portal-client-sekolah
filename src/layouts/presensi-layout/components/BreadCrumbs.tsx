@@ -1,4 +1,5 @@
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 type BreadcrumbItem = {
@@ -28,7 +29,7 @@ export function Breadcrumbs({ items = [] }: BreadcrumbsProps) {
 									to="/modules/presensi"
 									className="flex items-center gap-1 hover:text-primary transition-colors"
 								>
-									<Home size={14} />
+									<FaHome size={14} />
 									{items.length === 1 && <span>Home</span>}
 								</Link>
 							) : item.to && !isLast ? (

@@ -14,20 +14,16 @@ export default function PresensiLayout() {
 
 	return (
 		<ErrorBoundary>
-			<div
-				className={clsx(
-					"scrollbar flex h-screen w-full flex-col gap-0 overflow-auto bg-[#F5F5F5] font-sans",
-				)}
-			>
+			<div className={clsx("flex min-h-svh w-full flex-col font-sans")}>
 				<HeaderPresensiDesa />
 
 				<NavigasiPresensiDesa menu={data} loading={loading} />
 				<MobileNavigasiPresensiDesa menu={data} />
 				<div
-					className="flex flex-1 flex-col gap-4"
+					className="flex flex-col w-full flex-1"
 					style={{ lineHeight: "130%" }}
 				>
-					<div className="flex flex-1">
+					<div className="flex flex-1 p-4 md:px-24">
 						<Outlet />
 					</div>
 					<Footer />
