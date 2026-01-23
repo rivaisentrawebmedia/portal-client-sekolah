@@ -1,11 +1,11 @@
-import { InputCommon } from "@/components/common/basic-input";
+import { CheckboxCommon, InputCommon } from "@/components/common/basic-input";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import type { UseFormReturn } from "react-hook-form";
 import { toast } from "react-toastify";
 
-export function FormPeriodeCuti({
+export function FormHariLibur({
 	form,
 	disabled,
 	onSubmit,
@@ -31,16 +31,6 @@ export function FormPeriodeCuti({
 					labelClassname=" w-full"
 				/>
 
-				<InputCommon
-					form={form}
-					name="kode"
-					disabled={disabled}
-					label="Kode*"
-					placeholder="Kode"
-					className="flex flex-col  gap-2"
-					labelClassname=" w-full"
-				/>
-
 				<div className="flex flex-col  gap-2">
 					<p
 						style={{
@@ -50,21 +40,33 @@ export function FormPeriodeCuti({
 					>
 						Tanggal Berlaku*
 					</p>
-					<div className="flex flex-col items-start md:flex-row md:items-center w-full gap-2">
+					<div className="flex flex-col md:flex-row items-start md:items-center w-full gap-2">
 						<InputCommon
 							form={form}
-							name="mulai"
+							name="tanggal_mulai"
 							disabled={disabled}
-							className="md:flex-1 w-full"
+							className="md:w-1/3 w-full"
 							type="date"
 						/>
-						<p>s.d</p>
-						<InputCommon
+						{form.watch("is_lebih_sehari") && (
+							<>
+								<p>s.d</p>
+								<InputCommon
+									form={form}
+									name="tanggal_akhir"
+									disabled={disabled}
+									className="w-full md:w-1/3"
+									type="date"
+								/>
+							</>
+						)}
+						<CheckboxCommon
 							form={form}
-							name="akhir"
+							name="is_lebih_sehari"
 							disabled={disabled}
-							className="md:flex-1 w-full"
-							type="date"
+							label="Lebih dari 1 hari*"
+							className="flex flex-col  gap-2"
+							labelClassname=" w-full"
 						/>
 					</div>
 				</div>
@@ -89,6 +91,7 @@ export function FormPeriodeCuti({
 										error: error?.message,
 									}),
 								);
+
 								return toast.error(invalidFields?.[0]?.error?.toString());
 							}
 						}}
