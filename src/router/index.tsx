@@ -10,6 +10,7 @@ import { ErrorBoundary } from "@/pages/error";
 import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
 import { routePortalClient } from "./portal-client";
 import ProfilePage from "@/pages/modules/portal-sekolah/profile";
+import { routePresensi } from "./presensi";
 
 export const Router = createBrowserRouter([
 	{
@@ -57,6 +58,8 @@ export const Router = createBrowserRouter([
 					},
 				],
 			},
+
+			...routePresensi,
 
 			{
 				path: "*",

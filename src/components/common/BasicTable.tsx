@@ -93,7 +93,12 @@ export function BaseTable<T>({
 					data.map((item, idx) => (
 						<TableRow key={idx}>
 							{columns.map((col, colIdx) => (
-								<TableCell key={colIdx}>{col.render(item, idx)}</TableCell>
+								<TableCell
+									key={colIdx}
+									className="whitespace-normal break-words"
+								>
+									{col.render(item, idx)}
+								</TableCell>
 							))}
 						</TableRow>
 					))}

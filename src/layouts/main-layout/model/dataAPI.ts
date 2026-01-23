@@ -1,5 +1,5 @@
 import AxiosClient from "@/provider/axios";
-import type { UploadFileResponse } from "./dataType";
+import type { Menu, PaginatedResponse, UploadFileResponse } from "./dataType";
 
 export async function uploadFile(file: File): Promise<UploadFileResponse> {
 	const formData = new FormData();
@@ -13,3 +13,19 @@ export async function uploadFile(file: File): Promise<UploadFileResponse> {
 
 	return data;
 }
+
+export type GetMenuParams = {
+	modul_id?: string;
+};
+
+export const getMenu = async ({
+	modul_id,
+}: GetMenuParams): Promise<PaginatedResponse<Menu>> => {
+	const res = await AxiosClient.get("/portal-sekolah/menu", {
+		params: {
+			modul_id,
+		},
+	});
+
+	return res.data;
+};

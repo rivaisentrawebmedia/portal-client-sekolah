@@ -78,7 +78,8 @@ export default function DashboardPage() {
 						<div
 							onClick={() => {
 								if (item?.berlangganan && item?.dapat_diakses) {
-									navigate(`/modules${selected?.slug}`);
+									localStorage.setItem("modul-id", item?.id);
+									navigate(`/modules${item?.slug}`);
 								} else {
 									setSelected(item);
 									setIsShow(true);
