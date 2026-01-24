@@ -29,7 +29,7 @@ export function NavigasiPresensiDesa({
 		}
 
 		if (item?.slug) {
-			navigate(`/modules/presensi${item?.slug}`);
+			navigate(`/admin/presensi${item?.slug}`);
 			setActiveL1(null);
 			setActiveL2(null);
 		}
@@ -42,7 +42,7 @@ export function NavigasiPresensiDesa({
 		}
 
 		if (child?.slug) {
-			navigate(`/modules/presensi${parent?.slug}${child?.slug}`);
+			navigate(`/admin/presensi${parent?.slug}${child?.slug}`);
 			setActiveL1(null);
 			setActiveL2(null);
 		}
@@ -50,7 +50,7 @@ export function NavigasiPresensiDesa({
 
 	const onClickL3 = (parent: Menu, child: Menu, lv3: Menu) => {
 		if (lv3.slug) {
-			navigate(`/modules/presensi${parent?.slug}${child?.slug}${lv3?.slug}`);
+			navigate(`/admin/presensi${parent?.slug}${child?.slug}${lv3?.slug}`);
 		}
 		setActiveL1(null);
 		setActiveL2(null);

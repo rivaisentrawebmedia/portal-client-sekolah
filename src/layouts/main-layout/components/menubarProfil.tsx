@@ -14,8 +14,8 @@ import { getInitials } from "@/utils/helpers";
 import { FaCaretDown, FaUser } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { Profile } from "@/pages/modules/portal-sekolah/profile/model";
 import { ButtonGantiPassword } from "./ButtonResetPassword";
+import type { Profile } from "@/pages/aktor/admin/portal-admin/profile/model";
 
 export function MenubarProfil({
 	data,
@@ -80,7 +80,7 @@ export function MenubarProfil({
 							<MenubarItem asChild>
 								<button
 									onClick={() => {
-										navigate("/modules/profile");
+										navigate("/admin/profile");
 									}}
 									className="flex w-full items-center gap-2"
 								>

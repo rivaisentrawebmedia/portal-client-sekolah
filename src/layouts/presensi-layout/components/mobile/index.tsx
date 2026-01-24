@@ -64,7 +64,7 @@ export function MobileNavigasiPresensiDesa({ menu }: { menu?: Menu[] }) {
 			return;
 		}
 		if (item?.slug) {
-			navigate(`/modules/presensi${item.slug}`);
+			navigate(`/admin/presensi${item.slug}`);
 			closeAll();
 		}
 	};
@@ -75,14 +75,14 @@ export function MobileNavigasiPresensiDesa({ menu }: { menu?: Menu[] }) {
 			return;
 		}
 		if (child?.slug) {
-			navigate(`/modules/presensi${parent.slug}${child.slug}`);
+			navigate(`/admin/presensi${parent.slug}${child.slug}`);
 			closeAll();
 		}
 	};
 
 	const onClickL3 = (parent: Menu, child: Menu, lv3: Menu) => {
 		if (lv3?.slug) {
-			navigate(`/modules/presensi${parent.slug}${child.slug}${lv3.slug}`);
+			navigate(`/admin/presensi${parent.slug}${child.slug}${lv3.slug}`);
 			closeAll();
 		}
 	};

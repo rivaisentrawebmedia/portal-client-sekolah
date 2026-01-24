@@ -6,8 +6,8 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog";
 import { MenubarItem } from "@/components/ui/menubar";
-import { FormResetPassword } from "@/pages/modules/portal-sekolah/profile/components/FormDataResetPassword";
-import { useUpdateGantiPassword } from "@/pages/modules/portal-sekolah/profile/controller";
+import { FormResetPassword } from "@/pages/aktor/admin/portal-admin/profile/components/FormDataResetPassword";
+import { useUpdateGantiPassword } from "@/pages/aktor/admin/portal-admin/profile/controller";
 import { FaKeyboard } from "react-icons/fa";
 
 export function ButtonGantiPassword() {

@@ -6,7 +6,7 @@ export default function PublicRoute() {
 	const token = Cookies.get("token");
 
 	if (token) {
-		return <Navigate to="/modules/dashboard" replace />;
+		return <Navigate to="/admin/dashboard" replace />;
 	}
 
 	return <Outlet />;

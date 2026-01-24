@@ -67,7 +67,7 @@ export function usePostLogin() {
 				});
 
 				setTimeout(() => {
-					navigate("/modules");
+					navigate("/admin");
 				}, 1000);
 			}
 		} catch (err: any) {

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useGetModul } from "@/pages/modules/portal-sekolah/dashboard/controller";
 import {
 	Menubar,
 	MenubarContent,
@@ -11,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FaExchangeAlt } from "react-icons/fa";
 import { FanIcon } from "lucide-react";
 import { usePathname } from "@/utils/usePathname";
+import { useGetModul } from "@/pages/aktor/admin/portal-admin/dashboard/controller";
 
 export function BlackHole() {
 	const { data, loading } = useGetModul({
@@ -52,7 +52,7 @@ export function BlackHole() {
 											<button
 												disabled={isActive}
 												onClick={() => {
-													navigate(`/modules/${item?.slug}`);
+													navigate(`/admin/${item?.slug}`);
 												}}
 												className="flex w-full disabled:bg-emerald-50 items-center gap-2"
 											>

@@ -24,8 +24,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useHeaderTitle } from "./hooks/headerContext";
 import { MenubarProfil, TimeNow } from "./components";
 import "dayjs/locale/id";
-import { useGetProfile } from "@/pages/modules/portal-sekolah/profile/controller";
 import { Pencil } from "lucide-react";
+import { useGetProfile } from "@/pages/aktor/admin/portal-admin/profile/controller";
 
 const MENU_ROW =
 	"flex h-10 w-full items-center  justify-between rounded-md px-3 text-sm font-normal text-white hover:bg-white/10";
@@ -45,7 +45,7 @@ export default function MainLayout() {
 				<Sidebar>
 					<SidebarHeader className="px-4 py-3 bg-[#021A00] text-white">
 						<Link
-							to={"/modules"}
+							to={"/admin"}
 							className="flex flex-row justify-start items-center gap-2 w-full"
 						>
 							{data?.photo_sekolah ? (
@@ -82,7 +82,7 @@ export default function MainLayout() {
 						<button
 							type="button"
 							onClick={() => {
-								navigate("/modules/profile");
+								navigate("/admin/profile");
 							}}
 							className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white text-white text-xs"
 						>
@@ -107,11 +107,9 @@ export default function MainLayout() {
 												<button
 													onClick={() => {
 														if (item?.label === "Dashboard") {
-															navigate("/modules");
+															navigate("/admin");
 														} else {
-															navigate(
-																`/modules/${convertToSlug(item?.label)}`,
-															);
+															navigate(`/admin/${convertToSlug(item?.label)}`);
 														}
 													}}
 													className={MENU_ROW}
@@ -180,7 +178,7 @@ export default function MainLayout() {
 																	)}
 																	onClick={() => {
 																		navigate(
-																			`/modules/${convertToSlug(
+																			`/admin/${convertToSlug(
 																				item?.label,
 																			)}/${convertToSlug(child?.label)}`,
 																		);

@@ -1,10 +1,10 @@
 import { Bell, LayoutDashboard } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useGetProfilOrganisasi } from "@/pages/modules/portal-sekolah/profil-organisasi/profil/controller";
 import { getInitials } from "@/utils/helpers";
-import { useGetProfile } from "@/pages/modules/portal-sekolah/profile/controller";
 import { MenubarProfil } from "./menubarProfil";
 import { BlackHole } from "@/layouts/main-layout/components/BlackHole";
+import { useGetProfilOrganisasi } from "@/pages/aktor/admin/portal-admin/profil-organisasi/profil/controller";
+import { useGetProfile } from "@/pages/aktor/admin/portal-admin/profile/controller";
 
 export function HeaderPresensiDesa() {
 	const { data: profilDesa, loading } = useGetProfilOrganisasi();

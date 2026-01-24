@@ -5,12 +5,12 @@ import LoginPage from "@/pages/auth/login";
 import LupaPasswordPage from "@/pages/auth/lupa-password";
 import NotFoundPage from "@/pages/not-found";
 import MainLayout from "@/layouts/main-layout";
-import DashboardPage from "@/pages/modules/portal-sekolah/dashboard";
 import { ErrorBoundary } from "@/pages/error";
 import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
-import { routePortalClient } from "./portal-client";
-import ProfilePage from "@/pages/modules/portal-sekolah/profile";
-import { routePresensi } from "./presensi";
+import { routePortalClient } from "./admin/portal-client";
+import { routePresensi } from "./admin/presensi";
+import DashboardPage from "@/pages/aktor/admin/portal-admin/dashboard";
+import ProfilePage from "@/pages/aktor/admin/portal-admin/profile";
 
 export const Router = createBrowserRouter([
 	{
@@ -38,7 +38,7 @@ export const Router = createBrowserRouter([
 		element: <PrivateRoute />,
 		children: [
 			{
-				path: "modules",
+				path: "admin",
 				element: (
 					<ErrorBoundary>
 						<HeaderProvider>
