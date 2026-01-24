@@ -1,0 +1,59 @@
+import { useSearchParams } from "react-router-dom";
+import clsx from "clsx";
+import { convertSlugToText, convertToSlug } from "@/utils/helpers";
+import type { MetaPagination } from "@/components/common/pagination";
+
+export function TabIzin({
+	statusParams,
+	listStatus,
+	meta,
+}: {
+	statusParams: string;
+	listStatus: string[];
+	meta: MetaPagination | undefined;
+}) {
+	const [searchParams, setSearchParams] = useSearchParams();
+	return (
+		<>
+			<div className="flex overflow-x-auto">
+				{listStatus.map((item) => {
+					const active = item === statusParams;
+					return (
+						<div
+							key={item}
+							onClick={() => {
+								const p = new URLSearchParams(searchParams);
+								p.set("status", convertToSlug(item));
+								setSearchParams(p);
+							}}
+							className={clsx(
+								"cursor-pointer w-full rounded-t-md duration-300 justify-center px-4 border py-2 transition-colors flex items-center gap-2",
+							)}
+							style={{
+								borderLeftColor: active ? "#1e5916" : "transparent",
+								borderRightColor: active ? "#1e5916" : "transparent",
+								borderBottomColor: active ? "transparent" : "#1e5916",
+								borderTopColor: active ? "#1e5916" : "transparent",
+							}}
+						>
+							<p>{convertSlugToText(item)}</p>
+							<p className="rounded-full h-5 w-5 bg-[#cd2738] text-xs flex items-center justify-center text-white">
+								{item === listStatus?.[0]
+									? meta?.total_draft || 0
+									: item === listStatus?.[1]
+										? meta?.total_diajukan || 0
+										: item === listStatus?.[2]
+											? meta?.total_dibatalkan || 0
+											: item === listStatus?.[3]
+												? meta?.total_disetujui || 0
+												: item === listStatus?.[4]
+													? meta?.total_ditolak || 0
+													: 0}
+							</p>
+						</div>
+					);
+				})}
+			</div>
+		</>
+	);
+}
