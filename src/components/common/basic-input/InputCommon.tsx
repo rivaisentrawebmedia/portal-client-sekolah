@@ -50,7 +50,7 @@ export function InputCommon({
 						<FormControl>
 							<div className="relative flex-1	">
 								<Input
-									className="flex-1"
+									className="flex-1 bg-white"
 									type={type}
 									disabled={disabled}
 									placeholder={placeholder || "Masukkan teks"}

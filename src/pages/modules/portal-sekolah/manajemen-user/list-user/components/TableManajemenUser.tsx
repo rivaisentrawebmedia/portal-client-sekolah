@@ -62,7 +62,7 @@ export function TableManajemenUser({
 
 							<div className="flex flex-1 flex-col gap-0">
 								<p className="font-medium">{item?.nama || "-"}</p>
-								<p className="text-[#2769CD] font-light text-wrap ">
+								<p className="text-primary font-light text-wrap ">
 									{item?.jabatan || "-"}
 								</p>
 							</div>
@@ -94,7 +94,7 @@ export function TableManajemenUser({
 					header: "Terakhir Online",
 					className: "font-light text-[#1E5916]",
 					render: (item) => (
-						<p className="text-[#2769CD] italic">
+						<p className="text-primary italic">
 							{item?.terakhir_online
 								? dayjs(item.terakhir_online).fromNow()
 								: "-"}

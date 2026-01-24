@@ -70,13 +70,7 @@ export function TableStatusAbsen({
 				{
 					header: "HP",
 					className: "font-light text-[#1E5916]",
-					render: (item) => (
-						<p>
-							{item?.hp
-								? dayjs(item?.hp).locale("id").format("DD-MM-YYYY")
-								: "-"}
-						</p>
-					),
+					render: (item) => <p>{item?.hp || "-"}</p>,
 				},
 
 				{

@@ -49,7 +49,7 @@ export function TextareaCommon({
 					<FormControl>
 						<Textarea
 							{...field}
-							className="flex-1"
+							className="flex-1 bg-white"
 							rows={rows}
 							disabled={disabled}
 							placeholder={placeholder || "Masukkan teks"}

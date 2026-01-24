@@ -68,7 +68,7 @@ export function MenubarProfil({
 
 									<div className="flex flex-col">
 										<p>{data?.nama}</p>
-										<p className="font-light text-[#2769CD]">
+										<p className="font-light text-primary">
 											{data?.is_superadmin ? "Superadmin" : "Admin"}
 										</p>
 									</div>

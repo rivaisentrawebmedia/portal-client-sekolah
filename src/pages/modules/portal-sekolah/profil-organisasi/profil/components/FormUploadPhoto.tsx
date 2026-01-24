@@ -57,7 +57,7 @@ export function FormUploadPhoto({
 								</div>
 								<div className="flex flex-col justify-center gap-2">
 									<p className="font-medium">{label}</p>
-									<ol className="list-disc text-xs text-[#2769CD] font-light ml-4">
+									<ol className="list-disc text-xs text-primary font-light ml-4">
 										<li>Max 2MB</li>
 										<li>Berjenis .jpg/.jpeg/,png</li>
 									</ol>

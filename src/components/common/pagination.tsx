@@ -6,6 +6,11 @@ export type MetaPagination = {
 	last_page: number;
 	page: number;
 	limit: number;
+	total_diajukan?: number;
+	total_dibatalkan?: number;
+	total_disetujui?: number;
+	total_ditolak?: number;
+	total_draft?: number;
 };
 
 interface PaginationProps {

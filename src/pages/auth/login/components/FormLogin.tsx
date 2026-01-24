@@ -60,7 +60,7 @@ export function FormLogin() {
 							</div>
 							<Link
 								to={"/lupa-password"}
-								className="text-[#2769CD] hover:text-[#2769CD]/50 duration-300 transition-colors underline underline-offset-4"
+								className="text-primary hover:text-primary/50 duration-300 transition-colors underline underline-offset-4"
 							>
 								Lupa Password?
 							</Link>

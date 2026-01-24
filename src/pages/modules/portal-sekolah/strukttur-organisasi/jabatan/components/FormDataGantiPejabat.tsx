@@ -103,9 +103,7 @@ export function FormGantiPejabat({
 						)}
 						<div className="flex flex-col">
 							<p>{selected?.nama || "-"}</p>
-							<p className="text-xs text-[#2769CD]">
-								{selected?.jabatan || "-"}
-							</p>
+							<p className="text-xs text-primary">{selected?.jabatan || "-"}</p>
 						</div>
 					</div>
 				)}

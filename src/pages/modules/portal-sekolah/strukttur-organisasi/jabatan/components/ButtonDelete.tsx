@@ -66,7 +66,7 @@ export function ButtonDelete({ rowData }: { rowData?: Jabatan }) {
 						)}
 						<div className="flex flex-col">
 							<p>{selected?.pejabat_nama || "-"}</p>
-							<p className="text-xs text-[#2769CD]">
+							<p className="text-xs text-primary">
 								{selected?.pejabat_nip || "-"}
 							</p>
 						</div>
