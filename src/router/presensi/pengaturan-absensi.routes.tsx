@@ -1,4 +1,5 @@
 import HariLiburPage from "@/pages/modules/absensi/pengaturan-absensi/hari-libur";
+import MonitoringCutiPage from "@/pages/modules/absensi/pengaturan-absensi/monitoring-cuti/list-monitoring-cuti";
 import PeriodeCutiPage from "@/pages/modules/absensi/pengaturan-absensi/periode-cuti";
 import TambahPermohonanCutiPage from "@/pages/modules/absensi/pengaturan-absensi/permohonan-validasi/cuti/buat-permohonan-cuti";
 import DetailPermohonanCutiPage from "@/pages/modules/absensi/pengaturan-absensi/permohonan-validasi/cuti/detail-permohonan-cuti";
@@ -51,6 +52,10 @@ export const routesPengaturanAbsensi = [
 	{
 		path: "pengaturan-absensi/set-status-absen-perangkat",
 		element: <StatusAbsenPage />,
+	},
+	{
+		path: "pengaturan-absensi/monitoring-sisa-cuti",
+		element: <MonitoringCutiPage />,
 	},
 	{
 		path: "pengaturan-absensi/hari-libur",
