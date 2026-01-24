@@ -1,12 +1,13 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { MonitoringCutiByID, PaginatedResponseByID } from "../model";
 import {
 	getMonitoringCutiByID,
 	type GetMonitoringCutiParamsByID,
 } from "../model/dataAPI";
+import type { PaginatedResponse } from "../model";
+import type { PermohonanCuti } from "../../../permohonan-validasi/cuti/layout/model";
 
 export function useGetMonitoringCutiByID(params: GetMonitoringCutiParamsByID) {
-	const query = useQuery<PaginatedResponseByID<MonitoringCutiByID>>({
+	const query = useQuery<PaginatedResponse<PermohonanCuti>>({
 		queryKey: ["monitoring-cuti", params],
 		queryFn: () => getMonitoringCutiByID(params),
 		staleTime: 5 * 60 * 1000,

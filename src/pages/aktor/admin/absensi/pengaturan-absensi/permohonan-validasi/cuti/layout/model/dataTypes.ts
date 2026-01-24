@@ -8,6 +8,7 @@ export type PermohonanCuti = {
 	tanggal_ditolak: string;
 	tanggal_dibatalkan: string;
 	pegawai_id: string;
+	keperluan?: string;
 	nama: string;
 	nip: string;
 	photo: string;

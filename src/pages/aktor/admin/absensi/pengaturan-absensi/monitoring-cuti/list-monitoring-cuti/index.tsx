@@ -13,6 +13,7 @@ import * as zod from "zod";
 import { Form } from "@/components/ui/form";
 import { SelectCommon } from "@/components/common/basic-input";
 import { useGetPeriodeCuti } from "../../periode-cuti/controller";
+import { useEffect } from "react";
 
 export default function MonitoringCutiPage() {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -41,6 +42,12 @@ export default function MonitoringCutiPage() {
 			page: 1,
 		});
 
+	useEffect(() => {
+		if (periode_cuti_id) {
+			form.setValue("periode_cuti_id", periode_cuti_id);
+		}
+	}, [periode_cuti_id]);
+
 	return (
 		<>
 			<div className="flex flex-col gap-4 w-full">
@@ -51,12 +58,14 @@ export default function MonitoringCutiPage() {
 							to: "/admin/presensi",
 						},
 						{
-							label: "Monitoring Cuti",
+							label: "Monitoring Sisa Cuti",
 						},
 					]}
 				/>
 				<div className="flex flex-row items-center justify-between gap-4">
-					<p className="text-2xl text-[#1E5916] font-medium">Monitoring Cuti</p>
+					<p className="text-2xl text-[#1E5916] font-medium">
+						Monitoring Sisa Cuti
+					</p>
 				</div>
 
 				<Form {...form}>

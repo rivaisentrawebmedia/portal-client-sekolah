@@ -1,10 +1,6 @@
 import AxiosClient from "@/provider/axios";
-import type {
-	MonitoringCuti,
-	MonitoringCutiByID,
-	PaginatedResponse,
-	PaginatedResponseByID,
-} from "./dataTypes";
+import type { MonitoringCuti, PaginatedResponse } from "./dataTypes";
+import type { PermohonanCuti } from "../../../permohonan-validasi/cuti/layout/model";
 
 export type GetMonitoringCutiParams = {
 	periode_cuti_id: string; // wajib
@@ -47,9 +43,7 @@ export const getMonitoringCutiByID = async ({
 	periode_cuti_id,
 	pegawai_id,
 	status,
-}: GetMonitoringCutiParamsByID): Promise<
-	PaginatedResponseByID<MonitoringCutiByID>
-> => {
+}: GetMonitoringCutiParamsByID): Promise<PaginatedResponse<PermohonanCuti>> => {
 	const res = await AxiosClient.get("/presensi/monitoring-cuti-detail", {
 		params: {
 			page,

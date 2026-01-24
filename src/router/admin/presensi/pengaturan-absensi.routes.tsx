@@ -1,4 +1,5 @@
 import HariLiburPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/hari-libur";
+import DetailMonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/detail-monitoring-cuti";
 import MonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/list-monitoring-cuti";
 import PeriodeCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/periode-cuti";
 import TambahPermohonanCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/cuti/buat-permohonan-cuti";
@@ -56,6 +57,10 @@ export const routesPengaturanAbsensi = [
 	{
 		path: "pengaturan-absensi/monitoring-sisa-cuti",
 		element: <MonitoringCutiPage />,
+	},
+	{
+		path: "pengaturan-absensi/monitoring-sisa-cuti/:bowo/detail",
+		element: <DetailMonitoringCutiPage />,
 	},
 	{
 		path: "pengaturan-absensi/hari-libur",
