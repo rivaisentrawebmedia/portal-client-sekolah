@@ -15,6 +15,7 @@ interface TablePermohonanCutiProps {
 	loading: boolean;
 	setChecked: React.Dispatch<React.SetStateAction<string[]>>;
 	checked: string[];
+	user_id?: string;
 }
 
 export function TablePermohonanCuti({
@@ -25,6 +26,7 @@ export function TablePermohonanCuti({
 	loading,
 	checked,
 	setChecked,
+	user_id,
 }: TablePermohonanCutiProps) {
 	return (
 		<BaseTable
@@ -91,13 +93,13 @@ export function TablePermohonanCuti({
 				{
 					header: "Keperluan",
 					className: "font-light text-[#1E5916]",
-					render: (item) => <p>{item?.alasan_cuti || "-"}</p>,
+					render: (item) => <p>{item?.alasan_cuti || item?.keperluan}</p>,
 				},
 				{
 					header: "Periode Cuti",
 					className: "font-light text-[#1E5916] text-center",
 					render: (item) => (
-						<div className="flex text-[#888] text-sm flex-col items-center justify-center">
+						<div className="flex text-[#888] text-center text-sm flex-col items-center justify-center">
 							<p>
 								{item?.mulai
 									? dayjs(item?.mulai).locale("id").format("DD-MM-YYYY")
@@ -150,7 +152,7 @@ export function TablePermohonanCuti({
 					className: "md:w-[150px]",
 					render: (item) => (
 						<div className="flex justify-center flex-wrap gap-2">
-							<ButtonDetail rowData={item} />
+							<ButtonDetail rowData={item} user_id={user_id} />
 							<ButtonEdit rowData={item} />
 							<ButtonDelete rowData={item} />
 						</div>

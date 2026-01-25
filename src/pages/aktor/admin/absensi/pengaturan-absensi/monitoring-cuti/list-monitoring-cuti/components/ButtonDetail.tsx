@@ -21,7 +21,13 @@ export function ButtonDetail({ rowData }: { rowData?: MonitoringCuti }) {
 						<button
 							type="button"
 							onClick={() => {
-								navigate(`${rowData?.pegawai_id}/detail?${params.toString()}`);
+								const nextParams = new URLSearchParams(params.toString());
+
+								nextParams.set("user-id", rowData?.pegawai_id ?? "");
+
+								navigate(
+									`${rowData?.pegawai_id}/detail?${nextParams.toString()}`,
+								);
 							}}
 							className="bg-[#2769cd] p-1.5 rounded-md text-white"
 						>

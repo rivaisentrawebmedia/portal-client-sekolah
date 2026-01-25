@@ -8,7 +8,13 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 
-export function ButtonDetail({ rowData }: { rowData?: PermohonanCuti }) {
+export function ButtonDetail({
+	rowData,
+	user_id,
+}: {
+	rowData?: PermohonanCuti;
+	user_id?: string;
+}) {
 	const navigate = useNavigate();
 	const [params] = useSearchParams();
 
@@ -21,7 +27,7 @@ export function ButtonDetail({ rowData }: { rowData?: PermohonanCuti }) {
 							type="button"
 							onClick={() => {
 								navigate(
-									`/admin/presensi/pengaturan-absensi/permohonan-validasi/cuti/${rowData?.id}/detail?user-id=${rowData?.pegawai_id}&${params.toString()}`,
+									`/admin/presensi/pengaturan-absensi/permohonan-validasi/cuti/${rowData?.id}/detail?user-id=${user_id ? user_id : rowData?.pegawai_id}&${params.toString()}`,
 								);
 							}}
 							className="bg-[#2769cd] p-1.5 rounded-md text-white"

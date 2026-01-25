@@ -1,4 +1,5 @@
 import HariLiburPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/hari-libur";
+import DetailMonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/detail-monitoring-cuti";
 import MonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/list-monitoring-cuti";
 import PeriodeCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/periode-cuti";
 import TambahPermohonanCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/cuti/buat-permohonan-cuti";
@@ -10,6 +11,9 @@ import DetailPermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-abs
 import PermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/izin/list-permohonan-izin/IzinPage";
 import EditPermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/izin/ubah-permohonan-izin";
 import StatusAbsenPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/set-status-absen-perangkat";
+import EditShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/edit-shift-kerja";
+import ShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/list-shift-kerja/ListShiftKerja";
+import TambahShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/tambah-shift-kerja";
 
 export const routesPengaturanAbsensi = [
 	{
@@ -58,7 +62,23 @@ export const routesPengaturanAbsensi = [
 		element: <MonitoringCutiPage />,
 	},
 	{
+		path: "pengaturan-absensi/monitoring-sisa-cuti/:bowo/detail",
+		element: <DetailMonitoringCutiPage />,
+	},
+	{
 		path: "pengaturan-absensi/hari-libur",
 		element: <HariLiburPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja",
+		element: <ShiftKerjaPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja/tambah",
+		element: <TambahShiftKerjaPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja/:bowo/edit",
+		element: <EditShiftKerjaPage />,
 	},
 ];

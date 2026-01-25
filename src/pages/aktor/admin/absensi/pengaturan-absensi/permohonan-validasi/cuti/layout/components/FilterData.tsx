@@ -3,7 +3,6 @@ import { SearchInput } from "@/components/common/searchInput";
 
 import {
 	ButtonDiajukan,
-	ButtonDibatalkan,
 	ButtonDraft,
 } from "../../detail-permohonan-cuti/components";
 
@@ -49,14 +48,6 @@ export function FilterData({
 					/>
 				) : statusParams === "diajukan" ? (
 					<ButtonDiajukan
-						checkedPool={checkedPool}
-						loading={loading}
-						setCheckedPool={setCheckedPool}
-						setStatus={setStatus}
-						setIsShow={setIsShow}
-					/>
-				) : statusParams === "dibatalkan" ? (
-					<ButtonDibatalkan
 						checkedPool={checkedPool}
 						loading={loading}
 						setCheckedPool={setCheckedPool}
