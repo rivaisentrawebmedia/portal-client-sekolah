@@ -5,9 +5,7 @@ export const ShiftKerjaSchema = z.object({
 
 	nama: z.string().min(1, "Nama is required"),
 
-	is_wajib_foto: z.boolean().refine((v) => v === true, {
-		message: "Wajib foto harus diaktifkan",
-	}),
+	is_wajib_foto: z.boolean(),
 
 	is_wajib_realisasi_kegiatan: z.boolean(),
 

@@ -2,6 +2,7 @@ import HariLiburPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/hari-l
 import DetailMonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/detail-monitoring-cuti";
 import MonitoringCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-cuti/list-monitoring-cuti";
 import MonitoringKehadiranPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/monitoring-kehadiran";
+import PengaturanAbsen from "@/pages/aktor/admin/absensi/pengaturan-absensi/pengaturan-absen";
 import PeriodeCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/periode-cuti";
 import TambahPermohonanCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/cuti/buat-permohonan-cuti";
 import DetailPermohonanCutiPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/cuti/detail-permohonan-cuti";
@@ -86,5 +87,9 @@ export const routesPengaturanAbsensi = [
 	{
 		path: "pengaturan-absensi/monitoring-kehadiran",
 		element: <MonitoringKehadiranPage />,
+	},
+	{
+		path: "pengaturan-absensi/pengaturan-absen",
+		element: <PengaturanAbsen />,
 	},
 ];
