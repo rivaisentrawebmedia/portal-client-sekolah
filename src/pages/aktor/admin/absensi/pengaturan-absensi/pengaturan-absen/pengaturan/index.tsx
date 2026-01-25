@@ -39,7 +39,7 @@ export function PengaturanAbsensiSection() {
 					className="flex flex-col gap-4 p-4 bg-white rounded-md border border-primary"
 					onSubmit={form.handleSubmit(onSubmitFunc)}
 				>
-					<div className="flex md:justify-between gap-4">
+					<div className="flex justify-between gap-4">
 						<p className="text-lg text-[#1E5916] font-medium">
 							Pengaturan Absensi
 						</p>

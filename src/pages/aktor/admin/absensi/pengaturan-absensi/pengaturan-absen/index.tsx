@@ -1,5 +1,7 @@
 import { Breadcrumbs } from "@/layouts/presensi-layout/components/BreadCrumbs";
 import { PengaturanAbsensiSection } from "./pengaturan";
+import { DaftarLokasiSection } from "./daftar-lokasi";
+import { JamMasukSection } from "./jam-masuk";
 
 export default function PengaturanAbsen() {
 	return (
@@ -17,6 +19,8 @@ export default function PengaturanAbsen() {
 			/>
 
 			<PengaturanAbsensiSection />
+			<JamMasukSection />
+			<DaftarLokasiSection />
 		</div>
 	);
 }
