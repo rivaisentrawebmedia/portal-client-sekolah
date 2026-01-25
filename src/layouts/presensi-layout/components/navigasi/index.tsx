@@ -113,7 +113,7 @@ export function NavigasiPresensiDesa({
 													onClickL2(child, item);
 												}}
 												className={clsx(
-													"relative flex items-center justify-between rounded-md px-3 py-2 text-sm",
+													"relative cursor-pointer flex items-center justify-between rounded-md px-3 py-2 text-sm",
 													{
 														"bg-[#F1F7F2] text-primary": isActiveLv2,
 														"hover:bg-gray-100": !isActiveLv2,

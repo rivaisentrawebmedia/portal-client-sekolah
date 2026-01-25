@@ -11,6 +11,9 @@ import DetailPermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-abs
 import PermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/izin/list-permohonan-izin/IzinPage";
 import EditPermohonanIzinPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/permohonan-validasi/izin/ubah-permohonan-izin";
 import StatusAbsenPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/set-status-absen-perangkat";
+import EditShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/edit-shift-kerja";
+import ShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/list-shift-kerja/ListShiftKerja";
+import TambahShiftKerjaPage from "@/pages/aktor/admin/absensi/pengaturan-absensi/shift-kerja/tambah-shift-kerja";
 
 export const routesPengaturanAbsensi = [
 	{
@@ -65,5 +68,17 @@ export const routesPengaturanAbsensi = [
 	{
 		path: "pengaturan-absensi/hari-libur",
 		element: <HariLiburPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja",
+		element: <ShiftKerjaPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja/tambah",
+		element: <TambahShiftKerjaPage />,
+	},
+	{
+		path: "pengaturan-absensi/shift-kerja/:bowo/edit",
+		element: <EditShiftKerjaPage />,
 	},
 ];
