@@ -21,5 +21,6 @@ export type Lampiran = {
 
 export type UpdatePayload = {
 	id: string;
+	tahun: string;
 	data: KegiatanHarianFormValues;
 };

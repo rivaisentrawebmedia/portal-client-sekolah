@@ -29,10 +29,16 @@ export const getKegiatanHarian = async ({
 
 export const getKegiatanHarianByID = async ({
 	id,
+	tahun,
 }: {
-	id: String;
+	id: string;
+	tahun: string;
 }): Promise<PaginatedResponseByID<KegiatanHarian>> => {
-	const res = await AxiosClient.get(`/presensi/kegiatan-harian/${id}`);
+	const res = await AxiosClient.get(`/presensi/kegiatan-harian/${id}`, {
+		params: {
+			tahun: tahun,
+		},
+	});
 
 	return res.data;
 };
@@ -42,12 +48,26 @@ export async function postKegiatanHarian(payload: KegiatanHarianFormValues) {
 	return res.data;
 }
 
-export async function updateKegiatanHarian({ id, data }: UpdatePayload) {
-	const res = await AxiosClient.put(`/presensi/kegiatan-harian/${id}`, data);
+export async function updateKegiatanHarian({ id, data, tahun }: UpdatePayload) {
+	const res = await AxiosClient.put(`/presensi/kegiatan-harian/${id}`, data, {
+		params: {
+			tahun,
+		},
+	});
 	return res.data;
 }
 
-export async function deleteKegiatanHarian(id: string) {
-	const res = await AxiosClient.delete(`/presensi/kegiatan-harian/${id}`);
+export async function deleteKegiatanHarian({
+	id,
+	tahun,
+}: {
+	id: string;
+	tahun: string;
+}) {
+	const res = await AxiosClient.delete(`/presensi/kegiatan-harian/${id}`, {
+		params: {
+			tahun,
+		},
+	});
 	return res.data;
 }

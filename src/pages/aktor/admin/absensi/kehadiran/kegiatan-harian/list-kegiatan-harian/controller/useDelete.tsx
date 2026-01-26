@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { deleteKegiatanHarian, type KegiatanHarian } from "../model";
+import dayjs from "dayjs";
 
 export function useDeleteKegiatanHarian() {
 	const [isShow, setIsShow] = useState(false);
@@ -44,7 +45,12 @@ export function useDeleteKegiatanHarian() {
 
 	const handleDelete = () => {
 		if (!selected?.id) return;
-		mutation.mutate(selected.id);
+		mutation.mutate({
+			id: selected?.id || "",
+			tahun: selected?.tanggal
+				? dayjs(selected?.tanggal).locale("id").format("YYYY")
+				: dayjs().locale("id").format("YYYY"),
+		});
 	};
 
 	return {

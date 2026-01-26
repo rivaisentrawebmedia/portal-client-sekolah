@@ -11,6 +11,12 @@ export type MetaPagination = {
 	total_disetujui?: number;
 	total_ditolak?: number;
 	total_draft?: number;
+	hadir?: number;
+	sakit?: number;
+	izin?: number;
+	cuti?: number;
+	alpha?: number;
+	perjalanan_dinas?: number;
 };
 
 interface PaginationProps {

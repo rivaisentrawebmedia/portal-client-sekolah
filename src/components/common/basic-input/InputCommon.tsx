@@ -19,6 +19,7 @@ export function InputCommon({
 	type = "text",
 	label,
 	labelClassname,
+	fx,
 }: {
 	form: UseFormReturn<any>;
 	name: string;
@@ -28,6 +29,7 @@ export function InputCommon({
 	type?: React.HTMLInputTypeAttribute | undefined;
 	disabled?: boolean;
 	labelClassname?: string;
+	fx?: (value: any) => void;
 }) {
 	return (
 		<>
@@ -55,6 +57,10 @@ export function InputCommon({
 									disabled={disabled}
 									placeholder={placeholder || "Masukkan teks"}
 									{...field}
+									onChange={(e) => {
+										field.onChange(e);
+										fx?.(e.target.value);
+									}}
 								/>
 								{type === "date" && (
 									<Calendar className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none" />

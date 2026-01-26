@@ -198,7 +198,7 @@ function EmptyDetailKegiatan() {
 
 function EmptyLampiranGambar() {
 	return (
-		<Empty className="border-none p-4">
+		<Empty className="border-none p-4 col-span-1 md:col-span-4">
 			<EmptyHeader>
 				<EmptyMedia variant="icon">
 					<ImageOff />
@@ -214,7 +214,7 @@ function EmptyLampiranGambar() {
 
 export function EmptyLampiranDokumen() {
 	return (
-		<Empty className="border-none p-4">
+		<Empty className="border-none p-4 col-span-1 md:col-span-4">
 			<EmptyHeader>
 				<EmptyMedia variant="icon">
 					<FileX />

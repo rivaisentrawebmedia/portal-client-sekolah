@@ -67,6 +67,9 @@ export function useUpdateKegiatanHarian() {
 
 		mutation.mutate({
 			id: selected.id,
+			tahun: selected?.tanggal
+				? dayjs(selected?.tanggal).locale("id").format("YYYY")
+				: dayjs().locale("id").format("YYYY"),
 			data: {
 				jam_keluar: values.jam_keluar,
 				jam_masuk: values.jam_masuk,
@@ -94,7 +97,9 @@ export function useUpdateKegiatanHarian() {
 				lampiran_gambar: selected.lampiran_gambar,
 				pekerjaan: selected.pekerjaan,
 				status: selected.status,
-				tanggal: selected.tanggal,
+				tanggal: selected.tanggal
+					? dayjs(selected?.tanggal).locale("id").format("YYYY-MM-DD")
+					: "",
 				valid: selected.valid,
 			});
 		}

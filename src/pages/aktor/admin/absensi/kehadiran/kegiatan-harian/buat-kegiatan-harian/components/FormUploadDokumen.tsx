@@ -4,6 +4,7 @@ import { FaCircleNotch, FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
 import clsx from "clsx";
 import { usePostUploadFile } from "@/layouts/main-layout/hooks";
 import type { KegiatanHarianFormValues } from "../../list-kegiatan-harian/model";
+import { JokoPDF } from "@/assets/icons/JokoPDF";
 
 export function FormUploadDokumen({
 	disabled,
@@ -87,6 +88,7 @@ export function FormUploadDokumen({
 							{form.watch(`lampiran_dokumen.${index}.id`) !== "" ? (
 								<div className="relative flex">
 									<div className="w-full min-h-30 flex gap-2 h-full border justify-center items-center p-3 rounded-md bg-white border-[#272CCD] text-[#272CCD]">
+										<JokoPDF />
 										<p className="line-clamp-1">
 											{form.watch(`lampiran_dokumen.${index}.label`)}
 										</p>
