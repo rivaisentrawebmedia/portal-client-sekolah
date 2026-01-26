@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { JamMasukSchema, type JamMasuk } from "../model";
-import AxiosClient from "@/provider/axios";
+import { JamMasukSchema, postJamMasuk, type JamMasuk } from "../model";
 
 export function usePostJamMasuk() {
 	const [isShow, setIsShow] = useState(false);
@@ -19,13 +18,7 @@ export function usePostJamMasuk() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: any) => {
-			const res = await AxiosClient.post(
-				"/presensi/pengaturan-absensi-hari",
-				payload,
-			);
-			return res.data;
-		},
+		mutationFn: postJamMasuk,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Daftar pengaturan-absensi-hari...");

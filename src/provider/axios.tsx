@@ -1,3 +1,4 @@
+import type { MetaPagination } from "@/components/common/pagination";
 import axios, {
 	AxiosError,
 	AxiosHeaders,
@@ -24,7 +25,7 @@ AxiosClient.interceptors.request.use(
 			withCredentials: false,
 		};
 	},
-	(err: AxiosError) => Promise.reject(err)
+	(err: AxiosError) => Promise.reject(err),
 );
 
 AxiosClient.interceptors.response.use(
@@ -57,7 +58,16 @@ AxiosClient.interceptors.response.use(
 		}
 
 		return Promise.reject(error);
-	}
+	},
 );
 
 export default AxiosClient;
+
+export type PaginatedResponse<T> = {
+	data: T[];
+	meta: MetaPagination;
+};
+
+export type PaginatedResponseByID<T> = {
+	data: T;
+};

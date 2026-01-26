@@ -1,6 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { ShiftKerja, PaginatedResponse } from "../model";
-import { getShiftKerja, type GetShiftKerjaParams } from "../model/dataAPI";
+import {
+	getShiftKerja,
+	type GetShiftKerjaParams,
+	type ShiftKerja,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetShiftKerja(params: GetShiftKerjaParams) {
 	const query = useQuery<PaginatedResponse<ShiftKerja>>({

@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { DaftarLokasi } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteDaftarLokasi, type DaftarLokasi } from "../model";
 
 export function useDeleteDaftarLokasi() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeleteDaftarLokasi() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/presensi/lokasi/${id}`);
-			return res.data;
-		},
+		mutationFn: deleteDaftarLokasi,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data Daftar Lokasi...");

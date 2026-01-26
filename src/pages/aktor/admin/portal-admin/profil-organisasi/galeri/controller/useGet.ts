@@ -1,6 +1,6 @@
+import type { PaginatedResponse } from "@/provider/axios";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { Galeri, PaginatedResponse } from "../model";
-import { getGaleri } from "../model/dataAPI";
+import { getGaleri, type Galeri } from "../model";
 
 export function useGetGaleri() {
 	const query = useQuery<PaginatedResponse<Galeri>>({

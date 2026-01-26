@@ -1,4 +1,4 @@
-import type { MetaPagination } from "@/components/common/pagination";
+import type { PermohonanCutiFormValues } from "./dataSchema";
 
 export type PermohonanCuti = {
 	id: string;
@@ -31,22 +31,13 @@ export type PermohonanCuti = {
 	tempat_lahir: string;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
-};
-
-export type PaginatedResponseByID<T> = {
-	data: T;
-};
-
 export type JenisCuti = {
 	id: string;
 	created_at: string;
 	nama: string;
 };
 
-export type PaginatedResponseJenisCuti<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: PermohonanCutiFormValues;
 };

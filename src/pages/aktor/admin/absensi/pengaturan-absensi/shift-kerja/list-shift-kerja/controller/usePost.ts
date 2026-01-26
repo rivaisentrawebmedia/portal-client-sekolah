@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { ShiftKerjaSchema } from "../model";
-import AxiosClient from "@/provider/axios";
+import { postShiftKerja, ShiftKerjaSchema } from "../model";
 import { useNavigate } from "react-router-dom";
 
 export function usePostShiftKerja() {
@@ -25,10 +24,7 @@ export function usePostShiftKerja() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: any) => {
-			const res = await AxiosClient.post("/presensi/shift-kerja", payload);
-			return res.data;
-		},
+		mutationFn: postShiftKerja,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Shift Kerja...");

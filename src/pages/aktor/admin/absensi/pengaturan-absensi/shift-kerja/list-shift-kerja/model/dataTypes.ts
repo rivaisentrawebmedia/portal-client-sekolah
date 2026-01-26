@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type ShiftKerja = {
 	id: string;
 	pegawai: { id: string }[];
@@ -25,7 +23,7 @@ export type ShiftKerja = {
 	}[];
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: any;
 };

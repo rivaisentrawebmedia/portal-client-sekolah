@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { MonitoringCuti, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { MonitoringCuti } from "./dataTypes";
 import type { PermohonanCuti } from "../../../permohonan-validasi/cuti/layout/model";
 
 export type GetMonitoringCutiParams = {

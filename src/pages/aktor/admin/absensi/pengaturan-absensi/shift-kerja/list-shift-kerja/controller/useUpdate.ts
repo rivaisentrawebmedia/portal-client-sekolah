@@ -4,15 +4,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { ShiftKerjaSchema } from "../model";
-import AxiosClient from "@/provider/axios";
+import { ShiftKerjaSchema, updateShiftKerja } from "../model";
 import { useNavigate } from "react-router-dom";
 import { useGetShiftKerjaByID } from "./useGetByID";
-
-type UpdatePayload = {
-	id: string;
-	data: any;
-};
 
 export function useUpdateShiftKerja() {
 	const navigate = useNavigate();
@@ -27,10 +21,7 @@ export function useUpdateShiftKerja() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/presensi/shift-kerja/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updateShiftKerja,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Shift Kerja...");

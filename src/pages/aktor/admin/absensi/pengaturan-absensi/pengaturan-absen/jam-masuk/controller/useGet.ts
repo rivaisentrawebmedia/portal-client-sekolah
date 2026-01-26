@@ -1,6 +1,6 @@
+import type { PaginatedResponse } from "@/provider/axios";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { JamMasuk, PaginatedResponse } from "../model";
-import { getJamMasuk } from "../model/dataAPI";
+import { getJamMasuk, type JamMasuk } from "../model";
 
 export function useGetJamMasuk() {
 	const query = useQuery<PaginatedResponse<JamMasuk>>({

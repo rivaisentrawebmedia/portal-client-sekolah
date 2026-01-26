@@ -4,13 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { VisiMisiSchema, type VisiMisiFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { updateVisiMisi, VisiMisiSchema } from "../model";
 import { useGetVisiMisi } from "./useGet";
-
-type UpdatePayload = {
-	data: VisiMisiFormValues;
-};
 
 export function useUpdateVisiMisi() {
 	const { data: selected, loading: loadingProfil } = useGetVisiMisi();
@@ -26,10 +21,7 @@ export function useUpdateVisiMisi() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ data }: UpdatePayload) => {
-			const res = await AxiosClient.post(`/portal-sekolah/visi-misi`, data);
-			return res.data;
-		},
+		mutationFn: updateVisiMisi,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data visi misi...");

@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { LogAktivitas, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { LogAktivitas } from "./dataTypes";
 
 export type GetLogAktivitasParams = {
 	page: number;

@@ -4,16 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	ProfilOrganisasiSchema,
-	type ProfilOrganisasiFormValues,
-} from "../model";
-import AxiosClient from "@/provider/axios";
+import { ProfilOrganisasiSchema, updateProfil } from "../model";
 import { useGetProfilOrganisasi } from "./useGet";
-
-type UpdatePayload = {
-	data: ProfilOrganisasiFormValues;
-};
 
 export function useUpdateProfilOrganisasi() {
 	const { data: selected, loading: loadingProfil } = useGetProfilOrganisasi();
@@ -29,13 +21,7 @@ export function useUpdateProfilOrganisasi() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ data }: UpdatePayload) => {
-			const res = await AxiosClient.post(
-				`/portal-sekolah/profil-organisasi`,
-				data,
-			);
-			return res.data;
-		},
+		mutationFn: updateProfil,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data profil organisasi...");

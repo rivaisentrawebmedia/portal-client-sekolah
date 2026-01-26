@@ -1,3 +1,8 @@
+import type {
+	GantiPasswordFormValues,
+	ResetPasswordFormValues,
+} from "./dataSchema";
+
 export type Profile = {
 	id: string;
 	email: string;
@@ -10,6 +15,10 @@ export type Profile = {
 	is_superadmin: boolean;
 };
 
-export type PaginatedResponse<T> = {
-	data: T;
+export type UpdatePayload = {
+	data: GantiPasswordFormValues;
+};
+
+export type UpdateResetPasswordPayload = {
+	data: ResetPasswordFormValues;
 };

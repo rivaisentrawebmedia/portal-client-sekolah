@@ -19,7 +19,3 @@ export type Menu = {
 	hapus: boolean;
 	children: Menu[] | null;
 };
-
-export type PaginatedResponse<T> = {
-	data: T[];
-};

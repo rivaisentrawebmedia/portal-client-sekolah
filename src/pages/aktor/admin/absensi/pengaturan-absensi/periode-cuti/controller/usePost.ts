@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { PeriodeCutiSchema, type PeriodeCutiFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { PeriodeCutiSchema, postPeriodeCuti } from "../model";
 
 export function usePostPeriodeCuti() {
 	const [isShow, setIsShow] = useState(false);
@@ -17,10 +16,7 @@ export function usePostPeriodeCuti() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: PeriodeCutiFormValues) => {
-			const res = await AxiosClient.post("/presensi/periode-cuti", payload);
-			return res.data;
-		},
+		mutationFn: postPeriodeCuti,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Periode Cuti...");

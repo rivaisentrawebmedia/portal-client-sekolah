@@ -1,15 +1,14 @@
-import AxiosClient from "@/provider/axios";
+import AxiosClient, {
+	type PaginatedResponse,
+	type PaginatedResponseByID,
+} from "@/provider/axios";
 import type {
 	KontrolAkses,
 	KontrolAksesMenu,
 	ManajemenUser,
 	ManajemenUserByID,
-	PaginatedResponse,
-	PaginatedResponseKontrolAkses,
-	PaginatedResponseKontrolAksesMenu,
-	PaginatedResponseManajamenUserByID,
-	PaginatedResponseRiwayatAktivitas,
 	RiwayatAktivitas,
+	UpdatePayload,
 } from "./dataTypes";
 
 export type GetManajemenUserParams = {
@@ -44,14 +43,14 @@ export const getManajemenUser = async ({
 
 export const getManajemenUserByID = async (
 	id: string,
-): Promise<PaginatedResponseManajamenUserByID<ManajemenUserByID>> => {
+): Promise<PaginatedResponseByID<ManajemenUserByID>> => {
 	const res = await AxiosClient.get(`/portal-sekolah/user/${id}`);
 	return res.data;
 };
 
 export const getKontrolAkses = async (
 	user_id: string,
-): Promise<PaginatedResponseKontrolAkses<KontrolAkses>> => {
+): Promise<PaginatedResponse<KontrolAkses>> => {
 	const res = await AxiosClient.get(`/portal-sekolah/kontrol-akses/modul`, {
 		params: {
 			user_id,
@@ -63,7 +62,7 @@ export const getKontrolAkses = async (
 export const getKontrolAksesMenu = async (
 	user_id: string,
 	modul_id: string,
-): Promise<PaginatedResponseKontrolAksesMenu<KontrolAksesMenu>> => {
+): Promise<PaginatedResponse<KontrolAksesMenu>> => {
 	const res = await AxiosClient.get(`/portal-sekolah/kontrol-akses/menu`, {
 		params: {
 			user_id,
@@ -79,9 +78,7 @@ export const getRiwayatAktivitas = async ({
 	jangka_waktu,
 	limit,
 	search,
-}: GetRiwayatAktivitasParams): Promise<
-	PaginatedResponseRiwayatAktivitas<RiwayatAktivitas>
-> => {
+}: GetRiwayatAktivitasParams): Promise<PaginatedResponse<RiwayatAktivitas>> => {
 	const res = await AxiosClient.get(
 		`/portal-sekolah/user/${id}/riwayat-aktifitas`,
 		{
@@ -95,3 +92,18 @@ export const getRiwayatAktivitas = async ({
 	);
 	return res.data;
 };
+
+export async function postUser(payload: any) {
+	const res = await AxiosClient.post("/portal-sekolah/user", payload);
+	return res.data;
+}
+
+export async function updateUser({ id, data }: UpdatePayload) {
+	const res = await AxiosClient.put(`/portal-sekolah/user/${id}`, data);
+	return res.data;
+}
+
+export async function deleteUser(id: string) {
+	const res = await AxiosClient.delete(`/portal-sekolah/user/${id}`);
+	return res.data;
+}

@@ -14,6 +14,12 @@ import { Form } from "@/components/ui/form";
 import { SelectCommon } from "@/components/common/basic-input";
 import { useGetPeriodeCuti } from "../../periode-cuti/controller";
 import { useEffect } from "react";
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyTitle,
+} from "@/components/ui/empty";
 
 export default function MonitoringCutiPage() {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -95,7 +101,7 @@ export default function MonitoringCutiPage() {
 					</form>
 				</Form>
 
-				{periode_cuti_id && (
+				{periode_cuti_id ? (
 					<>
 						<div className="flex flex-col gap-2 w-full md:flex-row md:items-center md:gap-4">
 							<LimitSelect
@@ -118,6 +124,15 @@ export default function MonitoringCutiPage() {
 							<Pagination meta={meta} pageKey="page-monitoring-cuti" />
 						)}
 					</>
+				) : (
+					<Empty className="border-0 rounded-none">
+						<EmptyHeader>
+							<EmptyTitle>Periode cuti belum dipilih</EmptyTitle>
+							<EmptyDescription>
+								Silakan pilih periode cuti terlebih dahulu untuk melanjutkan.
+							</EmptyDescription>
+						</EmptyHeader>
+					</Empty>
 				)}
 			</div>
 		</>

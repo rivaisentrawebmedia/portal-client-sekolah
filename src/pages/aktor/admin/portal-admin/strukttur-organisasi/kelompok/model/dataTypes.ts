@@ -1,4 +1,4 @@
-import type { MetaPagination } from "@/components/common/pagination";
+import type { KelompokFormValues } from "./dataSchema";
 
 export type Kelompok = {
 	id: string;
@@ -7,7 +7,7 @@ export type Kelompok = {
 	nama: string;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: KelompokFormValues;
 };

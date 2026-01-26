@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type ManajemenUser = {
 	id: string;
 	photo: string | null;
@@ -8,11 +6,6 @@ export type ManajemenUser = {
 	akses: string[];
 	terakhir_online: string | null; // iso
 	created_at: string; // iso
-};
-
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
 };
 
 export type ManajemenUserByID = {
@@ -45,19 +38,11 @@ export type ManajemenUserByID = {
 	status_aktif: string;
 };
 
-export type PaginatedResponseManajamenUserByID<T> = {
-	data: T;
-};
-
 export type KontrolAkses = {
 	id: string;
 	photo: string | null;
 	nama: string;
 	is_active: boolean;
-};
-
-export type PaginatedResponseKontrolAkses<T> = {
-	data: T[];
 };
 
 export type KontrolAksesMenu = {
@@ -71,10 +56,6 @@ export type KontrolAksesMenu = {
 	children: KontrolAksesMenu[] | null;
 };
 
-export type PaginatedResponseKontrolAksesMenu<T> = {
-	data: T[];
-};
-
 export type RiwayatAktivitas = {
 	id: string;
 	created_at: string;
@@ -84,7 +65,7 @@ export type RiwayatAktivitas = {
 	deskripsi: string;
 };
 
-export type PaginatedResponseRiwayatAktivitas<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: any;
 };

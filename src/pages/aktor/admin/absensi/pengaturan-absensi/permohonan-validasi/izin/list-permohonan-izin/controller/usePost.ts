@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { PermohonanIzinSchema, type PermohonanIzinFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { PermohonanIzinSchema, postPermohonanIzin } from "../model";
 import { useNavigate } from "react-router-dom";
 
 export function usePostPermohonanIzin() {
@@ -19,10 +18,7 @@ export function usePostPermohonanIzin() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: PermohonanIzinFormValues) => {
-			const res = await AxiosClient.post("/presensi/pengajuan-izin", payload);
-			return res.data;
-		},
+		mutationFn: postPermohonanIzin,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Permohonan Izin...");

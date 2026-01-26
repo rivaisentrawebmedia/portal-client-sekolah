@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { Menu, PaginatedResponse, UploadFileResponse } from "./dataType";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { Menu, UploadFileResponse } from "./dataType";
 
 export async function uploadFile(file: File): Promise<UploadFileResponse> {
 	const formData = new FormData();

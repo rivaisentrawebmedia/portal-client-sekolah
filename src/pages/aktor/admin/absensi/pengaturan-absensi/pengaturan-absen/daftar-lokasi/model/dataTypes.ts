@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type DaftarLokasi = {
 	id: string;
 	nama: string;
@@ -8,7 +6,7 @@ export type DaftarLokasi = {
 	radius: number;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: any;
 };

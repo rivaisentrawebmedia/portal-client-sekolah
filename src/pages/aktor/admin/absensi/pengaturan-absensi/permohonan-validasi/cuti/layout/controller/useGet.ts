@@ -1,9 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PermohonanCuti, PaginatedResponse } from "../model";
 import {
 	getPermohonanCuti,
 	type GetPermohonanCutiParams,
-} from "../model/dataAPI";
+	type PermohonanCuti,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetPermohonanCuti(params: GetPermohonanCutiParams) {
 	const query = useQuery<PaginatedResponse<PermohonanCuti>>({

@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { ShiftKerja, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { ShiftKerja, UpdatePayload } from "./dataTypes";
 
 export type GetShiftKerjaParams = {
 	page: number;
@@ -32,3 +32,18 @@ export const getShiftKerjaByID = async ({
 
 	return res.data;
 };
+
+export async function postShiftKerja(payload: any) {
+	const res = await AxiosClient.post("/presensi/shift-kerja", payload);
+	return res.data;
+}
+
+export async function updateShiftKerja({ id, data }: UpdatePayload) {
+	const res = await AxiosClient.put(`/presensi/shift-kerja/${id}`, data);
+	return res.data;
+}
+
+export async function deleteShiftKerja(id: string) {
+	const res = await AxiosClient.delete(`/presensi/shift-kerja/${id}`);
+	return res.data;
+}

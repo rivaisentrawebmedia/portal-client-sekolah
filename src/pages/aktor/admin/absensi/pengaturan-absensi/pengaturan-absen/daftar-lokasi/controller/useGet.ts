@@ -1,6 +1,6 @@
+import type { PaginatedResponse } from "@/provider/axios";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { DaftarLokasi, PaginatedResponse } from "../model";
-import { getDaftarLokasi } from "../model/dataAPI";
+import { getDaftarLokasi, type DaftarLokasi } from "../model";
 
 export function useGetDaftarLokasi() {
 	const query = useQuery<PaginatedResponse<DaftarLokasi>>({

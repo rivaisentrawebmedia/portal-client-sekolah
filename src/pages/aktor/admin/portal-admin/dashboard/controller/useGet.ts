@@ -1,6 +1,6 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { Modul, PaginatedResponse } from "../model";
-import { getModul, type GetModulParams } from "../model/dataAPI";
+import { getModul, type GetModulParams, type Modul } from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetModul(params: GetModulParams) {
 	const query = useQuery<PaginatedResponse<Modul>>({

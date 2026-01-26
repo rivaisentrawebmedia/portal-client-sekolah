@@ -1,9 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PermohonanIzin, PaginatedResponse } from "../model";
 import {
 	getPermohonanIzin,
 	type GetPermohonanIzinParams,
-} from "../model/dataAPI";
+	type PermohonanIzin,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetPermohonanIzin(params: GetPermohonanIzinParams) {
 	const query = useQuery<PaginatedResponse<PermohonanIzin>>({

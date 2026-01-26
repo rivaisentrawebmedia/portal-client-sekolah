@@ -1,9 +1,9 @@
+import type { PaginatedResponseByID } from "@/provider/axios";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { ProfilOrganisasi, PaginatedResponse } from "../model";
-import { getProfilOrganisasi } from "../model/dataAPI";
+import { getProfilOrganisasi, type ProfilOrganisasi } from "../model";
 
 export function useGetProfilOrganisasi() {
-	const query = useQuery<PaginatedResponse<ProfilOrganisasi>>({
+	const query = useQuery<PaginatedResponseByID<ProfilOrganisasi>>({
 		queryKey: ["profil-organisasi"],
 		queryFn: () => getProfilOrganisasi(),
 		staleTime: 5 * 60 * 1000,

@@ -4,14 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { JabatanSchema, type Jabatan, type JabatanFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { JabatanSchema, updatePejabat, type Jabatan } from "../model";
 import dayjs from "dayjs";
-
-type UpdatePayload = {
-	id: string;
-	data: JabatanFormValues;
-};
 
 export function useUpdateJabatan() {
 	const [selected, setSelected] = useState<Jabatan | null>(null);
@@ -25,10 +19,7 @@ export function useUpdateJabatan() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/portal-sekolah/jabatan/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updatePejabat,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data jabatan...");

@@ -1,6 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { StatusAbsen, PaginatedResponse } from "../model";
-import { getStatusAbsen, type GetStatusAbsenParams } from "../model/dataAPI";
+import {
+	getStatusAbsen,
+	type GetStatusAbsenParams,
+	type StatusAbsen,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetStatusAbsen(params: GetStatusAbsenParams) {
 	const query = useQuery<PaginatedResponse<StatusAbsen>>({

@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { Galeri } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteGaleri, type Galeri } from "../model";
 
 export function useDeleteGaleri() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeleteGaleri() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/portal-sekolah/galeri/${id}`);
-			return res.data;
-		},
+		mutationFn: deleteGaleri,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data galeri...");

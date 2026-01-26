@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	KelompokSchema,
-	type Kelompok,
-	type KelompokFormValues,
-} from "../model";
-import AxiosClient from "@/provider/axios";
-
-type UpdatePayload = {
-	id: string;
-	data: KelompokFormValues;
-};
+import { KelompokSchema, updateKelompok, type Kelompok } from "../model";
 
 export function useUpdateKelompok() {
 	const [selected, setSelected] = useState<Kelompok | null>(null);
@@ -28,13 +18,7 @@ export function useUpdateKelompok() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(
-				`/portal-sekolah/kelompok-jabatan/${id}`,
-				data,
-			);
-			return res.data;
-		},
+		mutationFn: updateKelompok,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data kelompok...");

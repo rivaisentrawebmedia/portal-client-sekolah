@@ -1,4 +1,4 @@
-import type { MetaPagination } from "@/components/common/pagination";
+import type { HariLiburFormValues } from "./dataSchema";
 
 export type HariLibur = {
 	id: string;
@@ -8,7 +8,7 @@ export type HariLibur = {
 	tanggal_akhir: string | null;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: HariLiburFormValues;
 };

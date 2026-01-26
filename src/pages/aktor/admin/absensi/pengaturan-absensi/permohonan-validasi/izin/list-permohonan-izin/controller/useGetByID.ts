@@ -1,7 +1,7 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PermohonanIzin, PaginatedResponseByID } from "../model";
-import { getPermohonanIzinByID } from "../model/dataAPI";
 import { usePathname } from "@/utils/usePathname";
+import type { PaginatedResponseByID } from "@/provider/axios";
+import { getPermohonanIzinByID, type PermohonanIzin } from "../model";
 
 export function useGetPermohonanIzinByID() {
 	const { sixthPathname } = usePathname();

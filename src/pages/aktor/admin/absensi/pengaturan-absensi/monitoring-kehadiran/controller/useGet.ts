@@ -1,9 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { MonitoringKehadiran, PaginatedResponse } from "../model";
 import {
 	getMonitoringKehadiran,
 	type GetMonitoringKehadiranParams,
-} from "../model/dataAPI";
+	type MonitoringKehadiran,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetMonitoringKehadiran(
 	params: GetMonitoringKehadiranParams,

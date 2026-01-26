@@ -4,16 +4,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { PermohonanCutiSchema, type PermohonanCutiFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { PermohonanCutiSchema, updatePermohonanCuti } from "../model";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useGetPermohonanCutiByID } from "./useGetByID";
-
-type UpdatePayload = {
-	id: string;
-	data: PermohonanCutiFormValues;
-};
 
 export function useUpdatePermohonanCuti() {
 	const navigate = useNavigate();
@@ -28,10 +22,7 @@ export function useUpdatePermohonanCuti() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/presensi/pengajuan-cuti/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updatePermohonanCuti,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Permohonan Cuti...");

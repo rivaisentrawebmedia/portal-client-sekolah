@@ -1,6 +1,6 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { getMenu, type GetMenuParams } from "../model/dataAPI";
-import type { Menu, PaginatedResponse } from "../model/dataType";
+import { getMenu, type GetMenuParams, type Menu } from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetMenu() {
 	const modul_id = localStorage.getItem("modul-id") || "";

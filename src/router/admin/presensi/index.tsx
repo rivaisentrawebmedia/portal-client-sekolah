@@ -1,6 +1,7 @@
 import PresensiLayout from "@/layouts/presensi-layout";
 import NotFoundPage from "@/pages/not-found";
 import { routesPengaturanAbsensi } from "./pengaturan-absensi.routes";
+import { routesKehadiran } from "./kehadiran.routes";
 
 export const routePresensi = [
 	{
@@ -8,6 +9,7 @@ export const routePresensi = [
 		element: <PresensiLayout />,
 		children: [
 			...routesPengaturanAbsensi,
+			...routesKehadiran,
 			{
 				path: "*",
 				element: <NotFoundPage />,

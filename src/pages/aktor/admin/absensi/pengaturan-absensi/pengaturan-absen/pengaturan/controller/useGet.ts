@@ -1,6 +1,9 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PengaturanAbsensi, PaginatedResponse } from "../model";
-import { getPengaturanAbsensi } from "../model/dataAPI";
+import {
+	getPengaturanAbsensi,
+	type PaginatedResponse,
+	type PengaturanAbsensi,
+} from "../model";
 
 export function useGetPengaturanAbsensi() {
 	const query = useQuery<PaginatedResponse<PengaturanAbsensi>>({

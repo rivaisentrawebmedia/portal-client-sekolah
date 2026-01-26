@@ -1,11 +1,9 @@
-import AxiosClient from "@/provider/axios";
-import type {
-	PermohonanCuti,
-	PaginatedResponse,
-	PaginatedResponseByID,
-	PaginatedResponseJenisCuti,
-	JenisCuti,
-} from "./dataTypes";
+import AxiosClient, {
+	type PaginatedResponse,
+	type PaginatedResponseByID,
+} from "@/provider/axios";
+import type { PermohonanCuti, JenisCuti, UpdatePayload } from "./dataTypes";
+import type { PermohonanCutiFormValues } from "./dataSchema";
 
 export type GetPermohonanCutiParams = {
 	page: number;
@@ -52,7 +50,7 @@ export const getJenisCuti = async ({
 	page,
 	limit,
 	search,
-}: GetJenisCutiParams): Promise<PaginatedResponseJenisCuti<JenisCuti>> => {
+}: GetJenisCutiParams): Promise<PaginatedResponse<JenisCuti>> => {
 	const res = await AxiosClient.get("/presensi/jenis-cuti", {
 		params: {
 			page,
@@ -63,3 +61,18 @@ export const getJenisCuti = async ({
 
 	return res.data;
 };
+
+export async function postPermohonanCuti(payload: PermohonanCutiFormValues) {
+	const res = await AxiosClient.post("/presensi/pengajuan-cuti", payload);
+	return res.data;
+}
+
+export async function updatePermohonanCuti({ id, data }: UpdatePayload) {
+	const res = await AxiosClient.put(`/presensi/pengajuan-cuti/${id}`, data);
+	return res.data;
+}
+
+export async function deletePermohonanCuti(id: string) {
+	const res = await AxiosClient.delete(`/presensi/pengajuan-cuti/${id}`);
+	return res.data;
+}

@@ -1,6 +1,7 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { LogAktivitas, PaginatedResponse } from "../model";
+import type { LogAktivitas } from "../model";
 import { getLogAktivitas, type GetLogAktivitasParams } from "../model/dataAPI";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetLogAktivitas(params: GetLogAktivitasParams) {
 	const query = useQuery<PaginatedResponse<LogAktivitas>>({

@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type MonitoringKehadiran = {
 	id: string;
 	pegawai_id: string;
@@ -11,9 +9,4 @@ export type MonitoringKehadiran = {
 	lokasi_pulang: string;
 	status: string;
 	keterangan: string;
-};
-
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
 };

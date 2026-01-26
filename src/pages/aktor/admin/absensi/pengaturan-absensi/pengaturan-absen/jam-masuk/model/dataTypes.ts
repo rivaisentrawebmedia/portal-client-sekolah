@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type JamMasuk = {
 	hari: string;
 
@@ -14,9 +12,4 @@ export type JamMasuk = {
 	toleransi_pulang_cepat: number | null;
 
 	is_libur: boolean;
-};
-
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
 };

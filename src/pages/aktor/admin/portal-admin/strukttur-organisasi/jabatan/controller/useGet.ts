@@ -1,6 +1,6 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { Jabatan, PaginatedResponse } from "../model";
-import { getJabatan, type GetJabatanParams } from "../model/dataAPI";
+import { getJabatan, type GetJabatanParams, type Jabatan } from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetJabatan(params: GetJabatanParams) {
 	const query = useQuery<PaginatedResponse<Jabatan>>({

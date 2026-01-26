@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { MonitoringKehadiran, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { MonitoringKehadiran } from "./dataTypes";
 
 export type GetMonitoringKehadiranParams = {
 	tanggal?: string;

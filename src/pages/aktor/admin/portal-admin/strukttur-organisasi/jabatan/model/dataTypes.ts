@@ -1,4 +1,4 @@
-import type { MetaPagination } from "@/components/common/pagination";
+import type { GantiPejabatFormValues, JabatanFormValues } from "./dataSchema";
 
 export type Jabatan = {
 	id: string;
@@ -16,11 +16,6 @@ export type Jabatan = {
 	pejabat_photo: string | null;
 	mulai: string; // iso string
 	selesai: string | null; // iso string
-};
-
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
 };
 
 export type RiwayatPejabat = {
@@ -52,6 +47,12 @@ export type RiwayatPejabat = {
 	}[];
 };
 
-export type PaginatedResponseRiwayat<T> = {
-	data: T;
+export type UpdatePayload = {
+	id: string;
+	data: GantiPejabatFormValues;
+};
+
+export type UpdatePejabatPayload = {
+	id: string;
+	data: JabatanFormValues;
 };

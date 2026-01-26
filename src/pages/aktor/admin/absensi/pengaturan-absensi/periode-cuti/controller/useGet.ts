@@ -1,6 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PeriodeCuti, PaginatedResponse } from "../model";
-import { getPeriodeCuti, type GetPeriodeCutiParams } from "../model/dataAPI";
+import {
+	getPeriodeCuti,
+	type GetPeriodeCutiParams,
+	type PeriodeCuti,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetPeriodeCuti(params: GetPeriodeCutiParams) {
 	const query = useQuery<PaginatedResponse<PeriodeCuti>>({

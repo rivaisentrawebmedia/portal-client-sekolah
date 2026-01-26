@@ -4,16 +4,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { ManajemenUserSchema } from "../model";
-import AxiosClient from "@/provider/axios";
+import { ManajemenUserSchema, updateUser } from "../model";
 import { useGetManajemenUserByID } from "./useGetByID";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-
-type UpdatePayload = {
-	id: string;
-	data: any;
-};
 
 export function useUpdateManajemenUser() {
 	const navigate = useNavigate();
@@ -29,10 +23,7 @@ export function useUpdateManajemenUser() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/portal-sekolah/user/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updateUser,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data user...");

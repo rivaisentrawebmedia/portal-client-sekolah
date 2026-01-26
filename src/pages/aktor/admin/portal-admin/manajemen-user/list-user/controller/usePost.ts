@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { ManajemenUserSchema } from "../model";
-import AxiosClient from "@/provider/axios";
+import { ManajemenUserSchema, postUser } from "../model";
 import { useNavigate } from "react-router-dom";
 
 export function usePostManajemenUser() {
@@ -20,10 +19,7 @@ export function usePostManajemenUser() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: any) => {
-			const res = await AxiosClient.post("/portal-sekolah/user", payload);
-			return res.data;
-		},
+		mutationFn: postUser,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data user...");

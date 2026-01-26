@@ -4,18 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	HariLiburSchema,
-	type HariLibur,
-	type HariLiburFormValues,
-} from "../model";
-import AxiosClient from "@/provider/axios";
+import { HariLiburSchema, updateHariLibur, type HariLibur } from "../model";
 import dayjs from "dayjs";
-
-type UpdatePayload = {
-	id: string;
-	data: HariLiburFormValues;
-};
 
 export function useUpdateHariLibur() {
 	const [selected, setSelected] = useState<HariLibur | null>(null);
@@ -29,10 +19,7 @@ export function useUpdateHariLibur() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/presensi/hari-libur/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updateHariLibur,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Hari Libur...");

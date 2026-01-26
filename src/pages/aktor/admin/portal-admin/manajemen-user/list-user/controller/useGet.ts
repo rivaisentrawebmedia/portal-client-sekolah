@@ -3,8 +3,8 @@ import {
 	getManajemenUser,
 	type GetManajemenUserParams,
 	type ManajemenUser,
-	type PaginatedResponse,
 } from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetManajemenUser(params: GetManajemenUserParams) {
 	const query = useQuery<PaginatedResponse<ManajemenUser>>({

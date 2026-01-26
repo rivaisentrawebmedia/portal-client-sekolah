@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { StatusAbsen, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { StatusAbsen } from "./dataTypes";
 
 export type GetStatusAbsenParams = {
 	page: number;

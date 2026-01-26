@@ -126,7 +126,7 @@ export function BaseTable<T>({
 
 				{/* 📄 DATA */}
 				{!loading &&
-					data.map((item, idx) => {
+					data?.map((item, idx) => {
 						const id = checkedPool?.getId(item);
 						const checked = id ? checkedPool?.value.includes(id) : false;
 

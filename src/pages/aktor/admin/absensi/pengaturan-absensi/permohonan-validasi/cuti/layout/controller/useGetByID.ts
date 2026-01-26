@@ -1,7 +1,7 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PermohonanCuti, PaginatedResponseByID } from "../model";
-import { getPermohonanCutiByID } from "../model/dataAPI";
 import { usePathname } from "@/utils/usePathname";
+import type { PaginatedResponseByID } from "@/provider/axios";
+import { getPermohonanCutiByID, type PermohonanCuti } from "../model";
 
 export function useGetPermohonanCutiByID() {
 	const { sixthPathname } = usePathname();

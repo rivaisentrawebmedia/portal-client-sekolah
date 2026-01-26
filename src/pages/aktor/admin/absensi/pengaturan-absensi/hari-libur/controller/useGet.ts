@@ -1,6 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { HariLibur, PaginatedResponse } from "../model";
-import { getHariLibur, type GetHariLiburParams } from "../model/dataAPI";
+import {
+	getHariLibur,
+	type GetHariLiburParams,
+	type HariLibur,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetHariLibur(params: GetHariLiburParams) {
 	const query = useQuery<PaginatedResponse<HariLibur>>({

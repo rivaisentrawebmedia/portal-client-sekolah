@@ -1,5 +1,6 @@
-import AxiosClient from "@/provider/axios";
-import type { PeriodeCuti, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { PeriodeCuti, UpdatePayload } from "./dataTypes";
+import type { PeriodeCutiFormValues } from "./dataSchema";
 
 export type GetPeriodeCutiParams = {
 	page: number;
@@ -25,3 +26,18 @@ export const getPeriodeCuti = async ({
 
 	return res.data;
 };
+
+export async function postPeriodeCuti(payload: PeriodeCutiFormValues) {
+	const res = await AxiosClient.post("/presensi/periode-cuti", payload);
+	return res.data;
+}
+
+export async function updatePeriodeCuti({ id, data }: UpdatePayload) {
+	const res = await AxiosClient.put(`/presensi/periode-cuti/${id}`, data);
+	return res.data;
+}
+
+export async function deletePeriodeCuti(id: string) {
+	const res = await AxiosClient.delete(`/presensi/periode-cuti/${id}`);
+	return res.data;
+}

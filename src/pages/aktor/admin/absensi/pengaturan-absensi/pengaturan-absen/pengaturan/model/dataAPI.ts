@@ -1,5 +1,6 @@
 import AxiosClient from "@/provider/axios";
-import type { PengaturanAbsensi, PaginatedResponse } from "./dataTypes";
+import type { PaginatedResponse, PengaturanAbsensi } from "./dataTypes";
+import type { PengaturanAbsensiFormValues } from "./dataSchema";
 
 export const getPengaturanAbsensi = async (): Promise<
 	PaginatedResponse<PengaturanAbsensi>
@@ -8,3 +9,10 @@ export const getPengaturanAbsensi = async (): Promise<
 
 	return res.data;
 };
+
+export async function postPengaturanAbsensi(
+	payload: PengaturanAbsensiFormValues,
+) {
+	const res = await AxiosClient.post("/presensi/pengaturan-absensi", payload);
+	return res.data;
+}

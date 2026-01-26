@@ -1,3 +1,5 @@
+import type { ProfilOrganisasiFormValues } from "./dataSchema";
+
 export type ProfilOrganisasi = {
 	photo_sekolah: string | null;
 	npsn_sekolah: string;
@@ -21,6 +23,6 @@ export type ProfilOrganisasi = {
 	url_portal_sekolah: string | null;
 };
 
-export type PaginatedResponse<T> = {
-	data: T;
+export type UpdatePayload = {
+	data: ProfilOrganisasiFormValues;
 };

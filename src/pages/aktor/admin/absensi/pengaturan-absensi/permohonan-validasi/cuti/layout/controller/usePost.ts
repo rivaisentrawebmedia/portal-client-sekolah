@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { PermohonanCutiSchema, type PermohonanCutiFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { PermohonanCutiSchema, postPermohonanCuti } from "../model";
 import { useNavigate } from "react-router-dom";
 
 export function usePostPermohonanCuti() {
@@ -19,10 +18,7 @@ export function usePostPermohonanCuti() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: PermohonanCutiFormValues) => {
-			const res = await AxiosClient.post("/presensi/pengajuan-cuti", payload);
-			return res.data;
-		},
+		mutationFn: postPermohonanCuti,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Permohonan Cuti...");

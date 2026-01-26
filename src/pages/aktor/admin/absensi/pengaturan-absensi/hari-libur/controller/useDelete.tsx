@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { HariLibur } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteHariLibur, type HariLibur } from "../model";
 
 export function useDeleteHariLibur() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeleteHariLibur() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/presensi/hari-libur/${id}`);
-			return res.data;
-		},
+		mutationFn: deleteHariLibur,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data Hari Libur...");

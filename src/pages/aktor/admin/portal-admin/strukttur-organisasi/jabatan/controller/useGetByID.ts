@@ -1,13 +1,13 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { PaginatedResponseRiwayat, RiwayatPejabat } from "../model";
-import { getRiwayatPejabat } from "../model/dataAPI";
 import { usePathname } from "@/utils/usePathname";
+import type { PaginatedResponseByID } from "@/provider/axios";
+import { getRiwayatPejabat, type RiwayatPejabat } from "../model";
 
 export function useGetJabatanByID() {
 	const { fourthPathname } = usePathname();
 	const id = fourthPathname || "";
 
-	const query = useQuery<PaginatedResponseRiwayat<RiwayatPejabat>>({
+	const query = useQuery<PaginatedResponseByID<RiwayatPejabat>>({
 		queryKey: ["riwayat-pejabat", id],
 		queryFn: () => getRiwayatPejabat({ id }),
 		staleTime: 5 * 60 * 1000,

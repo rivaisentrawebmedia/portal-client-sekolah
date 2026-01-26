@@ -1,11 +1,9 @@
-import AxiosClient from "@/provider/axios";
-import type {
-	PermohonanIzin,
-	PaginatedResponse,
-	PaginatedResponseByID,
-	PaginatedResponseJenisIzin,
-	JenisIzin,
-} from "./dataTypes";
+import AxiosClient, {
+	type PaginatedResponse,
+	type PaginatedResponseByID,
+} from "@/provider/axios";
+import type { PermohonanIzin, JenisIzin, UpdatePayload } from "./dataTypes";
+import type { PermohonanIzinFormValues } from "./dataSchema";
 
 export type GetPermohonanIzinParams = {
 	page: number;
@@ -52,7 +50,7 @@ export const getJenisIzin = async ({
 	page,
 	limit,
 	search,
-}: GetJenisIzinParams): Promise<PaginatedResponseJenisIzin<JenisIzin>> => {
+}: GetJenisIzinParams): Promise<PaginatedResponse<JenisIzin>> => {
 	const res = await AxiosClient.get("/presensi/jenis-izin", {
 		params: {
 			page,
@@ -63,3 +61,18 @@ export const getJenisIzin = async ({
 
 	return res.data;
 };
+
+export async function postPermohonanIzin(payload: PermohonanIzinFormValues) {
+	const res = await AxiosClient.post("/presensi/pengajuan-izin", payload);
+	return res.data;
+}
+
+export async function updatePermohonanIzin({ id, data }: UpdatePayload) {
+	const res = await AxiosClient.put(`/presensi/pengajuan-izin/${id}`, data);
+	return res.data;
+}
+
+export async function deletePermohonanIzin(id: string) {
+	const res = await AxiosClient.delete(`/presensi/pengajuan-izin/${id}`);
+	return res.data;
+}

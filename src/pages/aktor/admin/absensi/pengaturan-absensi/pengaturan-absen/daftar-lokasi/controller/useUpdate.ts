@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { DaftarLokasiSchema, type DaftarLokasi } from "../model";
-import AxiosClient from "@/provider/axios";
-
-type UpdatePayload = {
-	id: string;
-	data: any;
-};
+import {
+	DaftarLokasiSchema,
+	updateDaftarLokasi,
+	type DaftarLokasi,
+} from "../model";
 
 export function useUpdateDaftarLokasi() {
 	const [selected, setSelected] = useState<DaftarLokasi | null>(null);
@@ -24,10 +22,7 @@ export function useUpdateDaftarLokasi() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/presensi/lokasi/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updateDaftarLokasi,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Daftar Lokasi...");

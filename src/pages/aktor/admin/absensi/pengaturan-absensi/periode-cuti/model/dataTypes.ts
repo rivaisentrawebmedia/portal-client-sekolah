@@ -1,4 +1,4 @@
-import type { MetaPagination } from "@/components/common/pagination";
+import type { PeriodeCutiFormValues } from "./dataSchema";
 
 export type PeriodeCuti = {
 	id: string;
@@ -8,7 +8,7 @@ export type PeriodeCuti = {
 	akhir: string;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
+export type UpdatePayload = {
+	id: string;
+	data: PeriodeCutiFormValues;
 };

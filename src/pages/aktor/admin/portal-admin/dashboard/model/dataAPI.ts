@@ -1,5 +1,5 @@
-import AxiosClient from "@/provider/axios";
-import type { Modul, PaginatedResponse } from "./dataTypes";
+import AxiosClient, { type PaginatedResponse } from "@/provider/axios";
+import type { Modul } from "./dataTypes";
 
 export type GetModulParams = {
 	search?: string;

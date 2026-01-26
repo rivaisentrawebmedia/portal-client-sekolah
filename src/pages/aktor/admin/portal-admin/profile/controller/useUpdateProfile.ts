@@ -4,16 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import AxiosClient from "@/provider/axios";
-import {
-	GantiPasswordSchema,
-	type GantiPasswordFormValues,
-} from "../model/dataSchema";
-import type { Profile } from "../model";
-
-type UpdatePayload = {
-	data: GantiPasswordFormValues;
-};
+import { GantiPasswordSchema, updateProfile, type Profile } from "../model";
 
 export function useUpdateProfile() {
 	const [selected, setSelected] = useState<Profile | null>(null);
@@ -27,10 +18,7 @@ export function useUpdateProfile() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ data }: UpdatePayload) => {
-			const res = await AxiosClient.post(`/portal-sekolah/profile`, data);
-			return res.data;
-		},
+		mutationFn: updateProfile,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data profile...");

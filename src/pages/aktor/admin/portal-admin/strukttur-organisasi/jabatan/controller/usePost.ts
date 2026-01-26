@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { JabatanSchema, type JabatanFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { JabatanSchema, postPejabat } from "../model";
 
 export function usePostJabatan() {
 	const [isShow, setIsShow] = useState(false);
@@ -22,10 +21,7 @@ export function usePostJabatan() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: JabatanFormValues) => {
-			const res = await AxiosClient.post("/portal-sekolah/jabatan", payload);
-			return res.data;
-		},
+		mutationFn: postPejabat,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data jabatan...");

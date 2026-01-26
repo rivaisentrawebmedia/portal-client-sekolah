@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { DaftarLokasiSchema } from "../model";
-import AxiosClient from "@/provider/axios";
+import { DaftarLokasiSchema, postDaftarLokasi } from "../model";
 
 export function usePostDaftarLokasi() {
 	const [isShow, setIsShow] = useState(false);
@@ -21,10 +20,7 @@ export function usePostDaftarLokasi() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: any) => {
-			const res = await AxiosClient.post("/presensi/lokasi", payload);
-			return res.data;
-		},
+		mutationFn: postDaftarLokasi,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Daftar Lokasi...");

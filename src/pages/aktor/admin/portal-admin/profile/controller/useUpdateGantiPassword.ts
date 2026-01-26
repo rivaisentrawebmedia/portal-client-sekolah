@@ -4,17 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import AxiosClient from "@/provider/axios";
-import {
-	ResetPasswordSchema,
-	type ResetPasswordFormValues,
-} from "../model/dataSchema";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
-type UpdatePayload = {
-	data: ResetPasswordFormValues;
-};
+import { ResetPasswordSchema, updatePassword } from "../model";
 
 export function useUpdateGantiPassword() {
 	const navigate = useNavigate();
@@ -28,13 +20,7 @@ export function useUpdateGantiPassword() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ data }: UpdatePayload) => {
-			const res = await AxiosClient.post(
-				`/portal-sekolah/reset-password`,
-				data,
-			);
-			return res.data;
-		},
+		mutationFn: updatePassword,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data password...");

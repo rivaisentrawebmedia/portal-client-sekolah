@@ -4,6 +4,6 @@ export type Galeri = {
 	gambar: string;
 };
 
-export type PaginatedResponse<T> = {
-	data: T[];
+export type GaleriPayload = {
+	gambar: string;
 };

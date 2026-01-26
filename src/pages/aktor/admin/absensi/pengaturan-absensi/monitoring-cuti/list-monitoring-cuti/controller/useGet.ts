@@ -1,9 +1,10 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import type { MonitoringCuti, PaginatedResponse } from "../model";
 import {
 	getMonitoringCuti,
 	type GetMonitoringCutiParams,
-} from "../model/dataAPI";
+	type MonitoringCuti,
+} from "../model";
+import type { PaginatedResponse } from "@/provider/axios";
 
 export function useGetMonitoringCuti(params: GetMonitoringCutiParams) {
 	const query = useQuery<PaginatedResponse<MonitoringCuti>>({

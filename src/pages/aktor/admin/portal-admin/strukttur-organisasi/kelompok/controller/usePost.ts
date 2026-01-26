@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { KelompokSchema, type KelompokFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { KelompokSchema, postKelompok } from "../model";
 
 export function usePostKelompok() {
 	const [isShow, setIsShow] = useState(false);
@@ -17,13 +16,7 @@ export function usePostKelompok() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: KelompokFormValues) => {
-			const res = await AxiosClient.post(
-				"/portal-sekolah/kelompok-jabatan",
-				payload,
-			);
-			return res.data;
-		},
+		mutationFn: postKelompok,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data kelompok...");

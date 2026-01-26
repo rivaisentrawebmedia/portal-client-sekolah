@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { ManajemenUser } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteUser, type ManajemenUser } from "../model";
 
 export function useDeleteManajemenUser() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeleteManajemenUser() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/portal-sekolah/user/${id}`);
-			return res.data;
-		},
+		mutationFn: deleteUser,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data kategori modul...");

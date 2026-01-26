@@ -13,7 +13,3 @@ export type Modul = {
 	aktif_dari: string; // iso
 	aktif_sampai: string; // iso
 };
-
-export type PaginatedResponse<T> = {
-	data: T[];
-};

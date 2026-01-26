@@ -1,5 +1,3 @@
-import type { MetaPagination } from "@/components/common/pagination";
-
 export type LogAktivitas = {
 	id: string;
 	created_at: string;
@@ -11,9 +9,4 @@ export type LogAktivitas = {
 	modul: string;
 	aktifitas: string;
 	deskripsi: string;
-};
-
-export type PaginatedResponse<T> = {
-	data: T[];
-	meta: MetaPagination;
 };

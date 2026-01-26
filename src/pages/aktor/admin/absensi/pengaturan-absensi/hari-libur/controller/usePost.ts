@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { HariLiburSchema, type HariLiburFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { HariLiburSchema, postHariLibur } from "../model";
 
 export function usePostHariLibur() {
 	const [isShow, setIsShow] = useState(false);
@@ -17,10 +16,7 @@ export function usePostHariLibur() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: HariLiburFormValues) => {
-			const res = await AxiosClient.post("/presensi/hari-libur", payload);
-			return res.data;
-		},
+		mutationFn: postHariLibur,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data Hari Libur...");

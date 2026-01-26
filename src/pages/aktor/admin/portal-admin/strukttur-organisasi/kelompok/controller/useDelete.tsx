@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { Kelompok } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteKelompok, type Kelompok } from "../model";
 
 export function useDeleteKelompok() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,12 +10,7 @@ export function useDeleteKelompok() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(
-				`/portal-sekolah/kelompok-jabatan/${id}`,
-			);
-			return res.data;
-		},
+		mutationFn: deleteKelompok,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data kelompok...");

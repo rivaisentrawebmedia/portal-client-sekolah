@@ -4,16 +4,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import { PermohonanIzinSchema, type PermohonanIzinFormValues } from "../model";
-import AxiosClient from "@/provider/axios";
+import { PermohonanIzinSchema, updatePermohonanIzin } from "../model";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useGetPermohonanIzinByID } from "./useGetByID";
-
-type UpdatePayload = {
-	id: string;
-	data: PermohonanIzinFormValues;
-};
 
 export function useUpdatePermohonanIzin() {
 	const navigate = useNavigate();
@@ -28,10 +22,7 @@ export function useUpdatePermohonanIzin() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/presensi/pengajuan-izin/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updatePermohonanIzin,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Permohonan Izin...");

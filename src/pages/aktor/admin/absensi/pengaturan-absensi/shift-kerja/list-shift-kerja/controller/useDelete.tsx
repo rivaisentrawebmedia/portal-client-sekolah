@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { ShiftKerja } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deleteShiftKerja, type ShiftKerja } from "../model";
 
 export function useDeleteShiftKerja() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeleteShiftKerja() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/presensi/shift-kerja/${id}`);
-			return res.data;
-		},
+		mutationFn: deleteShiftKerja,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data Shift Kerja...");

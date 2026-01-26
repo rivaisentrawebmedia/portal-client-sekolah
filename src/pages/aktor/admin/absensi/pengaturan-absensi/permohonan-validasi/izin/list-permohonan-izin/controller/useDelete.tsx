@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import type { PermohonanIzin } from "../model";
-import AxiosClient from "@/provider/axios";
+import { deletePermohonanIzin, type PermohonanIzin } from "../model";
 
 export function useDeletePermohonanIzin() {
 	const [isShow, setIsShow] = useState(false);
@@ -11,10 +10,7 @@ export function useDeletePermohonanIzin() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (id: string) => {
-			const res = await AxiosClient.delete(`/presensi/pengajuan-izin/${id}`);
-			return res.data;
-		},
+		mutationFn: deletePermohonanIzin,
 
 		onMutate: () => {
 			return toast.loading("Menghapus data Periode Izin...");

@@ -6,16 +6,10 @@ import { toast } from "react-toastify";
 import * as zod from "zod";
 import {
 	GantiPejabatSchema,
-	type GantiPejabatFormValues,
+	postGantiPejabat,
 	type RiwayatPejabat,
 } from "../model";
-import AxiosClient from "@/provider/axios";
 import dayjs from "dayjs";
-
-type UpdatePayload = {
-	id: string;
-	data: GantiPejabatFormValues;
-};
 
 export function useUpdateGantiPejabat() {
 	const [selected, setSelected] = useState<RiwayatPejabat | null>(null);
@@ -29,13 +23,7 @@ export function useUpdateGantiPejabat() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.post(
-				`/portal-sekolah/jabatan/${id}/ganti`,
-				data,
-			);
-			return res.data;
-		},
+		mutationFn: postGantiPejabat,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data ganti pejabat...");

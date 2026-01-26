@@ -1,19 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import AxiosClient from "@/provider/axios";
-
-type GaleriPayload = {
-	gambar: string;
-};
+import { postGaleri } from "../model";
 
 export function usePostGaleri() {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: async (payload: GaleriPayload) => {
-			const res = await AxiosClient.post("/portal-sekolah/galeri", payload);
-			return res.data;
-		},
+		mutationFn: postGaleri,
 
 		onMutate: () => toast.loading("Menyimpan data galeri..."),
 

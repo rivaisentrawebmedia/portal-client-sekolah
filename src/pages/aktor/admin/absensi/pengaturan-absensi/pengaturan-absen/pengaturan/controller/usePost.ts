@@ -4,11 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	PengaturanAbsensiSchema,
-	type PengaturanAbsensiFormValues,
-} from "../model";
-import AxiosClient from "@/provider/axios";
+import { PengaturanAbsensiSchema, postPengaturanAbsensi } from "../model";
 import { useGetPengaturanAbsensi } from "./useGet";
 
 export function usePostPengaturanAbsensi() {
@@ -24,13 +20,7 @@ export function usePostPengaturanAbsensi() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async (payload: PengaturanAbsensiFormValues) => {
-			const res = await AxiosClient.post(
-				"/presensi/pengaturan-absensi",
-				payload,
-			);
-			return res.data;
-		},
+		mutationFn: postPengaturanAbsensi,
 
 		onMutate: () => {
 			return toast.loading("Menyimpan data pengaturan absensi...");
