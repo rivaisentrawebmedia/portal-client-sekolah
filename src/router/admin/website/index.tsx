@@ -1,5 +1,6 @@
 import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
 import WebsiteLayout from "@/layouts/website-layout";
+import WebsiteDashboardPage from "@/pages/aktor/admin/website/dashboard";
 import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
 
@@ -15,8 +16,8 @@ export const routewebsite = [
 		),
 		children: [
 			{
-				parh: "",
-				element: <p></p>,
+				path: "",
+				element: <WebsiteDashboardPage />,
 			},
 			{
 				path: "*",
