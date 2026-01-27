@@ -18,6 +18,15 @@ import {
 	PodiumCard,
 	PodiumSkeleton,
 } from "./components";
+import { useEffect } from "react";
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty";
+import { Users } from "lucide-react";
 
 export default function PegawaiPalingRajinPage() {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +51,18 @@ export default function PegawaiPalingRajinPage() {
 
 	const [rank1, rank2, rank3] = finalData;
 
+	useEffect(() => {
+		if (tahun) {
+			form.setValue("tahun", tahun);
+		}
+	}, [tahun]);
+
+	useEffect(() => {
+		if (bulan) {
+			form.setValue("bulan", bulan);
+		}
+	}, [bulan]);
+
 	return (
 		<div className="flex flex-col w-full gap-6">
 			<Breadcrumbs
@@ -57,12 +78,13 @@ export default function PegawaiPalingRajinPage() {
 
 			{/* FILTER */}
 			<Form {...form}>
-				<form className="flex gap-4 max-w-md">
+				<form className="flex gap-4 w-full">
 					<SelectCommon
 						form={form}
 						name="tahun"
 						options={getTahunOptions()}
 						placeholder="Tahun"
+						className="w-full md:w-1/4"
 						fx={(v) => setSearchParams({ tahun: v, bulan })}
 					/>
 					<SelectCommon
@@ -70,6 +92,7 @@ export default function PegawaiPalingRajinPage() {
 						name="bulan"
 						options={getBulanOptions()}
 						placeholder="Bulan"
+						className="w-full md:w-1/4"
 						fx={(v) => setSearchParams({ tahun, bulan: v })}
 					/>
 				</form>
@@ -79,6 +102,18 @@ export default function PegawaiPalingRajinPage() {
 				{/* PODIUM */}
 				{loading ? (
 					<PodiumSkeleton />
+				) : finalData.length === 0 ? (
+					<Empty className="w-full md:w-[40%]">
+						<EmptyHeader>
+							<EmptyMedia variant="icon">
+								<Users className="size-6" />
+							</EmptyMedia>
+							<EmptyTitle>Data tidak tersedia</EmptyTitle>
+							<EmptyDescription>
+								Tidak ada data pegawai untuk periode ini
+							</EmptyDescription>
+						</EmptyHeader>
+					</Empty>
 				) : (
 					finalData.length > 0 && (
 						<div className="md:grid grid-cols-1 md:w-[40%] hidden md:grid-cols-3 gap-6">
