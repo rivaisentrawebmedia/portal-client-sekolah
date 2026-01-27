@@ -31,6 +31,8 @@ interface BaseTableProps<T> {
 		value: string[];
 		onChange: (next: string[]) => void;
 	};
+
+	rowClassName?: (item: T) => string;
 }
 
 export function BaseTable<T>({
@@ -43,6 +45,7 @@ export function BaseTable<T>({
 	emptyDescription = "Belum ada data yang bisa ditampilkan",
 
 	checkedPool,
+	rowClassName,
 }: BaseTableProps<T>) {
 	const isEmpty = !loading && data.length === 0;
 	const isSearching = Boolean(search?.trim());
@@ -131,7 +134,10 @@ export function BaseTable<T>({
 						const checked = id ? checkedPool?.value.includes(id) : false;
 
 						return (
-							<TableRow key={idx}>
+							<TableRow
+								key={idx}
+								className={rowClassName ? rowClassName(item) : ""}
+							>
 								{checkedPool && (
 									<TableCell className="text-center">
 										<input

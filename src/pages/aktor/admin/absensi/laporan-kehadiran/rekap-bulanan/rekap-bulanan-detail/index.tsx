@@ -172,20 +172,68 @@ export default function RekapBulananDetailPage() {
 						</div>
 					</div>
 
-					<div className="mt-4 h-[420px]">
-						<ResponsiveContainer width="100%" height="100%">
-							<BarChart
-								data={chartData}
-								layout="vertical"
-								margin={{ top: 10, right: 24, left: 40, bottom: 10 }}
-							>
-								<CartesianGrid strokeDasharray="3 3" />
-								<XAxis type="number" allowDecimals={false} />
-								<YAxis type="category" dataKey="label" width={120} />
-								<Tooltip />
-								<Bar dataKey="value" fill="#2563EB" radius={[0, 6, 6, 0]} />
-							</BarChart>
-						</ResponsiveContainer>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						<div className="mt-4 h-[420px] col-span-1 md:col-span-2">
+							<ResponsiveContainer width="100%" height="100%">
+								<BarChart
+									data={chartData}
+									layout="horizontal" // bar berdiri (atas–bawah)
+									margin={{ top: 16, right: 24, left: 0, bottom: 24 }}
+								>
+									<CartesianGrid strokeDasharray="3 3" />
+									<XAxis dataKey="label" tickLine={false} axisLine={false} />
+									<YAxis
+										allowDecimals={false}
+										tickLine={false}
+										axisLine={false}
+									/>
+									<Tooltip />
+									<Bar
+										dataKey="value"
+										fill="#1e5916"
+										radius={[6, 6, 0, 0]}
+										barSize={36}
+									/>
+								</BarChart>
+							</ResponsiveContainer>
+						</div>
+						<div className="flex flex-col items-center justify-center gap-4">
+							<div className="flex flex-col gap-2 p-3 w-4/5 rounded-md border bg-[#eaf4ec] border-[#1e5916]">
+								<BasicLabel
+									label="Hari Efektif"
+									value={<p>: {dataChart?.hari_efektif || 0}</p>}
+									className="flex flex-row gap-2"
+								/>
+								<BasicLabel
+									className="flex flex-row gap-2"
+									label="Hadir"
+									value={<p>: {dataChart?.hadir || 0}</p>}
+								/>
+							</div>
+
+							<div className="flex flex-col gap-2 p-3 w-4/5 rounded-md border bg-[#eaf4ec] border-[#1e5916]">
+								<BasicLabel
+									className="flex flex-row gap-2"
+									label="Tugas Luar"
+									value={<p>: {dataChart?.tugas_luar || 0}</p>}
+								/>
+								<BasicLabel
+									className="flex flex-row gap-2"
+									label="Izin"
+									value={<p>: {dataChart?.izin || 0}</p>}
+								/>
+								<BasicLabel
+									className="flex flex-row gap-2"
+									label="Cuti"
+									value={<p>: {dataChart?.cuti || 0}</p>}
+								/>
+								<BasicLabel
+									className="flex flex-row gap-2"
+									label="Alfa"
+									value={<p>: {dataChart?.alpha || 0}</p>}
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

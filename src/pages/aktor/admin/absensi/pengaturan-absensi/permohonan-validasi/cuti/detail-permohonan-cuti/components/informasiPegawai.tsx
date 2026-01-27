@@ -31,7 +31,7 @@ export function InformasiPegawai() {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 md:flex-row border border-primary bg-white p-4 rounded-md">
+		<div className="flex flex-col gap-4 md:flex-row border bg-[#eaf4ec] border-[#1e5916] p-4 rounded-md">
 			{data?.photo ? (
 				<img
 					src={data.photo}
