@@ -24,7 +24,9 @@ export function usePostStatusPermohonanIzin() {
 		},
 
 		onSuccess: async (_, __, context) => {
-			await queryClient.invalidateQueries({ queryKey: ["pengajuan-izin"] });
+			await queryClient.invalidateQueries({
+				queryKey: ["pengajuan-izin", "pengajuan-cuti"],
+			});
 
 			toast.update(context?.toastId, {
 				render: "Berhasil",

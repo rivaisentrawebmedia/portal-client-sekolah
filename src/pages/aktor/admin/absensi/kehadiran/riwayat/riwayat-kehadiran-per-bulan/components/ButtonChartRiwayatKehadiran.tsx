@@ -76,14 +76,23 @@ export function ButtonChartRiwayatKehadiran({
 						<ResponsiveContainer width="100%" height="100%">
 							<BarChart
 								data={chartData}
-								layout="vertical"
-								margin={{ top: 10, right: 24, left: 40, bottom: 10 }}
+								layout="horizontal" // bar berdiri (atas–bawah)
+								margin={{ top: 16, right: 24, left: 0, bottom: 24 }}
 							>
 								<CartesianGrid strokeDasharray="3 3" />
-								<XAxis type="number" allowDecimals={false} />
-								<YAxis type="category" dataKey="label" width={120} />
+								<XAxis dataKey="label" tickLine={false} axisLine={false} />
+								<YAxis
+									allowDecimals={false}
+									tickLine={false}
+									axisLine={false}
+								/>
 								<Tooltip />
-								<Bar dataKey="value" fill="#2563EB" radius={[0, 6, 6, 0]} />
+								<Bar
+									dataKey="value"
+									fill="#1e5916"
+									radius={[6, 6, 0, 0]}
+									barSize={36}
+								/>
 							</BarChart>
 						</ResponsiveContainer>
 					</div>
