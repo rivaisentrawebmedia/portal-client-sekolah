@@ -59,9 +59,17 @@ export function MenubarProfil({
 						<MenubarContent align="end" className="min-w-[220px]">
 							<MenubarLabel>
 								<div className="flex items-center gap-2">
-									<div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1E5916] text-white">
-										{getInitials(data?.nama || "Joko Susilo")}
-									</div>
+									{data?.photo ? (
+										<img
+											src={data?.photo}
+											alt={data?.nama}
+											className="h-7 w-7 rounded-full"
+										/>
+									) : (
+										<div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1E5916] text-white">
+											{getInitials(data?.nama || "Joko Susilo")}
+										</div>
+									)}
 
 									<div className="flex flex-col">
 										<p>{data?.nama}</p>

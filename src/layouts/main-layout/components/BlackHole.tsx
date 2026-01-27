@@ -52,7 +52,7 @@ export function BlackHole() {
 											<button
 												disabled={isActive}
 												onClick={() => {
-													navigate(`/admin/${item?.slug}`);
+													navigate(`/admin${item?.slug}`);
 												}}
 												className="flex w-full disabled:bg-emerald-50 items-center gap-2"
 											>

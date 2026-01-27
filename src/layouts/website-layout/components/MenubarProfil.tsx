@@ -7,14 +7,14 @@ import {
 	MenubarSeparator,
 	MenubarTrigger,
 } from "@/components/ui/menubar";
-import { DialogLogout } from "./dialogLogout";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getInitials } from "@/utils/helpers";
-import { FaCaretDown, FaUser } from "react-icons/fa";
-import { LogOut } from "lucide-react";
+import { FaUser } from "react-icons/fa";
+import { LogOut, MoreVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { ButtonGantiPassword } from "./ButtonResetPassword";
+import { ButtonGantiPassword } from "@/layouts/main-layout/components/ButtonResetPassword";
+import { DialogLogout } from "@/layouts/main-layout/components/dialogLogout";
 import type { Profile } from "@/pages/aktor/admin/portal-admin/profile/model";
 
 export function MenubarProfil({
@@ -29,29 +29,36 @@ export function MenubarProfil({
 	const navigate = useNavigate();
 	return (
 		<>
-			<Menubar>
+			<Menubar className="bg-#CD2738] border border-none">
 				<MenubarMenu>
-					<MenubarTrigger className="group">
-						<div className="flex items-center gap-2">
+					<MenubarTrigger className="group bg-[#CD2738] p-0">
+						<div className="flex items-center gap-2 bg-[#CD2738]">
 							{loading ? (
 								<>
-									<Skeleton className="h-7 w-7 rounded-full" />
-									<Skeleton className="h-4 w-24" />
-									<Skeleton className="h-6 w-6 rounded-full" />
+									<Skeleton className="h-8 w-8 rounded-full" />
 								</>
 							) : (
 								<>
-									<div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1E5916] text-white">
-										{getInitials(data?.nama || "Joko Susilo")}
-									</div>
-
-									<p>{data?.nama}</p>
-
-									<div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5F5FF]">
-										<FaCaretDown
-											size={16}
-											className="transition-transform duration-200 group-data-[state=open]:rotate-180"
+									{data?.photo ? (
+										<img
+											src={data?.photo}
+											alt={data?.nama}
+											className="h-9 w-9 rounded-full"
 										/>
+									) : (
+										<div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-primary">
+											{getInitials(data?.nama || "Joko Susilo")}
+										</div>
+									)}
+
+									<div className="flex items-center gap-2 md:w-40">
+										<div className="flex flex-1 items-start flex-col text-white">
+											<p className="line-clamp-1">{data?.nama}</p>
+											<p className="text-white/80 text-xs">
+												{data?.is_superadmin ? "Superadmin" : "Admin"}
+											</p>
+										</div>
+										<MoreVertical color="white" size={15} />
 									</div>
 								</>
 							)}
@@ -76,7 +83,7 @@ export function MenubarProfil({
 
 									<div className="flex flex-col">
 										<p>{data?.nama}</p>
-										<p className="font-light text-primary">
+										<p className="font-light text-[#2769CD]">
 											{data?.is_superadmin ? "Superadmin" : "Admin"}
 										</p>
 									</div>

@@ -5,11 +5,19 @@ import { routesKehadiran } from "./kehadiran.routes";
 import { routesRekapHarian } from "./laporan-kehadiran.routes";
 import PresensiDashboardPage from "@/pages/aktor/admin/absensi/dashboard";
 import { routesVisit } from "./visit.routes";
+import { ErrorBoundary } from "@/pages/error";
+import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
 
 export const routePresensi = [
 	{
 		path: "admin/presensi",
-		element: <PresensiLayout />,
+		element: (
+			<ErrorBoundary>
+				<HeaderProvider>
+					<PresensiLayout />
+				</HeaderProvider>
+			</ErrorBoundary>
+		),
 		children: [
 			{
 				path: "",
