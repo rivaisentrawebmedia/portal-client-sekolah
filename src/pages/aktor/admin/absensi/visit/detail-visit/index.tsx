@@ -88,7 +88,7 @@ export default function VisitDetailPage() {
 
 				<InformasiPegawai />
 
-				<div className="flex flex-col gap-4 p-4 border border-primary rounded-md">
+				<div className="flex flex-col gap-4 p-4 border bg-[#eaf4ec] border-[#1e5916] rounded-md">
 					<p className="text-lg text-primary">Detail Visit</p>
 
 					<BasicLabel
