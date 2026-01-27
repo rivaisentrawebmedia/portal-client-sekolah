@@ -32,8 +32,6 @@ export default function RiwayatKehadiranPerBulanPage() {
 	const { data: dataChart, loading: loadingChart } =
 		useGetRiwayatKehadiranPerBulanChart(paramsDefault);
 
-	console.log({ dataChart });
-
 	return (
 		<>
 			<div className="flex flex-col gap-4 w-full">

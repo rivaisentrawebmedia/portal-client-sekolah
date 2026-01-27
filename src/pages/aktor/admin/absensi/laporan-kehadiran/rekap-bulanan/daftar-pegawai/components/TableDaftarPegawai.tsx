@@ -1,33 +1,29 @@
 import { BaseTable } from "@/components/common/BasicTable";
-import type { ManajemenUser } from "../model";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/id";
 import dayjs from "dayjs";
 import { getInitials } from "@/utils/helpers";
-import { ButtonEdit } from "./ButtonEdit";
-import { ButtonDelete } from "./ButtonDelete";
+import type { RekapBulanan } from "../model";
 import { ButtonDetail } from "./ButtonDetail";
-import clsx from "clsx";
-import { badgeColors } from "../../../strukttur-organisasi/jabatan/components";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
 
-interface TableManajemenUserProps {
-	data: ManajemenUser[];
+interface TableRekapBulananProps {
+	data: RekapBulanan[];
 	page: number;
 	limit: number;
 	search: string;
 	loading: boolean;
 }
 
-export function TableManajemenUser({
+export function TableDaftarPegawai({
 	data,
 	page,
 	limit,
 	search,
 	loading,
-}: TableManajemenUserProps) {
+}: TableRekapBulananProps) {
 	return (
 		<BaseTable
 			data={data}
@@ -63,63 +59,53 @@ export function TableManajemenUser({
 							<div className="flex flex-1 flex-col gap-0">
 								<p className="font-medium">{item?.nama || "-"}</p>
 								<p className="text-primary font-light text-wrap ">
-									{item?.jabatan || "-"}
+									{item?.nip || "-"}
 								</p>
 							</div>
 						</div>
 					),
 				},
+
 				{
-					header: "Akses",
-					className: "font-light text-[#1E5916]",
+					header: "Hari Efektif",
+					className: "font-light text-center text-[#1E5916]",
 					render: (item) => (
-						<div className="flex flex-wrap gap-2">
-							{item?.akses?.map((item, idx) => {
-								return (
-									<p
-										className={clsx(
-											"px-3 py-1.5 rounded-md text-white text-xs",
-											badgeColors[idx] ?? "bg-gray-400",
-										)}
-										key={idx}
-									>
-										{item}
-									</p>
-								);
-							})}
-						</div>
+						<p className="text-center">{item?.hari_efektif || "-"}</p>
 					),
 				},
 				{
-					header: "Terakhir Online",
-					className: "font-light text-[#1E5916]",
+					header: "Hadir",
+					className: "font-light text-center text-[#1E5916]",
+					render: (item) => <p className="text-center">{item?.hadir || "-"}</p>,
+				},
+				{
+					header: "Tugas Luar",
+					className: "font-light text-center text-[#1E5916]",
 					render: (item) => (
-						<p className="text-primary italic">
-							{item?.terakhir_online
-								? dayjs(item.terakhir_online).fromNow()
-								: "-"}
-						</p>
+						<p className="text-center">{item?.tugas_luar || "-"}</p>
 					),
 				},
 				{
-					header: "Tgl. Ditambahkan",
-					className: "font-light text-[#1E5916]",
-					render: (item) => (
-						<p>
-							{item?.created_at
-								? dayjs(item?.created_at).locale("id").format("DD-MM-YYYY")
-								: "-"}
-						</p>
-					),
+					header: "Izin",
+					className: "font-light text-center text-[#1E5916]",
+					render: (item) => <p className="text-center">{item?.izin || "-"}</p>,
+				},
+				{
+					header: "Cuti",
+					className: "font-light text-center text-[#1E5916]",
+					render: (item) => <p className="text-center">{item?.cuti || "-"}</p>,
+				},
+				{
+					header: "Alfa",
+					className: "font-light text-center text-[#1E5916]",
+					render: (item) => <p className="text-center">{item?.alpha || "-"}</p>,
 				},
 				{
 					header: "",
 					className: "w-[100px]",
 					render: (item) => (
 						<div className="flex justify-center gap-2">
-							<ButtonDetail rowData={item} />
-							<ButtonEdit rowData={item} />
-							<ButtonDelete rowData={item} />
+							<ButtonDetail item={item} />
 						</div>
 					),
 				},

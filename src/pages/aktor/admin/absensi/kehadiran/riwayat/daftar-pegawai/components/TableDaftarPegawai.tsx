@@ -43,7 +43,7 @@ export function TableDaftarPegawai({
 					),
 				},
 				{
-					header: "Nama User",
+					header: "Pegawai",
 					className: "font-light text-[#1E5916]",
 					render: (item) => (
 						<div className="flex gap-2">
