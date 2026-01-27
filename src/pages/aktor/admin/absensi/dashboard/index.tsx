@@ -81,16 +81,18 @@ export default function PresensiDashboardPage() {
 					</span>
 				</p>
 
-				<div className="flex flex-col gap-4 rounded-md rounded-2x border  border-[#1e5916] p-4">
-					<p className="font-medium">Pengajuan Cuti & Izin</p>
-					<TableNotifCuti
-						data={dataNotif || []}
-						loading={loadingNotif}
-						limit={1000}
-						page={1}
-						search={""}
-					/>
-				</div>
+				{dataNotif?.length > 0 && (
+					<div className="flex flex-col gap-4 rounded-md rounded-2x border  border-[#1e5916] p-4">
+						<p className="font-medium">Pengajuan Cuti & Izin</p>
+						<TableNotifCuti
+							data={dataNotif || []}
+							loading={loadingNotif}
+							limit={1000}
+							page={1}
+							search={""}
+						/>
+					</div>
+				)}
 
 				<div className="flex md:items-center md:flex-row flex-col md:justify-between gap-4">
 					<div className="flex items-center gap-2">

@@ -28,8 +28,8 @@ export function TableDataTerlambat({
 			data={data}
 			loading={loading}
 			search={search}
-			emptyTitle="Belum ada data user"
-			emptyDescription="Silakan tambahkan data user terlebih dahulu"
+			emptyTitle="Hebat! Tidak ada pegawai yang terlambat"
+			emptyDescription="Kedisiplinan pegawai hari ini sangat baik."
 			columns={[
 				{
 					header: "#",

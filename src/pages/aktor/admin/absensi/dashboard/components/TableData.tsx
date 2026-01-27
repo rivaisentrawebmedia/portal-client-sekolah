@@ -30,8 +30,8 @@ export function TableNotifCuti({
 			data={data}
 			loading={loading}
 			search={search}
-			emptyTitle="Belum ada data user"
-			emptyDescription="Silakan tambahkan data user terlebih dahulu"
+			emptyTitle="Belum ada data pengajuan cuti/izin"
+			emptyDescription="Silakan tambahkan data cuti/izin terlebih dahulu"
 			columns={[
 				{
 					header: "#",
