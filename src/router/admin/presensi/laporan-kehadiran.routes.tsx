@@ -1,3 +1,4 @@
+import PegawaiPalingRajinPage from "@/pages/aktor/admin/absensi/laporan-kehadiran/pegawai-paling-rajin";
 import DaftarPegawaiRekapBulananPage from "@/pages/aktor/admin/absensi/laporan-kehadiran/rekap-bulanan/daftar-pegawai";
 import RekapBulananDetailPage from "@/pages/aktor/admin/absensi/laporan-kehadiran/rekap-bulanan/rekap-bulanan-detail";
 import RekapHarianPage from "@/pages/aktor/admin/absensi/laporan-kehadiran/rekap-harian";
@@ -25,5 +26,9 @@ export const routesRekapHarian = [
 	{
 		path: "laporan-kehadiran/rekap-per-orang/:bowo/rekap-per-orang",
 		element: <RekapPerOrangDetailPage />,
+	},
+	{
+		path: "laporan-kehadiran/pegawai-paling-rajin",
+		element: <PegawaiPalingRajinPage />,
 	},
 ];
