@@ -25,7 +25,9 @@ export function ButtonDetail({ rowData }: { rowData?: Visit }) {
 
 								nextParams.set("user-id", rowData?.pegawai_id ?? "");
 
-								navigate(`${rowData?.id}/detail?${nextParams.toString()}`);
+								navigate(
+									`${rowData?.pegawai_id}/detail?${nextParams.toString()}`,
+								);
 							}}
 							className="bg-[#2769cd] p-1.5 rounded-md text-white"
 						>

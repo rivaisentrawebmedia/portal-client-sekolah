@@ -1,28 +1,25 @@
-import { useGetVisit, usePostStatusVisit } from "./controller";
 import { Breadcrumbs } from "@/layouts/presensi-layout/components/BreadCrumbs";
-import {
-	DialogData,
-	RekapVisit,
-	TabCuti,
-	TableVisit,
-	TableVisitBoChecked,
-} from "./components";
-import { type GetVisitParams } from "./model";
 import { useSearchParams } from "react-router-dom";
 import { LimitSelect } from "@/components/common/limitSelect";
 import { SearchInput } from "@/components/common/searchInput";
 import { Pagination } from "@/components/common/pagination";
 import { useState } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
+import type { GetRekapVisitParams } from "./model";
+import { usePathname } from "@/utils/usePathname";
+import { useGetRekapVisitByID } from "./controller";
+import { usePostStatusVisit } from "../list-visit/controller";
+import {
+	DialogData,
+	TabCuti,
+	TableVisit,
+	TableVisitBoChecked,
+} from "../list-visit/components";
+import { InformasiPegawai } from "../../pengaturan-absensi/permohonan-validasi/cuti/detail-permohonan-cuti/components";
 
-type StatusParams = "diajukan" | "disetujui" | "ditolak" | "rekap-visit";
+type StatusParams = "diajukan" | "disetujui" | "ditolak";
 
-const ALLOWED_STATUS: StatusParams[] = [
-	"diajukan",
-	"disetujui",
-	"ditolak",
-	"rekap-visit",
-];
+const ALLOWED_STATUS: StatusParams[] = ["diajukan", "disetujui", "ditolak"];
 
 function parseStatusParams(value: string | null): StatusParams {
 	if (ALLOWED_STATUS.includes(value as StatusParams)) {
@@ -31,7 +28,8 @@ function parseStatusParams(value: string | null): StatusParams {
 	return "diajukan"; // default
 }
 
-export default function VisitPage() {
+export default function RekapVisitDetailPage() {
+	const { fourthPathname } = usePathname();
 	const [searchParams] = useSearchParams();
 	const listStatus = ["diajukan", "disetujui", "ditolak"];
 
@@ -43,14 +41,15 @@ export default function VisitPage() {
 	const limit = searchParams.get("limit-visit");
 	const search = searchParams.get("search-visit");
 
-	const paramsDefault: GetVisitParams = {
+	const paramsDefault: GetRekapVisitParams = {
 		status: statusParams || "",
 		page: Number(page) || 1,
 		limit: Number(limit) || 10,
 		search: search || "",
+		pegawai_id: fourthPathname || "",
 	};
 
-	const { data, loading, meta } = useGetVisit(paramsDefault);
+	const { data, loading, meta } = useGetRekapVisitByID(paramsDefault);
 
 	const { checkedPool, setCheckedPool, isShow, setIsShow, onSubmit, disabled } =
 		usePostStatusVisit();
@@ -69,23 +68,28 @@ export default function VisitPage() {
 						},
 						{
 							label: "Visit",
+							to: `/admin/presensi/visit?${searchParams.toString()}`,
+						},
+						{
+							label: "Rekap Visit Pegawai",
 						},
 					]}
 				/>
-				<p className="text-2xl text-[#1E5916] font-medium">Visit</p>
+				<p className="text-2xl text-[#1E5916] font-medium">
+					{" "}
+					Rekap Visit Pegawai
+				</p>
 
+				<InformasiPegawai />
 				<div className="flex flex-col">
 					<TabCuti
 						listStatus={listStatus}
 						statusParams={statusParams}
 						meta={meta}
-						isRekap
 					/>
 
 					<div className="flex flex-col gap-4 p-4 border-x border-b border-primary">
-						{statusParams === "rekap-visit" ? (
-							<RekapVisit />
-						) : statusParams === "diajukan" ? (
+						{statusParams === "diajukan" ? (
 							<>
 								<div className="flex flex-col gap-2 w-full md:flex-row md:items-center md:gap-4">
 									<LimitSelect pageKey="page-visit" limitKey="limit-visit" />
