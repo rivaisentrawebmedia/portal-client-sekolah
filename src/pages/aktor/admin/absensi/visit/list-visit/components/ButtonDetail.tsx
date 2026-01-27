@@ -1,4 +1,3 @@
-import type { MonitoringCuti } from "../model";
 import {
 	Tooltip,
 	TooltipContent,
@@ -7,8 +6,9 @@ import {
 } from "@/components/ui/tooltip";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
+import type { Visit } from "../model";
 
-export function ButtonDetail({ rowData }: { rowData?: MonitoringCuti }) {
+export function ButtonDetail({ rowData }: { rowData?: Visit }) {
 	const [params] = useSearchParams();
 
 	const navigate = useNavigate();
@@ -25,9 +25,7 @@ export function ButtonDetail({ rowData }: { rowData?: MonitoringCuti }) {
 
 								nextParams.set("user-id", rowData?.pegawai_id ?? "");
 
-								navigate(
-									`${rowData?.pegawai_id}/detail?${nextParams.toString()}`,
-								);
+								navigate(`${rowData?.id}/detail?${nextParams.toString()}`);
 							}}
 							className="bg-[#2769cd] p-1.5 rounded-md text-white"
 						>

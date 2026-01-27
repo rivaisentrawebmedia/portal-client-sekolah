@@ -17,6 +17,9 @@ export type MetaPagination = {
 	cuti?: number;
 	alpha?: number;
 	perjalanan_dinas?: number;
+	diajukan: number;
+	disetujui: number;
+	ditolak: number;
 };
 
 interface PaginationProps {
@@ -45,7 +48,7 @@ export function Pagination({ pageKey = "page", meta }: PaginationProps) {
 
 	return (
 		<div className="flex items-center justify-center md:justify-between text-sm">
-			<p className="hidden md:block">
+			<p className="hidden md:block text-sm text-[#888]">
 				Menampilkan {startIndex} - {endIndex} dari {meta.total} data
 			</p>
 
