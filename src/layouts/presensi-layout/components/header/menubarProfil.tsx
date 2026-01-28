@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getInitials } from "@/utils/helpers";
-import { FaUser } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ButtonGantiPassword } from "@/layouts/main-layout/components/ButtonResetPassword";
@@ -81,6 +81,18 @@ export function MenubarProfil({
 							</MenubarLabel>
 
 							<MenubarSeparator />
+
+							<MenubarItem asChild>
+								<button
+									onClick={() => {
+										navigate("/admin");
+									}}
+									className="flex w-full items-center gap-2"
+								>
+									<FaHome color="#888" />
+									Kembali Ke Home
+								</button>
+							</MenubarItem>
 
 							<MenubarItem asChild>
 								<button

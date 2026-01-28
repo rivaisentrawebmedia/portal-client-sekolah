@@ -24,10 +24,10 @@ export function BlackHole() {
 	return (
 		<>
 			<div className="flex px-2 border-x">
-				<Menubar className="border border-none bg-[#CD2738]">
+				<Menubar className="border border-none bg-[#161646]">
 					<MenubarMenu>
 						<MenubarTrigger className="group bg-white m-0 p-0">
-							<div className="flex items-center gap-2 bg-[#CD2738]">
+							<div className="flex items-center gap-2 bg-[#161646]">
 								{loading ? (
 									<>
 										<Skeleton className="h-6 w-6 rounded-full" />
@@ -55,7 +55,7 @@ export function BlackHole() {
 													onClick={() => {
 														navigate(`/admin${item?.slug}`);
 													}}
-													className="flex w-full disabled:bg-[#0E4087]/20 items-center gap-2"
+													className="flex w-full disabled:bg-[#161646]/10 items-center gap-2"
 												>
 													{item?.photo ? (
 														<img

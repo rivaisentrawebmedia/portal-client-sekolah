@@ -29,10 +29,10 @@ export function MenubarProfil({
 	const navigate = useNavigate();
 	return (
 		<>
-			<Menubar className="bg-#CD2738] border border-none">
+			<Menubar className="bg-#161646] border border-none">
 				<MenubarMenu>
-					<MenubarTrigger className="group bg-[#CD2738] p-0">
-						<div className="flex items-center gap-2 bg-[#CD2738]">
+					<MenubarTrigger className="group bg-[#161646] p-0">
+						<div className="flex items-center gap-2 bg-[#161646]">
 							{loading ? (
 								<>
 									<Skeleton className="h-8 w-8 rounded-full" />
