@@ -4,6 +4,7 @@ import WebsiteDashboardPage from "@/pages/aktor/admin/website/dashboard";
 import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
 import { routesBerita } from "./berita.routes";
+import { routesMading } from "./mading.routes";
 
 export const routewebsite = [
 	{
@@ -22,6 +23,8 @@ export const routewebsite = [
 			},
 
 			...routesBerita,
+
+			...routesMading,
 
 			{
 				path: "*",

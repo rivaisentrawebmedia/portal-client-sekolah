@@ -3,8 +3,17 @@ import type { GetBeritaParams } from "../../model";
 import { useGetBerita } from "../../controller";
 import { JokoSpiralCalendar } from "@/assets/icons/JokoSpiralCalendar";
 import { JokoManTechnology } from "@/assets/icons/JokoManTechnology";
+import {
+	Empty,
+	EmptyHeader,
+	EmptyTitle,
+	EmptyDescription,
+	EmptyContent,
+	EmptyMedia,
+} from "@/components/ui/empty";
 import dayjs from "dayjs";
 import { getInitials } from "@/utils/helpers";
+import { FaNewspaper } from "react-icons/fa";
 
 export function DashboardBeritaTerbaru() {
 	const navigate = useNavigate();
@@ -23,19 +32,17 @@ export function DashboardBeritaTerbaru() {
 	};
 
 	const { data, loading } = useGetBerita(paramsDefault);
+	const slicedData = data?.slice(0, 5) || [];
 
 	return (
 		<div className="flex flex-col gap-2 bg-[#F5F9FF] rounded-md p-3 border border-[#70A6F2]">
 			<p className="text-[#276CCD] font-medium">Berita Terbaru</p>
 
-			{/* ===== LOADING SKELETON ===== */}
+			{/* ===== LOADING ===== */}
 			{loading &&
 				Array.from({ length: 5 }).map((_, idx) => (
 					<div key={idx} className="flex gap-2 animate-pulse">
-						{/* Thumbnail */}
 						<div className="w-30 h-30 bg-slate-300 rounded-md shrink-0" />
-
-						{/* Content */}
 						<div className="flex flex-col flex-1 gap-2">
 							<div className="h-4 bg-slate-300 rounded w-full" />
 							<div className="h-4 bg-slate-300 rounded w-4/5" />
@@ -47,9 +54,28 @@ export function DashboardBeritaTerbaru() {
 					</div>
 				))}
 
+			{/* ===== EMPTY ===== */}
+			{!loading && slicedData?.length === 0 && (
+				<Empty className="bg-white border border-dashed">
+					<EmptyHeader>
+						<EmptyMedia variant="icon">
+							<FaNewspaper />
+						</EmptyMedia>
+						<EmptyTitle>Belum Ada Berita</EmptyTitle>
+						<EmptyDescription>
+							Belum ada berita yang dipublikasikan saat ini.
+						</EmptyDescription>
+					</EmptyHeader>
+
+					<EmptyContent>
+						<p>Berita terbaru akan muncul di sini setelah dipublikasikan.</p>
+					</EmptyContent>
+				</Empty>
+			)}
+
 			{/* ===== DATA ===== */}
 			{!loading &&
-				data?.slice(0, 5)?.map((item, idx) => (
+				slicedData?.map((item, idx) => (
 					<div
 						key={idx}
 						className="flex gap-2 group cursor-pointer"

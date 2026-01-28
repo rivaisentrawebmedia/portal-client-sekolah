@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import type { GetBeritaParams } from "../../model";
-import { useGetBerita } from "../../controller";
+import type { GetMadingParams } from "../../model";
+import { useGetMading } from "../../controller";
 import { JokoSpiralCalendar } from "@/assets/icons/JokoSpiralCalendar";
 import { JokoManTechnology } from "@/assets/icons/JokoManTechnology";
 import dayjs from "dayjs";
@@ -15,27 +15,26 @@ import {
 } from "@/components/ui/empty";
 import { FaNewspaper } from "react-icons/fa";
 
-export function DashboardBeritaTerpopuler() {
+export function DashboardMadingTerpopuler() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 
-	const page = searchParams.get("page-berita-terpopuler");
-	const limit = searchParams.get("limit-berita-terpopuler");
-	const search = searchParams.get("search-berita-terpopuler");
+	const page = searchParams.get("page-mading-terpopuler");
+	const limit = searchParams.get("limit-mading-terpopuler");
+	const search = searchParams.get("search-mading-terpopuler");
 
-	const paramsDefault: GetBeritaParams = {
+	const paramsDefault: GetMadingParams = {
 		page: Number(page) || 1,
 		limit: Number(limit) || 10,
 		search: search || "",
 		status: undefined,
-		urutkan: "terpopuler",
 	};
 
-	const { data, loading } = useGetBerita(paramsDefault);
+	const { data, loading } = useGetMading(paramsDefault);
 
 	return (
 		<div className="flex flex-col gap-2 bg-[#F5F9FF] rounded-md p-3 border border-[#70A6F2]">
-			<p className="text-[#276CCD] font-medium">Berita Terpopuler</p>
+			<p className="text-[#276CCD] font-medium">Mading Terpopuler</p>
 
 			{/* ===== LOADING SKELETON ===== */}
 			{loading &&
@@ -62,14 +61,14 @@ export function DashboardBeritaTerpopuler() {
 						<EmptyMedia variant="icon">
 							<FaNewspaper />
 						</EmptyMedia>
-						<EmptyTitle>Belum Ada Berita</EmptyTitle>
+						<EmptyTitle>Belum Ada Mading</EmptyTitle>
 						<EmptyDescription>
-							Belum ada berita yang dipublikasikan saat ini.
+							Belum ada Mading yang dipublikasikan saat ini.
 						</EmptyDescription>
 					</EmptyHeader>
 
 					<EmptyContent>
-						<p>Berita terbaru akan muncul di sini setelah dipublikasikan.</p>
+						<p>Mading terbaru akan muncul di sini setelah dipublikasikan.</p>
 					</EmptyContent>
 				</Empty>
 			)}
@@ -82,14 +81,14 @@ export function DashboardBeritaTerpopuler() {
 						className="flex gap-2 group cursor-pointer"
 						onClick={() => {
 							navigate(
-								`/admin/website/berita/${item?.id}/detail?${searchParams.toString()}`,
+								`/admin/website/mading/${item?.id}/detail?${searchParams.toString()}`,
 							);
 						}}
 					>
 						<div className="relative overflow-hidden">
-							{item?.gambar_utama ? (
+							{item?.gambar?.[0] ? (
 								<img
-									src={item?.gambar_utama}
+									src={item?.gambar?.[0]?.id}
 									className="w-30 h-30 object-cover group-hover:scale-110 duration-300 transition-all"
 									alt={item?.judul}
 								/>
