@@ -15,7 +15,7 @@ export function SidebarHeaderWebsite({
 			className="px-4 py-3 text-white"
 			style={{ background: SIDEBAR_BG }}
 		>
-			<Link to="/admin/perjalanan-dinas" className="flex items-center gap-2">
+			<Link to="/admin/surat" className="flex items-center gap-2">
 				{profile?.photo_sekolah ? (
 					<img src={profile.photo_sekolah} className="h-8 w-8 rounded-full" />
 				) : (

@@ -12,7 +12,7 @@ import { routePresensi } from "./admin/presensi";
 import DashboardPage from "@/pages/aktor/admin/portal-admin/dashboard";
 import ProfilePage from "@/pages/aktor/admin/portal-admin/profile";
 import { routewebsite } from "./admin/website";
-import { routePerjalananDinas } from "./admin/perjalanan-dinas";
+import { routeSurat } from "./admin/surat";
 
 export const Router = createBrowserRouter([
 	{
@@ -65,7 +65,7 @@ export const Router = createBrowserRouter([
 
 			...routewebsite,
 
-			...routePerjalananDinas,
+			...routeSurat,
 
 			{
 				path: "*",

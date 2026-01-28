@@ -14,7 +14,7 @@ import {
 
 const SIDEBAR_BG = "#161646";
 
-export default function PerjalananDInasLayout() {
+export default function SuratLayout() {
 	const { thirdPathname, fourthPathname } = usePathname();
 
 	const { data: profile, loading } = useGetProfile();

@@ -1,23 +1,26 @@
 import { HeaderProvider } from "@/layouts/main-layout/hooks/headerContext";
-import PerjalananDInasLayout from "@/layouts/perjalanan-dinas-layout";
+import SuratLayout from "@/layouts/surat";
 import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
+import { routesPengaturan } from "./pengaturan.routes";
 
-export const routePerjalananDinas = [
+export const routeSurat = [
 	{
-		path: "admin/perjalanan-dinas",
+		path: "admin/surat",
 		element: (
 			<ErrorBoundary>
 				<HeaderProvider>
-					<PerjalananDInasLayout />
+					<SuratLayout />
 				</HeaderProvider>
 			</ErrorBoundary>
 		),
 		children: [
 			{
 				path: "",
-				element: <p>lorem</p>,
+				element: <p>Dashboard</p>,
 			},
+
+			...routesPengaturan,
 
 			{
 				path: "*",

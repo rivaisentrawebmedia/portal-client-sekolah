@@ -20,9 +20,9 @@ export function MenuNoChild({
 				<button
 					onClick={() => {
 						if (item?.nama === "Dashboard") {
-							navigate("/admin/perjalanan-dinas");
+							navigate("/admin/surat");
 						} else {
-							navigate(`/admin/perjalanan-dinas${item?.slug}`);
+							navigate(`/admin/surat${item?.slug}`);
 						}
 					}}
 					className={clsx(

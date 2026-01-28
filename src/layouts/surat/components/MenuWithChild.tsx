@@ -65,7 +65,7 @@ export function MenuWithChild({
 									key={child.nama}
 									onClick={() =>
 										navigate(
-											`/admin/perjalanan-dinas/${convertToSlug(
+											`/admin/surat/${convertToSlug(
 												item.nama,
 											)}/${convertToSlug(child.nama)}`,
 										)

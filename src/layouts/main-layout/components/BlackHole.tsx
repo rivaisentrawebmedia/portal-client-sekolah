@@ -52,6 +52,8 @@ export function BlackHole() {
 											<button
 												disabled={isActive}
 												onClick={() => {
+													localStorage.setItem("modul-id", item?.id);
+
 													navigate(`/admin${item?.slug}`);
 												}}
 												className="flex w-full disabled:bg-emerald-50 items-center gap-2"

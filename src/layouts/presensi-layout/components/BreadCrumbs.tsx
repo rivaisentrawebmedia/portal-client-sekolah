@@ -26,7 +26,7 @@ export function Breadcrumbs({ items = [] }: BreadcrumbsProps) {
 						<li key={idx} className="flex items-center gap-2">
 							{isFirst ? (
 								<Link
-									to="/admin/presensi"
+									to={item?.to || "/"}
 									className="flex items-center gap-1 hover:text-primary transition-colors"
 								>
 									<FaHome size={14} />
