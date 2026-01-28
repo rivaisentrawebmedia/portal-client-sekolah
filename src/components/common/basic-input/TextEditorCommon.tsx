@@ -120,7 +120,7 @@ export function TextEditorCommon({
 						{label && <FormLabel className={labelClassname}>{label}</FormLabel>}
 
 						<FormControl>
-							<div className="rounded-md border">
+							<div className="rounded-md border flex-1">
 								<EditorToolbar editor={editor} onLinkClick={openModal} />
 
 								<EditorContent

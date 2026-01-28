@@ -3,6 +3,7 @@ import WebsiteLayout from "@/layouts/website-layout";
 import WebsiteDashboardPage from "@/pages/aktor/admin/website/dashboard";
 import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
+import { routesBerita } from "./berita.routes";
 
 export const routewebsite = [
 	{
@@ -19,6 +20,9 @@ export const routewebsite = [
 				path: "",
 				element: <WebsiteDashboardPage />,
 			},
+
+			...routesBerita,
+
 			{
 				path: "*",
 				element: <NotFoundPage />,

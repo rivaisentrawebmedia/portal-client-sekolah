@@ -33,6 +33,8 @@ interface BaseTableProps<T> {
 	};
 
 	rowClassName?: (item: T) => string;
+
+	background?: string;
 }
 
 export function BaseTable<T>({
@@ -46,13 +48,18 @@ export function BaseTable<T>({
 
 	checkedPool,
 	rowClassName,
+	background = "#F6FfF5",
 }: BaseTableProps<T>) {
 	const isEmpty = !loading && data.length === 0;
 	const isSearching = Boolean(search?.trim());
 
 	return (
 		<Table className="w-full border border-[#C8C8C8]">
-			<TableHeader className="bg-[#F6FfF5]">
+			<TableHeader
+				style={{
+					backgroundColor: background,
+				}}
+			>
 				<TableRow>
 					{checkedPool && (
 						<TableHead className="w-[50px] text-center">

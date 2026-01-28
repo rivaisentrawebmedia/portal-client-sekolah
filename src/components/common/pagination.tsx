@@ -20,6 +20,10 @@ export type MetaPagination = {
 	diajukan: number;
 	disetujui: number;
 	ditolak: number;
+
+	search: string;
+	status: "draft" | "publish";
+	urutkan: "terbaru" | "terpopuler";
 };
 
 interface PaginationProps {

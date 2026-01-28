@@ -1,7 +1,19 @@
 import { JokoArrowBack } from "@/assets/icons/JokoArrowBack";
 import { useNavigate } from "react-router-dom";
 
-export function ArrowBack({ link, title }: { title: string; link: string }) {
+export function ArrowBack({
+	link,
+	title,
+	background = "#F6FFF5",
+	border = "#9EDAA0",
+	text = "#1E5916",
+}: {
+	title: string;
+	link: string;
+	border?: string;
+	background?: string;
+	text?: string;
+}) {
 	const navigate = useNavigate();
 	return (
 		<button
@@ -13,10 +25,23 @@ export function ArrowBack({ link, title }: { title: string; link: string }) {
 			type="button"
 			className="flex items-center gap-2.5 w-fit"
 		>
-			<div className="flex border border-[#9EDAA0] bg-[#F6FFF5] rounded-full items-center justify-center w-10 h-10">
+			<div
+				className="flex border rounded-full items-center justify-center w-10 h-10"
+				style={{
+					borderColor: border,
+					backgroundColor: background,
+				}}
+			>
 				<JokoArrowBack />
 			</div>
-			<p className="text-2xl text-left text-[#1E5916] font-medium">{title}</p>
+			<p
+				className="text-2xl text-left font-medium"
+				style={{
+					color: text,
+				}}
+			>
+				{title}
+			</p>
 		</button>
 	);
 }
