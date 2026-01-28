@@ -5,6 +5,7 @@ import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
 import { routesBerita } from "./berita.routes";
 import { routesMading } from "./mading.routes";
+import { routesPengumuman } from "./pengumuman.routes";
 
 export const routewebsite = [
 	{
@@ -25,6 +26,8 @@ export const routewebsite = [
 			...routesBerita,
 
 			...routesMading,
+
+			...routesPengumuman,
 
 			{
 				path: "*",

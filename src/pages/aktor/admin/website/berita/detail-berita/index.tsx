@@ -86,7 +86,7 @@ export default function DetailBeritaPage() {
 				<BasicLabel
 					label="Tag"
 					className="flex flex-col gap-2 md:flex-row"
-					value={data?.tag?.map((item) => item).join(", ") || ""}
+					value={data?.tag?.map((item) => item?.label).join(", ") || ""}
 				/>
 				<div className="flex flex-col gap-2">
 					<p className="text-[#888] text-sm">Isi Berita</p>

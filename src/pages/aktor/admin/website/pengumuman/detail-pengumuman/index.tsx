@@ -1,10 +1,10 @@
 import { ArrowBack } from "@/components/common/ArrowBack";
-import { useGetMadingByID } from "../list-mading/controller";
+import { useGetPengumumanByID } from "../list-pengumuman/controller";
 import { convertFromSnakeCase } from "@/utils/helpers";
 import {
 	ButtonEdit,
 	ButtonKembaliKeDraft,
-	ButtonPublishMading,
+	ButtonPublishPengumuman,
 	SlideGambar,
 } from "./components";
 import dayjs from "dayjs";
@@ -14,20 +14,20 @@ import { HtmlPreview } from "@/utils/safeHTML";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "react-router-dom";
 
-export default function DetailMadingPage() {
+export default function DetailPengumumanPage() {
 	const [params] = useSearchParams();
-	const { data, loading } = useGetMadingByID();
+	const { data, loading } = useGetPengumumanByID();
 
 	if (loading) {
-		return <DetailMadingSkeleton />;
+		return <DetailPengumumanSkeleton />;
 	}
 	return (
 		<>
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-4">
 					<ArrowBack
-						link={`/admin/website/mading?${params?.toString()}`}
-						title="Detail Mading"
+						link={`/admin/website/pengumuman?${params?.toString()}`}
+						title="Detail Pengumuman"
 						background="#F5F9FF"
 						border="#F5F9FF"
 						text="#276CCD"
@@ -42,7 +42,7 @@ export default function DetailMadingPage() {
 						<div className="flex items-center gap-2">
 							<ButtonEdit id={data?.id} />
 							{data?.status === "draft" ? (
-								<ButtonPublishMading rowData={data} />
+								<ButtonPublishPengumuman rowData={data} />
 							) : (
 								<ButtonKembaliKeDraft rowData={data} />
 							)}
@@ -81,7 +81,7 @@ export default function DetailMadingPage() {
 				<BasicLabel
 					label="Kategori"
 					className="flex flex-col gap-2 md:flex-row"
-					value={data?.kategori_mading || ""}
+					value={data?.kategori_pengumuman || ""}
 				/>
 				<BasicLabel
 					label="Tag"
@@ -89,7 +89,7 @@ export default function DetailMadingPage() {
 					value={data?.tag?.map((item) => item?.label).join(", ") || ""}
 				/>
 				<div className="flex flex-col gap-2">
-					<p className="text-[#888] text-sm">Isi Mading</p>
+					<p className="text-[#888] text-sm">Isi Pengumuman</p>
 					<HtmlPreview html={data?.isi || ""} />
 				</div>
 			</div>
@@ -97,7 +97,7 @@ export default function DetailMadingPage() {
 	);
 }
 
-function DetailMadingSkeleton() {
+function DetailPengumumanSkeleton() {
 	return (
 		<div className="flex flex-col gap-4">
 			{/* Header */}
