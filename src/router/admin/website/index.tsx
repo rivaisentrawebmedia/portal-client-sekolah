@@ -6,6 +6,8 @@ import NotFoundPage from "@/pages/not-found";
 import { routesBerita } from "./berita.routes";
 import { routesMading } from "./mading.routes";
 import { routesPengumuman } from "./pengumuman.routes";
+import { routesPrestasi } from "./prestasi.routes";
+import { routesAgenda } from "./agenda.routes";
 
 export const routewebsite = [
 	{
@@ -28,6 +30,10 @@ export const routewebsite = [
 			...routesMading,
 
 			...routesPengumuman,
+
+			...routesPrestasi,
+
+			...routesAgenda,
 
 			{
 				path: "*",
