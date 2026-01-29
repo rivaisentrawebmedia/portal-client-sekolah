@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaLandmark, FaSchool } from "react-icons/fa";
+import { FaSchool } from "react-icons/fa";
 import { TabRecovery } from "./TabRecovery";
 import { KopSuratDesa } from "./kop-sekolah";
 
@@ -9,10 +9,10 @@ export default function KopSuratPage() {
 			label: "Kop Surat Sekolah",
 			icon: FaSchool,
 		},
-		{
-			label: "Kop Surat Dinas",
-			icon: FaLandmark,
-		},
+		// {
+		// 	label: "Kop Surat Dinas",
+		// 	icon: FaLandmark,
+		// },
 	];
 
 	const [selected, setSelected] = useState<string>(menu?.[0]?.label);

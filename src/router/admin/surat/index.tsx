@@ -3,6 +3,7 @@ import SuratLayout from "@/layouts/surat";
 import { ErrorBoundary } from "@/pages/error";
 import NotFoundPage from "@/pages/not-found";
 import { routesPengaturan } from "./pengaturan.routes";
+import { routesSuratTugas } from "./surat-tugas.routes";
 
 export const routeSurat = [
 	{
@@ -21,6 +22,8 @@ export const routeSurat = [
 			},
 
 			...routesPengaturan,
+
+			...routesSuratTugas,
 
 			{
 				path: "*",

@@ -76,3 +76,61 @@ export function toRoman(num: number): string {
 	}
 	return result;
 }
+
+export function angkaKeUrutan(num: number): string {
+	if (num < 1 || num > 999) return `Ke-${num}`; // fallback jika di luar range
+
+	if (num === 1) return "Pertama";
+	if (num === 2) return "Kedua";
+	if (num === 3) return "Ketiga";
+	if (num === 4) return "Keempat";
+	if (num === 5) return "Kelima";
+	if (num === 6) return "Keenam";
+	if (num === 7) return "Ketujuh";
+	if (num === 8) return "Kedelapan";
+	if (num === 9) return "Kesembilan";
+	if (num === 10) return "Kesepuluh";
+	if (num === 11) return "Kesebelas";
+
+	const satuan = [
+		"",
+		"satu",
+		"dua",
+		"tiga",
+		"empat",
+		"lima",
+		"enam",
+		"tujuh",
+		"delapan",
+		"sembilan",
+	];
+
+	let hasil = "Ke";
+
+	if (num < 20) {
+		hasil += satuan[num - 10] + "belas";
+	} else if (num < 100) {
+		const puluh = Math.floor(num / 10);
+		const sisa = num % 10;
+		hasil += satuan[puluh] + "puluh";
+		if (sisa > 0) hasil += " " + satuan[sisa];
+	} else if (num < 1000) {
+		const ratus = Math.floor(num / 100);
+		const sisa = num % 100;
+		hasil += satuan[ratus] + "ratus";
+		if (sisa > 0) {
+			const puluh = Math.floor(sisa / 10);
+			const satu = sisa % 10;
+			if (sisa < 10) {
+				hasil += " " + satuan[sisa];
+			} else if (sisa < 20) {
+				hasil += " " + satuan[sisa - 10] + "belas";
+			} else {
+				hasil += " " + satuan[puluh] + "puluh";
+				if (satu > 0) hasil += " " + satuan[satu];
+			}
+		}
+	}
+
+	return hasil.trim();
+}

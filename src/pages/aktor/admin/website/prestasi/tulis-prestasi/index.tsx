@@ -80,7 +80,6 @@ export default function TulisPrestasiPage() {
 											field,
 											error: error?.message,
 										}));
-										console.log(invalidFields);
 
 										return toast.error(invalidFields?.[0]?.error?.toString());
 									} else {

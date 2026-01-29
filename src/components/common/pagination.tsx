@@ -6,17 +6,20 @@ export type MetaPagination = {
 	last_page: number;
 	page: number;
 	limit: number;
+
 	total_diajukan?: number;
 	total_dibatalkan?: number;
 	total_disetujui?: number;
 	total_ditolak?: number;
 	total_draft?: number;
+
 	hadir?: number;
 	sakit?: number;
 	izin?: number;
 	cuti?: number;
 	alpha?: number;
 	perjalanan_dinas?: number;
+
 	diajukan: number;
 	disetujui: number;
 	ditolak: number;
@@ -29,9 +32,14 @@ export type MetaPagination = {
 interface PaginationProps {
 	pageKey?: string;
 	meta?: MetaPagination;
+	color?: string;
 }
 
-export function Pagination({ pageKey = "page", meta }: PaginationProps) {
+export function Pagination({
+	pageKey = "page",
+	meta,
+	color = "#1E5916",
+}: PaginationProps) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	if (!meta || meta.last_page < 1) return null;
@@ -60,7 +68,9 @@ export function Pagination({ pageKey = "page", meta }: PaginationProps) {
 				{/* First */}
 				{start > 1 && (
 					<>
-						<PageButton onClick={() => goToPage(1)}>1</PageButton>
+						<PageButton onClick={() => goToPage(1)} color={color}>
+							1
+						</PageButton>
 						<span className="px-2">…</span>
 					</>
 				)}
@@ -73,6 +83,7 @@ export function Pagination({ pageKey = "page", meta }: PaginationProps) {
 							key={page}
 							active={page === currentPage}
 							onClick={() => goToPage(page)}
+							color={color}
 						>
 							{page}
 						</PageButton>
@@ -83,7 +94,7 @@ export function Pagination({ pageKey = "page", meta }: PaginationProps) {
 				{end < lastPage && (
 					<>
 						<span className="px-2">…</span>
-						<PageButton onClick={() => goToPage(lastPage)}>
+						<PageButton onClick={() => goToPage(lastPage)} color={color}>
 							{lastPage}
 						</PageButton>
 					</>
@@ -99,19 +110,28 @@ function PageButton({
 	children,
 	active,
 	onClick,
+	color,
 }: {
 	children: React.ReactNode;
 	active?: boolean;
 	onClick?: () => void;
+	color: string;
 }) {
 	return (
 		<button
 			onClick={onClick}
+			style={
+				active
+					? {
+							backgroundColor: color,
+							borderColor: color,
+							color: "#fff",
+						}
+					: undefined
+			}
 			className={cn(
 				"min-w-[32px] rounded-md border px-2 py-1 transition",
-				active
-					? "bg-[#1E5916] text-white border-[#1E5916]"
-					: "bg-white hover:bg-[#F5F5FF]",
+				active ? "" : "bg-white hover:bg-[#F5F5FF]",
 			)}
 		>
 			{children}

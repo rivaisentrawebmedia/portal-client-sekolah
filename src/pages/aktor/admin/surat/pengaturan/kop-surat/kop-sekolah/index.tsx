@@ -55,7 +55,11 @@ export function KopSuratDesa() {
 									Preview
 								</Button>
 
-								<Button type="submit" size="sm">
+								<Button
+									type="submit"
+									size="sm"
+									className="bg-[#161646] hover:bg-[#161646]"
+								>
 									<Save className="mr-2 h-4 w-4" />
 									Simpan
 								</Button>

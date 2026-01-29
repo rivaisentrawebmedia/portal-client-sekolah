@@ -1,10 +1,15 @@
-import Loading from "../assets/images/loading-mona.gif";
+import clsx from "clsx";
 
-export function LoadingMona() {
+export function LoadingSpinner({ className }: { className?: string }) {
 	return (
-		<div className="flex w-full flex-col items-center justify-center gap-32">
-			<img src={Loading} alt="loading" className="w-[18rem]" />
-			<p className="text-[#484f58]">Sedang memuat data ...</p>
+		<div
+			className={clsx(
+				"flex flex-col items-center justify-center py-4",
+				className,
+			)}
+		>
+			<div className="mb-3 h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-primary" />
+			<p className="text-sm text-gray-500">Memuat data…</p>
 		</div>
 	);
 }

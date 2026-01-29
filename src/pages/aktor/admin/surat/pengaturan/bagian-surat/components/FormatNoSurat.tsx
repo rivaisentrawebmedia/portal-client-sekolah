@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import type { BagianSurat } from "../model";
 import { toRoman } from "@/utils/helpers";
 
-export function FormatSurat({ data }: { data: BagianSurat }) {
+export function FormatSurat({ data }: { data: BagianSurat | undefined }) {
 	const segments = useMemo(() => {
 		const list = [
 			{

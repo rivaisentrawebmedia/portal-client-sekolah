@@ -19,6 +19,7 @@ export function useFormatSurat(form: any) {
 		// ==== NORMALISASI VALUE ====
 		const kodeDepan = values?.kode_depan ?? "";
 		const kodeBelakang = values?.kode_belakang ?? "";
+		const nomorSurat = values?.nomor_surat ?? "";
 
 		const urutanNomor = Number(values?.urutan_nomor ?? 0);
 		const urutanKodeDepan = Number(values?.urutan_kode_depan ?? 0);
@@ -46,7 +47,7 @@ export function useFormatSurat(form: any) {
 			},
 			{
 				key: "nomor",
-				value: "[Nomor Surat]",
+				value: nomorSurat || "[Nomor Surat]",
 				order: urutanNomor || 2,
 				enabled: true,
 			},
