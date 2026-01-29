@@ -99,6 +99,7 @@ export default function WebsiteLayout() {
 														idx={idx}
 														isActive={isActive}
 														item={item}
+														key={idx}
 													/>
 												);
 											}
@@ -117,6 +118,7 @@ export default function WebsiteLayout() {
 													idx={idx}
 													isChildActive={isChildActive}
 													item={item}
+													key={idx}
 												/>
 											);
 										})}

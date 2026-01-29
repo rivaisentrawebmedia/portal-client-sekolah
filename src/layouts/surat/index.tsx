@@ -58,6 +58,7 @@ export default function SuratLayout() {
 														idx={idx}
 														isActive={isActive}
 														item={item}
+														key={idx}
 													/>
 												);
 											}
@@ -76,6 +77,7 @@ export default function SuratLayout() {
 													idx={idx}
 													isChildActive={isChildActive}
 													item={item}
+													key={idx}
 												/>
 											);
 										})}

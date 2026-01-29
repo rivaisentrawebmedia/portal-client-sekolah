@@ -14,7 +14,7 @@ export function FormatSurat({ data }: { data: BagianSurat }) {
 			},
 			{
 				key: "nomor",
-				value: "Nomor Surat",
+				value: "[ Nomor Surat ]",
 				order: Number(data?.urutan_nomor),
 				enabled: true,
 				highlight: true,
