@@ -8,7 +8,7 @@ import { ButtonCetakSuratDinas } from "./print";
 import { InformasiPegawai, InformasiSurat } from "./components";
 import { LoadingSpinner } from "@/components/ui/loading";
 import { useGetSPP } from "../../sppd/list-sppd/controller";
-import { ChevronsRight, Plus } from "lucide-react";
+import { ChevronsRight, Edit, Plus } from "lucide-react";
 import { TableSPPD } from "../../sppd/list-sppd/components";
 
 export default function DetailSuratTugasPage() {
@@ -73,7 +73,7 @@ export default function DetailSuratTugasPage() {
 										);
 									}}
 								>
-									<Plus size={14} />
+									<Edit size={14} />
 									Edit SPPD
 								</Button>
 							</>

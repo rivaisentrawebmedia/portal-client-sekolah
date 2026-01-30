@@ -134,3 +134,15 @@ export function angkaKeUrutan(num: number): string {
 
 	return hasil.trim();
 }
+
+/** format number -> Rupiah */
+export function formatRupiah(value: number | null | undefined) {
+	if (value === null || value === undefined) return "";
+	return new Intl.NumberFormat("id-ID").format(value);
+}
+
+/** parse string rupiah -> number */
+export function parseRupiah(value: string) {
+	const numeric = value.replace(/[^\d]/g, "");
+	return numeric ? Number(numeric) : 0;
+}

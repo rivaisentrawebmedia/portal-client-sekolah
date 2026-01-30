@@ -6,3 +6,4 @@ export * from "./TextEditorCommon";
 export * from "./InputTanggalLahir";
 export * from "./CheckboxCommon";
 export * from "./SelectPegawaiCommon";
+export * from "./InputRupiah";
