@@ -93,44 +93,46 @@ export default function DetailSuratTugasPage() {
 							Tambah SPPD
 						</Button>
 					)}
-					<TableSPPD
-						data={sppd ? [sppd] : []}
-						limit={100}
-						page={1}
-						loading={loadingSppd}
-						search=""
-					/>
 
 					{sppd && (
-						<div className="flex flex-col gap-2 md:flex-row md:justify-end">
-							<Button
-								type="button"
-								onClick={() => {
-									navigate("lumpsum");
-								}}
-								className="bg-[#0070e4] hover:bg-[#0070e4]/80"
-							>
-								Lumpsum
-								<ChevronsRight />
-							</Button>
-							<Button
-								onClick={() => {
-									navigate("laporan");
-								}}
-								type="button"
-								className="bg-[#292d8b] hover:bg-[#292d8b]/80"
-							>
-								Laporan
-								<ChevronsRight />
-							</Button>
-							<Button
-								type="button"
-								className="bg-[#3a6012] hover:bg-[#3a6012]/80"
-							>
-								Dokumentasi
-								<ChevronsRight />
-							</Button>
-						</div>
+						<>
+							<TableSPPD
+								data={sppd ? [sppd] : []}
+								limit={100}
+								page={1}
+								loading={loadingSppd}
+								search=""
+							/>
+							<div className="flex flex-col gap-2 md:flex-row md:justify-end">
+								<Button
+									type="button"
+									onClick={() => {
+										navigate("lumpsum");
+									}}
+									className="bg-[#0070e4] hover:bg-[#0070e4]/80"
+								>
+									Lumpsum
+									<ChevronsRight />
+								</Button>
+								<Button
+									onClick={() => {
+										navigate("laporan");
+									}}
+									type="button"
+									className="bg-[#292d8b] hover:bg-[#292d8b]/80"
+								>
+									Laporan
+									<ChevronsRight />
+								</Button>
+								<Button
+									type="button"
+									className="bg-[#3a6012] hover:bg-[#3a6012]/80"
+								>
+									Dokumentasi
+									<ChevronsRight />
+								</Button>
+							</div>
+						</>
 					)}
 				</div>
 			</div>

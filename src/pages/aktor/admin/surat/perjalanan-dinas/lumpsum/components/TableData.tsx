@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import type { LumpsumSPPD } from "../model";
 import { formatRupiah } from "@/utils/helpers";
 import { Pencil, Printer } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface TableLumpsumSPPDProps {
 	data: LumpsumSPPD[];
@@ -26,6 +27,7 @@ export function TableLumpsumSPPD({
 	search,
 	loading,
 }: TableLumpsumSPPDProps) {
+	const navigate = useNavigate();
 	const isEmpty = !loading && data.length === 0;
 	const isSearching = Boolean(search?.trim());
 
@@ -169,7 +171,9 @@ export function TableLumpsumSPPD({
 										<p className="text-[#CD3C3C]">Belum Dibuat</p>
 										<button
 											type="button"
-											onClick={() => {}}
+											onClick={() => {
+												navigate(`${item?.pegawai_id}/detail-lumpsum`);
+											}}
 											className="bg-[#CDA327] p-2 rounded-md text-white"
 										>
 											<Pencil size={12} />

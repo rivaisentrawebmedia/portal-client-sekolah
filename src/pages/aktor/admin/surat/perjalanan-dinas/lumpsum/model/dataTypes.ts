@@ -48,21 +48,23 @@ export type LumpsumSPPDByID = {
 	bendahara_nip: string;
 	jabatan_bendahara_id: string;
 	jabatan_bendahara: string;
-	items: {
-		id: string;
-		jenis_biaya_id: string;
-		jenis_biaya_nama: string;
-		jenis_biaya_kode: string;
-		sumber_dana_id: string;
-		sumber_dana: string;
-		tahun: string;
-		jumlah_anggaran: string;
-		no_tiket: string;
-		harga: string;
-		qty: number;
-		redaksi: string;
-		satuan_kerja: string;
-		jenis_transportasi_id: string;
-		ril: boolean;
-	}[];
+	items: Item[];
+};
+
+export type Item = {
+	id: string;
+	jenis_biaya_id: string;
+	jenis_biaya_nama: string;
+	jenis_biaya_kode: string;
+	sumber_dana_id: string;
+	sumber_dana: string;
+	tahun: string;
+	jumlah_anggaran: string;
+	no_tiket: string;
+	harga: string;
+	qty: number;
+	redaksi: string;
+	satuan_kerja: string;
+	jenis_transportasi_id: string;
+	ril: boolean;
 };

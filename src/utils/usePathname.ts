@@ -11,6 +11,8 @@ export const usePathname = () => {
 	const fivethPathname = splittedPath[5] || null;
 	const sixthPathname = splittedPath[6] || null;
 	const seventhPathname = splittedPath[7] || null;
+	const eightthPathname = splittedPath[8] || null;
+	const ninethPathname = splittedPath[9] || null;
 	const lastPathname = splittedPath[splittedPath.length - 1] || null;
 
 	return {
@@ -24,6 +26,8 @@ export const usePathname = () => {
 		fivethPathname,
 		sixthPathname,
 		seventhPathname,
+		eightthPathname,
+		ninethPathname,
 	};
 };
 

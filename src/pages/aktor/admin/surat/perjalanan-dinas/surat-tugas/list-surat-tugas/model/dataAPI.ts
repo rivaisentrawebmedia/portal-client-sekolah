@@ -141,7 +141,7 @@ export const getSuratTugasPegawai = async ({
 export const getSuratTugasBendahara = async (): Promise<
 	PaginatedResponse<SuratTugasBendahara>
 > => {
-	const res = await AxiosClient.get(`/surat/surat-tugas/bendahara`);
+	const res = await AxiosClient.get(`/surat/surat-tugas/bendahara-options`);
 
 	return res.data;
 };

@@ -1,5 +1,8 @@
 import AnggaranPage from "@/pages/aktor/admin/surat/perjalanan-dinas/anggaran";
+import JenisBiayaPage from "@/pages/aktor/admin/surat/perjalanan-dinas/jenis-biaya";
 import DetailLaporanSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/laporan";
+import DetailListLumpsumPage from "@/pages/aktor/admin/surat/perjalanan-dinas/lumpsum/DetailLumpsum";
+import UbahListLumpsumPage from "@/pages/aktor/admin/surat/perjalanan-dinas/lumpsum/EditLumpsum";
 import ListLumpsumPage from "@/pages/aktor/admin/surat/perjalanan-dinas/lumpsum/listLumpsum";
 import EditSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/edit-sppd";
 import BuatSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/tulis-sppd";
@@ -42,7 +45,19 @@ export const routesSuratTugas = [
 		element: <ListLumpsumPage />,
 	},
 	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/lumpsum/:owi/detail-lumpsum",
+		element: <DetailListLumpsumPage />,
+	},
+	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/lumpsum/:owi/detail-lumpsum/ubah",
+		element: <UbahListLumpsumPage />,
+	},
+	{
 		path: "perjalanan-dinas/anggaran",
 		element: <AnggaranPage />,
+	},
+	{
+		path: "perjalanan-dinas/jenis-biaya",
+		element: <JenisBiayaPage />,
 	},
 ];
