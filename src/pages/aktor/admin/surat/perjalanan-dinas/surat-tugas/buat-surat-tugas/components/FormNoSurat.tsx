@@ -26,7 +26,7 @@ export function FormNoSurat({
 	const segments = useFormatSurat(form);
 
 	return (
-		<div className="flex flex-col gap-4 rounded-md border border-[#cfcfff] bg-gradient-to-br from-[#ededff] to-[#f7f7ff] p-4">
+		<div className="flex flex-col gap-4 rounded-md border border-[#8a8aa2] bg-[#eff6ff] p-4">
 			<div className="flex flex-col gap-0">
 				<p className="text-lg text-[#161646]">Penomoran Surat</p>
 				<p className="font-light">

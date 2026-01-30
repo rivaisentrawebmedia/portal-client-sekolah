@@ -1,3 +1,5 @@
+import EditSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/edit-sppd";
+import BuatSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/tulis-sppd";
 import BuatSuratTugasPage from "@/pages/aktor/admin/surat/perjalanan-dinas/surat-tugas/buat-surat-tugas";
 import DetailSuratTugasPage from "@/pages/aktor/admin/surat/perjalanan-dinas/surat-tugas/detail-surat-tugas";
 import EditSuratTugasPage from "@/pages/aktor/admin/surat/perjalanan-dinas/surat-tugas/edit-surat-tugas";
@@ -19,5 +21,13 @@ export const routesSuratTugas = [
 	{
 		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail",
 		element: <DetailSuratTugasPage />,
+	},
+	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/tambah",
+		element: <BuatSPPDPage />,
+	},
+	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/edit",
+		element: <EditSPPDPage />,
 	},
 ];

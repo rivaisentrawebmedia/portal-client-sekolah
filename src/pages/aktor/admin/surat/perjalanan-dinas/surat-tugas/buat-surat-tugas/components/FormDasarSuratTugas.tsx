@@ -21,7 +21,7 @@ export function FormDasarSuratTugas({
 	const kegiatan = form.watch("dasar_surat_tugas");
 
 	return (
-		<div className="flex flex-col gap-4 rounded-md border border-[#cfcfff] bg-gradient-to-br from-[#ededff] to-[#f7f7ff] p-4">
+		<div className="flex flex-col gap-4 rounded-md bg-blue-50 border border-[#8a8aa2] p-4">
 			<p className="text-lg text-[#161646]">Dasar Surat Tugas</p>
 			<div className="flex gap-4 flex-col">
 				{kegiatan?.length > 0 && (

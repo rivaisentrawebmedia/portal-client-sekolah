@@ -1,38 +1,34 @@
 import { BaseTable } from "@/components/common/BasicTable";
-import type { SuratTugas } from "../model";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/id";
 import dayjs from "dayjs";
-import { ButtonEdit } from "./ButtonEdit";
-import { ButtonDelete } from "./ButtonDelete";
-import { ButtonDetail } from "./ButtonDetail";
-import { ButtonListPegawai } from "./ButtonListPegawai";
+import type { SPPD } from "../model";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
 
-interface TableSuratTugasProps {
-	data: SuratTugas[];
+interface TableSPPDProps {
+	data: SPPD[];
 	page: number;
 	limit: number;
 	search: string;
 	loading: boolean;
 }
 
-export function TableSuratTugas({
+export function TableSPPD({
 	data,
 	page,
 	limit,
 	search,
 	loading,
-}: TableSuratTugasProps) {
+}: TableSPPDProps) {
 	return (
 		<BaseTable
 			data={data}
 			loading={loading}
 			search={search}
-			emptyTitle="Belum ada data Surat Tugas"
-			emptyDescription="Silakan tambahkan data Surat Tugas terlebih dahulu"
+			emptyTitle="Belum ada data SPPD"
+			emptyDescription="Silakan tambahkan data SPPD terlebih dahulu"
 			background="#e0efff"
 			columns={[
 				{
@@ -61,39 +57,25 @@ export function TableSuratTugas({
 				},
 
 				{
-					header: "Jlh. Pegawai",
-					className: "font-light text-[#0f0f12]",
-					render: (item) => <ButtonListPegawai rowData={item} />,
-				},
-
-				{
-					header: "Kegiatan",
+					header: "Asal - Tujuan",
 					className: "font-light text-[#0f0f12]",
 					render: (item) => (
-						<ul className="flex-1 list-disc ml-4">
-							{(item?.kegiatan || [])?.length > 0
-								? item?.kegiatan?.map((item, idx) => {
-										return (
-											<li key={idx} className="">
-												{item}
-											</li>
-										);
-									})
-								: "-"}
-						</ul>
+						<p>
+							{item?.tempat_asal} - {item?.tempat_tujuan}
+						</p>
 					),
 				},
 
 				{
-					header: "",
-					className: "w-[100px]",
-					render: (item) => (
-						<div className="flex justify-center gap-2">
-							<ButtonDetail rowData={item} />
-							<ButtonEdit rowData={item} />
-							<ButtonDelete rowData={item} />
-						</div>
-					),
+					header: "Transport",
+					className: "font-light text-[#0f0f12]",
+					render: (item) => <p>{item?.jenis_transportasi || "-"}</p>,
+				},
+
+				{
+					header: "Jumlah Pegawai",
+					className: "font-light text-[#0f0f12]",
+					render: (item) => <p>{item?.list_pegawai?.length || "0"} Pegawai</p>,
 				},
 			]}
 		/>
