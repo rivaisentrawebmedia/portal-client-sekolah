@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { ButtonEdit } from "./ButtonEdit";
 import { ButtonDelete } from "./ButtonDelete";
 import { ButtonDetail } from "./ButtonDetail";
+import { ButtonListPegawai } from "./ButtonListPegawai";
 
 dayjs.extend(relativeTime);
 dayjs.locale("id");
@@ -62,13 +63,25 @@ export function TableSuratTugas({
 				{
 					header: "Jlh. Pegawai",
 					className: "font-light text-[#0f0f12]",
-					render: (item) => <p>{item?.list_pegawaI?.length || 0} Orang</p>,
+					render: (item) => <ButtonListPegawai rowData={item} />,
 				},
 
 				{
 					header: "Kegiatan",
 					className: "font-light text-[#0f0f12]",
-					render: (item) => <p>{item?.kegiatan || "-"}</p>,
+					render: (item) => (
+						<ul className="flex-1 list-disc ml-4">
+							{(item?.kegiatan || [])?.length > 0
+								? item?.kegiatan?.map((item, idx) => {
+										return (
+											<li key={idx} className="">
+												{item}
+											</li>
+										);
+									})
+								: "-"}
+						</ul>
+					),
 				},
 
 				{

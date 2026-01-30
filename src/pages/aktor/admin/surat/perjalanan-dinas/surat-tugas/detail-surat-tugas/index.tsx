@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useGetSuratTugasByID } from "../list-surat-tugas/controller";
 import { BasicLabel } from "@/components/common/BasicLabel";
 import dayjs from "dayjs";
+import { ButtonCetakSuratDinas } from "./print";
 
 export default function DetailSuratTugasPage() {
 	const [params] = useSearchParams();
@@ -38,14 +39,7 @@ export default function DetailSuratTugasPage() {
 							<FaEdit />
 							Edit Surat Tugas
 						</Button>
-						<Button
-							type="button"
-							disabled
-							className="bg-[#161646] hover:bg-[#161646]/80"
-						>
-							<FaPrint />
-							Cetak Surat Tugas
-						</Button>
+						<ButtonCetakSuratDinas />
 					</div>
 				</div>
 
@@ -95,7 +89,8 @@ export default function DetailSuratTugasPage() {
 						label="Dibuat Oleh"
 						value={
 							<div className="flex gap-1">
-								<span className="hidden md:block">:</span> {"-"}
+								<span className="hidden md:block">:</span>{" "}
+								{data?.dibuat_oleh || "-"}
 							</div>
 						}
 						className="w-full flex-col md:flex-row"
@@ -105,7 +100,7 @@ export default function DetailSuratTugasPage() {
 						value={
 							<div className="flex gap-1">
 								<span className="hidden md:block">:</span>{" "}
-								{data?.nomor_surat || "-"}
+								{data?.satuan_kerja || "-"}
 							</div>
 						}
 						className="w-full flex-col md:flex-row"
@@ -114,7 +109,8 @@ export default function DetailSuratTugasPage() {
 						label="Penandatangan"
 						value={
 							<div className="flex gap-1">
-								<span className="hidden md:block">:</span> {"-"}
+								<span className="hidden md:block">:</span>{" "}
+								{data?.penandatangan || "-"}
 							</div>
 						}
 						className="w-full flex-col md:flex-row"
@@ -125,7 +121,7 @@ export default function DetailSuratTugasPage() {
 							(data?.list_pegawai || [])?.length > 0 ? (
 								<ul className="list-disc ml-6">
 									{data?.list_pegawai?.map((item, idx) => {
-										return <li key={idx}>{item?.jabatan_kegiatan}</li>;
+										return <li key={idx}>{item?.nama || "?"}</li>;
 									})}
 								</ul>
 							) : (

@@ -89,7 +89,7 @@ export function FormPilihPegawai({
 										return (
 											<div
 												key={item.id}
-												onClick={() => togglePegawai(item.id)}
+												onClick={() => togglePegawai(item?.id)}
 												className={`grid cursor-pointer grid-cols-12 items-center px-4 py-3 text-sm transition
 												${
 													isChecked

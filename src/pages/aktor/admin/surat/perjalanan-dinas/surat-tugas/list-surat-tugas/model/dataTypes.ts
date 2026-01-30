@@ -34,7 +34,7 @@ export type SuratTugas = {
 	urutan_nomor: number;
 	is_bulan_romawi: boolean | null;
 
-	list_pegawaI: {
+	list_pegawai: {
 		pegawai_id: string;
 		nama_pegawai: string;
 		nip: string;
@@ -80,7 +80,13 @@ export type SuratTugasByID = {
 		pegawai_id: string;
 		jabatan_kegiatan: string;
 		urutan: number;
+		nama: string;
 	}>;
+
+	dibuat_oleh: string;
+	satuan_kerja: string;
+	penandatangan: string;
+	jabatan_penandatangan: string;
 };
 
 export type PegawaiType = {
@@ -124,6 +130,7 @@ export type SuratTugasPegawai = {
 	nik?: string;
 	nip?: string;
 	jabatan?: string;
+	sedang_bertugas?: boolean;
 };
 
 export type SuratTugasBendahara = {

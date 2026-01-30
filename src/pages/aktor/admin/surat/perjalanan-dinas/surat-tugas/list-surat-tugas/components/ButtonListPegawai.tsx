@@ -1,12 +1,10 @@
 import type { SuratTugas } from "../model";
-import { Trash2 } from "lucide-react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useDeleteSuratTugas } from "../controller";
 import {
 	Dialog,
 	DialogContent,
@@ -17,10 +15,12 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
+import { useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
+import { BasicLabel } from "@/components/common/BasicLabel";
 
-export function ButtonDelete({ rowData }: { rowData?: SuratTugas }) {
-	const { disabled, setIsShow, setSelected, handleDelete, isShow, selected } =
-		useDeleteSuratTugas();
+export function ButtonListPegawai({ rowData }: { rowData?: SuratTugas }) {
+	const [isShow, setIsShow] = useState<boolean>(false);
 
 	return (
 		<>
@@ -30,33 +30,31 @@ export function ButtonDelete({ rowData }: { rowData?: SuratTugas }) {
 						<button
 							type="button"
 							onClick={() => {
-								setSelected(rowData || null);
 								setIsShow(true);
 							}}
-							className="bg-[#CD2738] p-1.5 rounded-md text-white"
+							className="flex items-center gap-1"
 						>
-							<Trash2 size={12} />
+							<FaUserCircle size={14} />
+							<p>{rowData?.list_pegawai?.length || 0} Orang</p>
 						</button>
 					</TooltipTrigger>
-					<TooltipContent>Hapus data</TooltipContent>
+					<TooltipContent>Lihat Pegawai</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
 
 			<Dialog open={isShow} onOpenChange={setIsShow}>
-				<DialogContent className="w-[95vw] max-w-md rounded-lg p-6 max-h-[90vh]">
+				<DialogContent className="w-[95vw] max-w-md overflow-auto rounded-lg p-6 max-h-[90vh]">
 					<DialogHeader>
-						<DialogTitle>Hapus Surat Tugas</DialogTitle>
-						<DialogDescription>
-							Apakah anda yakin ingin menghapus Surat Tugas ini?
-						</DialogDescription>
+						<DialogTitle>List Pegawai</DialogTitle>
+						<DialogDescription></DialogDescription>
 					</DialogHeader>
 
 					<div className="flex flex-col gap-4 p-3 bg-[#F5F9FF]">
 						<div className="flex flex-col font-sans text-sm rounded-md md:flex-row md:items-center md:gap-2">
 							<p className="w-full md:w-1/3 text-[#888]">Tanggal Surat</p>
 							<p className="flex-1">
-								{selected?.tanggal_surat
-									? dayjs(selected?.tanggal_surat)
+								{rowData?.tanggal_surat
+									? dayjs(rowData?.tanggal_surat)
 											.locale("id")
 											.format("DD MMMM YYYY")
 									: "-"}
@@ -65,7 +63,7 @@ export function ButtonDelete({ rowData }: { rowData?: SuratTugas }) {
 
 						<div className="flex flex-col font-sans text-sm rounded-md md:flex-row md:items-center md:gap-2">
 							<p className="w-full md:w-1/3 text-[#888]">Nomor Surat</p>
-							<p className="flex-1">{selected?.format_nomor_surat || "-"}</p>
+							<p className="flex-1">{rowData?.format_nomor_surat || "-"}</p>
 						</div>
 
 						<div className="flex flex-col font-sans text-sm rounded-md md:flex-row md:items-center md:gap-2">
@@ -84,24 +82,35 @@ export function ButtonDelete({ rowData }: { rowData?: SuratTugas }) {
 						</div>
 					</div>
 
+					<div className="flex flex-col gap-4 p-3">
+						<BasicLabel
+							label="Jumlah Pegawai"
+							className="w-full flex flex-row"
+							labelClassName="w-1/3"
+							value={<p>: {rowData?.list_pegawai?.length || 0}</p>}
+						/>
+						<ol className="list-decimal ml-4">
+							{rowData?.list_pegawai?.length
+								? rowData?.list_pegawai?.map((item, idx) => {
+										return (
+											<li key={idx}>
+												<div className="flex flex-col">
+													<p>{item?.nama_pegawai}</p>
+												</div>
+											</li>
+										);
+									})
+								: ""}
+						</ol>
+					</div>
+
 					<DialogFooter className="flex gap-2 flex-row justify-end">
 						<Button
 							type="button"
 							variant="outline"
-							disabled={disabled}
 							onClick={() => setIsShow(false)}
 						>
-							Batal
-						</Button>
-						<Button
-							type="button"
-							variant="destructive"
-							onClick={() => {
-								handleDelete();
-							}}
-							disabled={disabled}
-						>
-							Hapus
+							Tutup
 						</Button>
 					</DialogFooter>
 				</DialogContent>
