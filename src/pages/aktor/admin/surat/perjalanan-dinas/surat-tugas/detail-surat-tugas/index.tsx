@@ -105,6 +105,9 @@ export default function DetailSuratTugasPage() {
 						<div className="flex flex-col gap-2 md:flex-row md:justify-end">
 							<Button
 								type="button"
+								onClick={() => {
+									navigate("lumpsum");
+								}}
 								className="bg-[#0070e4] hover:bg-[#0070e4]/80"
 							>
 								Lumpsum

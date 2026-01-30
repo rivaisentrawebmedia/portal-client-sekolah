@@ -1,0 +1,68 @@
+export type LumpsumSPPD = {
+	pegawai_id: string;
+	nama_pegawai: string;
+	jabatan_pegawai: string;
+	nip: string;
+	total_lumpsum: string;
+	total_ril: string;
+	nama_bendahara: string;
+	nip_bendahara: string;
+	bendahara_id: string;
+	jabatan_bendahara_id: string;
+	jabatan_bendahara: string;
+	nama_pejabat: string;
+	nip_pejabat: string;
+	pejabat_id: string;
+	jabatan_pejabat_id: string;
+	jabatan_pejabat: string;
+	nama_jabatan_utama: string | null;
+	items: {
+		surat_tugas_id: string;
+		pegawai_id: string;
+		jenis_biaya_id: string;
+		redaksi: string;
+		no_tiket: string;
+		ril: boolean;
+		harga: string;
+		qty: number;
+		jenis_biaya_nama: string;
+		jenis_biaya_kode: string;
+	}[];
+};
+
+export type LumpsumSPPDByID = {
+	surat_tugas_id: string;
+	pegawai_id: string;
+	pegawai_nama: string;
+	pegawai_nip: string;
+	tanggal_keberangkatan: string;
+	tanggal_kepulangan: string;
+	pejabat_id: string;
+	pejabat_nama: string;
+	pejabat_nip: string;
+	jabatan_pejabat_id: string;
+	jabatan_pejabat: string;
+	nama_jabatan_utama: string | null;
+	bendahara_id: string;
+	bendahara_nama: string;
+	bendahara_nip: string;
+	jabatan_bendahara_id: string;
+	jabatan_bendahara: string;
+	items: {
+		id: string;
+		jenis_biaya_id: string;
+		jenis_biaya_nama: string;
+		jenis_biaya_kode: string;
+		sumber_dana_id: string;
+		sumber_dana: string;
+		tahun: string;
+		jumlah_anggaran: string;
+		no_tiket: string;
+		harga: string;
+		qty: number;
+		redaksi: string;
+		satuan_kerja: string;
+		jenis_transportasi_id: string;
+		ril: boolean;
+	}[];
+};
