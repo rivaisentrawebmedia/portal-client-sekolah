@@ -1,4 +1,5 @@
 import AnggaranPage from "@/pages/aktor/admin/surat/perjalanan-dinas/anggaran";
+import DetailLaporanSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/laporan";
 import EditSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/edit-sppd";
 import BuatSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/sppd/tulis-sppd";
 import BuatSuratTugasPage from "@/pages/aktor/admin/surat/perjalanan-dinas/surat-tugas/buat-surat-tugas";
@@ -30,6 +31,10 @@ export const routesSuratTugas = [
 	{
 		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/edit",
 		element: <EditSPPDPage />,
+	},
+	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/laporan",
+		element: <DetailLaporanSPPDPage />,
 	},
 	{
 		path: "perjalanan-dinas/anggaran",

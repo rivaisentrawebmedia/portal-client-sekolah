@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as zod from "zod";
-import {
-	AnggaranSchema,
-	type Anggaran,
-	type AnggaranFormValues,
-} from "../model";
-import AxiosClient from "@/provider/axios";
-
-type UpdatePayload = {
-	id: string;
-	data: AnggaranFormValues;
-};
+import { AnggaranSchema, updateAnggaran, type Anggaran } from "../model";
 
 export function useUpdateAnggaran() {
 	const [selected, setSelected] = useState<Anggaran | null>(null);
@@ -28,10 +18,7 @@ export function useUpdateAnggaran() {
 	});
 
 	const mutation = useMutation({
-		mutationFn: async ({ id, data }: UpdatePayload) => {
-			const res = await AxiosClient.put(`/surat/anggaran/${id}`, data);
-			return res.data;
-		},
+		mutationFn: updateAnggaran,
 
 		onMutate: () => {
 			return toast.loading("Memperbarui data Anggaran...");
