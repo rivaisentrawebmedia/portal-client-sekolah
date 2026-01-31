@@ -81,12 +81,14 @@ export type SuratTugasByID = {
 		jabatan_kegiatan: string;
 		urutan: number;
 		nama: string;
+		nip: string;
 	}>;
 
 	dibuat_oleh: string;
 	satuan_kerja: string;
 	penandatangan: string;
 	jabatan_penandatangan: string;
+	nip_penandatangan: string;
 };
 
 export type PegawaiType = {

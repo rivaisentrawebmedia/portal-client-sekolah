@@ -7,9 +7,11 @@ import * as zod from "zod";
 import { usePathname } from "@/utils/usePathname";
 import { LumpsumSPPDSchema, postLumpsumSPPD } from "../model";
 import { useGetLumpsumSPPDByID } from "./useGetByID";
+import { useNavigate } from "react-router-dom";
 
 export function usePostLumpsumSPPD() {
-	const { fivethPathname } = usePathname();
+	const navigate = useNavigate();
+	const { fivethPathname, eightthPathname } = usePathname();
 	const [isShow, setIsShow] = useState(false);
 	const queryClient = useQueryClient();
 
@@ -29,7 +31,7 @@ export function usePostLumpsumSPPD() {
 
 		onSuccess: async (data, _variables, toastId) => {
 			await queryClient.invalidateQueries({
-				queryKey: ["Lumpsum-sppd"],
+				queryKey: ["lumpsum-sppd"],
 			});
 
 			toast.update(toastId, {
@@ -41,6 +43,7 @@ export function usePostLumpsumSPPD() {
 
 			form.reset();
 			setIsShow(false);
+			navigate(-1);
 		},
 
 		onError: (err: any, _variables, toastId) => {
@@ -56,6 +59,7 @@ export function usePostLumpsumSPPD() {
 	const onSubmit = form.handleSubmit((values) => {
 		mutation.mutate({
 			surat_tugas_id: fivethPathname || "",
+			pegawai_id: eightthPathname || "",
 			payload: {
 				bendahara_id: values?.bendahara_id,
 				items: values?.items?.map((item) => {
@@ -64,7 +68,7 @@ export function usePostLumpsumSPPD() {
 						jenis_biaya_id: item?.jenis_biaya_id,
 						jenis_transportasi_id: item?.jenis_transportasi_id,
 						no_tiket: item?.no_tiket,
-						qty: item?.qty,
+						qty: Number(item?.qty),
 						redaksi: item?.redaksi,
 						ril: item?.ril,
 					};
@@ -72,6 +76,7 @@ export function usePostLumpsumSPPD() {
 				jabatan_bendahara_id: values?.jabatan_bendahara_id,
 				jabatan_pejabat_id: values?.jabatan_pejabat_id,
 				pejabat_id: values?.pejabat_id,
+				sumber_dana_id: values?.sumber_dana_id,
 			},
 		});
 	});
@@ -82,11 +87,11 @@ export function usePostLumpsumSPPD() {
 				bendahara_id: selected?.bendahara_id,
 				items: selected?.items?.map((item) => {
 					return {
-						harga: item?.harga,
+						harga: Number(item?.harga),
 						jenis_biaya_id: item?.jenis_biaya_id,
 						jenis_transportasi_id: item?.jenis_transportasi_id,
 						no_tiket: item?.no_tiket,
-						qty: item?.qty,
+						qty: item?.qty?.toString(),
 						redaksi: item?.redaksi,
 						ril: item?.ril,
 					};
@@ -94,6 +99,7 @@ export function usePostLumpsumSPPD() {
 				jabatan_bendahara_id: selected?.jabatan_bendahara_id,
 				jabatan_pejabat_id: selected?.jabatan_pejabat_id,
 				pejabat_id: selected?.pejabat_id,
+				sumber_dana_id: selected?.sumber_dana_id,
 			});
 		}
 	}, [selected, form]);

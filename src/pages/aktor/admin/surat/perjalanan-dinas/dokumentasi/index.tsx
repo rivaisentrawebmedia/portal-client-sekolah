@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import { useGetDokumentasiSPPD, usePostDokumentasiSPPD } from "./controller";
 import { FaCamera } from "react-icons/fa";
 import { useRef } from "react";
-import { ButtonDelete } from "./components";
+import { ButtonCetakDokumentasi, ButtonDelete } from "./components";
 import { ArrowBack } from "@/components/common/ArrowBack";
 import { usePathname } from "@/utils/usePathname";
 import { useSearchParams } from "react-router-dom";
+import { useGetSuratTugasByID } from "../surat-tugas/list-surat-tugas/controller";
+import { useGetKopSurat } from "../../pengaturan/kop-surat/kop-sekolah/controller";
 
 function DokumentasiSPPDSkeleton() {
 	return (
@@ -53,6 +55,9 @@ export default function DokumentasiSPPDPage() {
 		fileRef.current?.click();
 	};
 
+	const { data: dataSurat } = useGetSuratTugasByID();
+	const { data: dataKopSurat } = useGetKopSurat();
+
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex justify-between items-center gap-4">
@@ -66,23 +71,35 @@ export default function DokumentasiSPPDPage() {
 					/>
 				</div>
 
-				<Button
-					type="button"
-					className="bg-[#161646] hover:bg-[#161646]/80"
-					onClick={handlePickFile}
-					disabled={loading}
-				>
-					<FaCamera />
-					Tambah Gambar
-				</Button>
+				<div className="flex items-center gap-2">
+					<Button
+						type="button"
+						className="bg-[#161646] hover:bg-[#161646]/80"
+						onClick={handlePickFile}
+						disabled={loading}
+					>
+						<FaCamera />
+						Tambah Gambar
+					</Button>
+					<input
+						ref={fileRef}
+						type="file"
+						accept="image/*"
+						className="hidden"
+						onChange={handleUpload}
+					/>
 
-				<input
-					ref={fileRef}
-					type="file"
-					accept="image/*"
-					className="hidden"
-					onChange={handleUpload}
-				/>
+					{dataKopSurat &&
+						dataSurat &&
+						dataDokumentasiSPPD &&
+						(dataDokumentasiSPPD || [])?.length > 0 && (
+							<ButtonCetakDokumentasi
+								data={dataDokumentasiSPPD}
+								kopSurat={dataKopSurat}
+								surat={dataSurat}
+							/>
+						)}
+				</div>
 			</div>
 
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">

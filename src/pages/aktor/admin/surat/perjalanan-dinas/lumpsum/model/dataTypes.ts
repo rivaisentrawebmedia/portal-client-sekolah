@@ -16,18 +16,22 @@ export type LumpsumSPPD = {
 	jabatan_pejabat_id: string;
 	jabatan_pejabat: string;
 	nama_jabatan_utama: string | null;
-	items: {
-		surat_tugas_id: string;
-		pegawai_id: string;
-		jenis_biaya_id: string;
-		redaksi: string;
-		no_tiket: string;
-		ril: boolean;
-		harga: string;
-		qty: number;
-		jenis_biaya_nama: string;
-		jenis_biaya_kode: string;
-	}[];
+	sumber_dana_id: string;
+	items: ItemsLumpsum[];
+};
+
+export type ItemsLumpsum = {
+	surat_tugas_id: string;
+	pegawai_id: string;
+	jenis_biaya_id: string;
+	redaksi: string;
+	no_tiket: string;
+	ril: boolean;
+	harga: string;
+	qty: number;
+	jenis_biaya_nama: string;
+	jenis_biaya_kode: string;
+	jenis_transportasi: string;
 };
 
 export type LumpsumSPPDByID = {
@@ -48,6 +52,7 @@ export type LumpsumSPPDByID = {
 	bendahara_nip: string;
 	jabatan_bendahara_id: string;
 	jabatan_bendahara: string;
+	sumber_dana_id: string;
 	items: Item[];
 };
 

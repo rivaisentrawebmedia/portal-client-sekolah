@@ -8,4 +8,5 @@ export type DokumentasiSPPD = {
 	file_id: string;
 	file_url: string;
 	filename: string;
+	base64: string;
 };

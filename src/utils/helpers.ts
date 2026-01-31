@@ -146,3 +146,80 @@ export function parseRupiah(value: string) {
 	const numeric = value.replace(/[^\d]/g, "");
 	return numeric ? Number(numeric) : 0;
 }
+
+export function numberToTerbilang(nilai: number): string {
+	const satuan = [
+		"",
+		"Satu",
+		"Dua",
+		"Tiga",
+		"Empat",
+		"Lima",
+		"Enam",
+		"Tujuh",
+		"Delapan",
+		"Sembilan",
+		"Sepuluh",
+		"Sebelas",
+	];
+
+	function toWords(n: number): string {
+		if (n < 12) {
+			return satuan[n];
+		} else if (n < 20) {
+			return toWords(n - 10) + " Belas";
+		} else if (n < 100) {
+			const depan = Math.floor(n / 10);
+			const belakang = n % 10;
+			return (
+				toWords(depan) +
+				" Puluh" +
+				(belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else if (n < 200) {
+			return "Seratus" + (n - 100 > 0 ? " " + toWords(n - 100) : "");
+		} else if (n < 1000) {
+			const depan = Math.floor(n / 100);
+			const belakang = n % 100;
+			return (
+				toWords(depan) +
+				" Ratus" +
+				(belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else if (n < 2000) {
+			return "Seribu" + (n - 1000 > 0 ? " " + toWords(n - 1000) : "");
+		} else if (n < 1000000) {
+			const depan = Math.floor(n / 1000);
+			const belakang = n % 1000;
+			return (
+				toWords(depan) + " Ribu" + (belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else if (n < 1000000000) {
+			const depan = Math.floor(n / 1000000);
+			const belakang = n % 1000000;
+			return (
+				toWords(depan) + " Juta" + (belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else if (n < 1000000000000) {
+			const depan = Math.floor(n / 1000000000);
+			const belakang = n % 1000000000;
+			return (
+				toWords(depan) +
+				" Miliar" +
+				(belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else if (n < 1000000000000000) {
+			const depan = Math.floor(n / 1000000000000);
+			const belakang = n % 1000000000000;
+			return (
+				toWords(depan) +
+				" Triliun" +
+				(belakang > 0 ? " " + toWords(belakang) : "")
+			);
+		} else {
+			return "Nilai terlalu besar";
+		}
+	}
+
+	return "#" + toWords(nilai).trim() + " Rupiah#";
+}

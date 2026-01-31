@@ -2,7 +2,6 @@ import AxiosClient, {
 	type PaginatedResponse,
 	type PaginatedResponseByID,
 } from "@/provider/axios";
-import type { LumpsumSPPDFormValues } from "./dataSchema";
 import type { LumpsumSPPD, LumpsumSPPDByID } from "./dataTypes";
 
 export const getLumpsumSPPD = async ({
@@ -34,12 +33,14 @@ export const getLumpsumSPPDByID = async ({
 export async function postLumpsumSPPD({
 	payload,
 	surat_tugas_id,
+	pegawai_id,
 }: {
-	payload: LumpsumSPPDFormValues;
+	payload: any;
 	surat_tugas_id: string;
+	pegawai_id: string;
 }) {
 	const res = await AxiosClient.post(
-		`/surat/surat-tugas/${surat_tugas_id}/lumpsum`,
+		`/surat/surat-tugas/${surat_tugas_id}/lumpsum/${pegawai_id}`,
 		payload,
 	);
 	return res.data;

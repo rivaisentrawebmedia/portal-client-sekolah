@@ -1,20 +1,20 @@
+import type { TDocumentDefinitions } from "pdfmake/interfaces";
 import type { KopSurat } from "../../../../pengaturan/kop-surat/kop-sekolah/model";
-import type { PegawaiType } from "../../list-surat-tugas/model";
 
 function mapStyle({
 	font,
 	style,
 	size,
 }: {
-	font: string;
-	style: string;
-	size: string;
+	font?: string;
+	style?: string;
+	size?: string;
 }) {
 	return {
-		font,
-		bold: style.toLowerCase() === "bold",
-		italics: style.toLowerCase() === "italic",
-		fontSize: parseInt(size),
+		font: font && font.trim() !== "" ? font : "Roboto", // ✅ FIX UTAMA
+		bold: style?.toLowerCase() === "bold",
+		italics: style?.toLowerCase() === "italic",
+		fontSize: Number(size) || 12, // ✅ fallback aman
 	};
 }
 
@@ -26,7 +26,13 @@ export type SuratTugas = {
 		jabatan: string;
 		nip: string;
 	};
-	list_pegawai: PegawaiType[];
+	list_pegawai: Array<{
+		pegawai_id: string;
+		jabatan_kegiatan: string;
+		urutan: number;
+		nama: string;
+		nip: string;
+	}>;
 	kegiatan: string[];
 	dasar: string[];
 	instansi: string;
@@ -37,7 +43,7 @@ export type SuratTugas = {
 	nama_jabatan_utama: string;
 };
 
-export function generatePdfSuratTugas(data: SuratTugas) {
+export function generatePdfSuratTugas(data: SuratTugas): TDocumentDefinitions {
 	const {
 		kop_surat,
 		nomor_surat,
@@ -47,7 +53,6 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 		tanggal_mulai,
 		tanggal_selesai,
 		dasar,
-		nama_jabatan_utama,
 	} = data;
 
 	const {
@@ -205,32 +210,25 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 			},
 			{
 				table: {
-					widths: ["5%", "25%", "35%", "35%"], // atur agar proporsional
+					widths: ["5%", "25%", "35%", "35%"],
 					body: [
-						// HEADER
 						[
 							{ text: "No", bold: true, alignment: "center" },
-							{ text: "NIK", bold: true, alignment: "center" },
-							{ text: "Nama", bold: true, alignment: "center" },
+							{ text: "Nama", bold: true },
+							{ text: "NIP", bold: true },
 							{ text: "Jabatan", bold: true, alignment: "center" },
 						],
-						// DATA
-						...(Array.isArray(list_pegawai) && list_pegawai.length > 0
-							? list_pegawai.map((peg, index) => [
-									{ text: `${index + 1}`, alignment: "center" },
-									{ text: peg.nik || "-", alignment: "center" },
-									{ text: peg.nama_pegawai || "-", alignment: "left" },
-									{ text: peg.jabatan_kegiatan || "-", alignment: "left" },
+						...(list_pegawai?.length
+							? list_pegawai.map((peg, i) => [
+									{ text: String(i + 1), alignment: "center" },
+									{ text: peg.nama ?? "-", alignment: "left" },
+									{ text: peg.nip ?? "-", alignment: "left" },
+									{ text: peg.jabatan_kegiatan ?? "-", alignment: "left" },
 								])
 							: [[{ text: "-", colSpan: 4, alignment: "center" }, {}, {}, {}]]),
-					],
+					] as any,
 				},
 				fontSize: 10,
-				layout: {
-					hLineWidth: () => 0.5,
-					vLineWidth: () => 0.5,
-				},
-				margin: [0, 0, 0, 20],
 			},
 
 			{
@@ -256,7 +254,7 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 				},
 				fontSize: 10,
 				layout: "noBorders",
-				margin: [0, 0, 0, 20],
+				margin: [0, 10, 0, 20],
 			},
 			{
 				text:
@@ -281,6 +279,7 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 					},
 					{
 						width: "40%",
+						alignment: "left",
 						stack: [
 							{
 								table: {
@@ -288,17 +287,11 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 									body: [
 										[
 											{ text: "Dikeluarkan di", fontSize: 10 },
-											{
-												text: `: ${data.kabupaten}`,
-												fontSize: 10,
-											},
+											{ text: `: ${data.kabupaten}`, fontSize: 10 },
 										],
 										[
 											{ text: "Pada Tanggal", fontSize: 10 },
-											{
-												text: `: ${data?.tanggal_surat}`,
-												fontSize: 10,
-											},
+											{ text: `: ${data?.tanggal_surat}`, fontSize: 10 },
 										],
 									],
 								},
@@ -318,29 +311,28 @@ export function generatePdfSuratTugas(data: SuratTugas) {
 								],
 								margin: [0, 0, 0, 5],
 							},
-							nama_jabatan_utama && {
-								text: `an. ${nama_jabatan_utama}`,
+
+							{
+								text: pejabat_penandatangan?.jabatan ?? "",
 								bold: true,
 								fontSize: 10,
-								margin: [0, 0, 0, 0],
+								margin: [0, 0, 0, 50],
 							},
 							{
-								text: `${pejabat_penandatangan?.jabatan}`,
-								bold: true,
-								fontSize: 10,
-								margin: [0, 0, 0, 50], // spasi tanda tangan
-							},
-							{
-								text: `${pejabat_penandatangan.nama}`,
+								text: pejabat_penandatangan?.nama ?? "",
 								bold: true,
 								fontSize: 10,
 							},
-							pejabat_penandatangan.nip &&
-							pejabat_penandatangan.nip.trim() !== ""
-								? { text: `NIP. ${pejabat_penandatangan.nip}`, fontSize: 10 }
-								: {}, // atau false/null juga bisa
+
+							...(pejabat_penandatangan?.nip?.trim()
+								? [
+										{
+											text: `NIP. ${pejabat_penandatangan.nip}`,
+											fontSize: 10,
+										},
+									]
+								: []),
 						],
-						alignment: "left",
 					},
 				],
 				columnGap: 0,

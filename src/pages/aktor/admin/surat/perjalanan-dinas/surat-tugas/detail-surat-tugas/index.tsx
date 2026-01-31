@@ -10,6 +10,8 @@ import { LoadingSpinner } from "@/components/ui/loading";
 import { useGetSPP } from "../../sppd/list-sppd/controller";
 import { ChevronsRight, Edit, Plus } from "lucide-react";
 import { TableSPPD } from "../../sppd/list-sppd/components";
+import { useGetKopSurat } from "../../../pengaturan/kop-surat/kop-sekolah/controller";
+import { useGetProfilOrganisasi } from "@/pages/aktor/admin/portal-admin/profil-organisasi/profil/controller";
 
 export default function DetailSuratTugasPage() {
 	const [params] = useSearchParams();
@@ -19,6 +21,8 @@ export default function DetailSuratTugasPage() {
 	const { data, loading } = useGetSuratTugasByID();
 
 	const { data: sppd, loading: loadingSppd } = useGetSPP();
+	const { data: dataKopSurat } = useGetKopSurat();
+	const { data: dataProfil } = useGetProfilOrganisasi();
 	return (
 		<>
 			<div className="flex flex-col gap-4">
@@ -44,7 +48,13 @@ export default function DetailSuratTugasPage() {
 							<FaEdit />
 							Edit Surat Tugas
 						</Button>
-						<ButtonCetakSuratDinas />
+						{data && dataKopSurat && dataProfil && (
+							<ButtonCetakSuratDinas
+								detailSuratTugas={data}
+								kopSurat={dataKopSurat}
+								profil={dataProfil}
+							/>
+						)}
 					</div>
 				</div>
 

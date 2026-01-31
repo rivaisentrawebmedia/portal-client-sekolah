@@ -11,6 +11,14 @@ import type { LumpsumSPPD } from "../model";
 import { formatRupiah } from "@/utils/helpers";
 import { Pencil, Printer } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { SuratTugasByID } from "../../surat-tugas/list-surat-tugas/model";
+import type { KopSurat } from "../../../pengaturan/kop-surat/kop-sekolah/model";
+import type { ProfilOrganisasi } from "@/pages/aktor/admin/portal-admin/profil-organisasi/profil/model";
+import {
+	ButtonCetakSuratKwitansi,
+	ButtonCetakSuratLumpsum,
+	ButtonCetakSuratRiil,
+} from "./print";
 
 interface TableLumpsumSPPDProps {
 	data: LumpsumSPPD[];
@@ -18,6 +26,9 @@ interface TableLumpsumSPPDProps {
 	limit: number;
 	search: string;
 	loading: boolean;
+	detailSuratTugas: SuratTugasByID;
+	kopSurat: KopSurat;
+	profil: ProfilOrganisasi;
 }
 
 export function TableLumpsumSPPD({
@@ -26,6 +37,9 @@ export function TableLumpsumSPPD({
 	limit,
 	search,
 	loading,
+	detailSuratTugas,
+	kopSurat,
+	profil,
 }: TableLumpsumSPPDProps) {
 	const navigate = useNavigate();
 	const isEmpty = !loading && data.length === 0;
@@ -165,7 +179,18 @@ export function TableLumpsumSPPD({
 
 							<TableCell className="align-middle">
 								{Number(item?.total_lumpsum) > 0 ? (
-									<p>Rp. {formatRupiah(Number(item?.total_lumpsum) || 0)}</p>
+									<div className="flex items-center gap-2">
+										<p>Rp. {formatRupiah(Number(item?.total_lumpsum) || 0)}</p>
+										<button
+											type="button"
+											onClick={() => {
+												navigate(`${item?.pegawai_id}/detail-lumpsum`);
+											}}
+											className="bg-[#CDA327] p-2 rounded-md text-white"
+										>
+											<Pencil size={12} />
+										</button>
+									</div>
 								) : (
 									<div className="flex items-center gap-2">
 										<p className="text-[#CD3C3C]">Belum Dibuat</p>
@@ -184,13 +209,12 @@ export function TableLumpsumSPPD({
 
 							<TableCell className="align-middle">
 								<div className="flex justify-center gap-2 flex-wrap">
-									<button
-										type="button"
-										onClick={() => {}}
-										className="bg-[#161646] p-2 rounded-md text-white"
-									>
-										<Printer size={12} />
-									</button>
+									<ButtonCetakSuratLumpsum
+										data={item}
+										detailSuratTugas={detailSuratTugas}
+										kopSurat={kopSurat}
+										profil={profil}
+									/>
 								</div>
 							</TableCell>
 							<TableCell className="align-middle">
@@ -199,31 +223,28 @@ export function TableLumpsumSPPD({
 
 							<TableCell className="align-middle">
 								<div className="flex justify-center gap-2 flex-wrap">
-									<button
-										type="button"
-										onClick={() => {}}
-										className="bg-[#161646] p-2 rounded-md text-white"
-									>
-										<Printer size={12} />
-									</button>
+									<ButtonCetakSuratRiil
+										data={item}
+										detailSuratTugas={detailSuratTugas}
+										kopSurat={kopSurat}
+									/>
+								</div>
+							</TableCell>
+							<TableCell className="align-middle">
+								<div className="flex justify-center gap-2 flex-wrap">
+									<ButtonCetakSuratKwitansi
+										data={item}
+										detailSuratTugas={detailSuratTugas}
+										kopSurat={kopSurat}
+										profil={profil}
+									/>
 								</div>
 							</TableCell>
 							<TableCell className="align-middle">
 								<div className="flex justify-center gap-2 flex-wrap">
 									<button
 										type="button"
-										onClick={() => {}}
-										className="bg-[#161646] flex items-center gap-2 px-3 py-1.5 rounded-md text-white"
-									>
-										<Printer size={12} />
-										Kwitansi
-									</button>
-								</div>
-							</TableCell>
-							<TableCell className="align-middle">
-								<div className="flex justify-center gap-2 flex-wrap">
-									<button
-										type="button"
+										disabled
 										onClick={() => {}}
 										className="bg-[#161646] flex items-center gap-2 px-3 py-1.5 rounded-md text-white"
 									>

@@ -20,7 +20,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { Save } from "lucide-react";
-import { FormLaporanPelaksanaan } from "./FormLaporanPelaksanaan";
+import { ButtonCetakLaporan, FormLaporanPelaksanaan } from "./components";
+import { useGetKopSurat } from "../../pengaturan/kop-surat/kop-sekolah/controller";
+import { useGetProfilOrganisasi } from "../../../portal-admin/profil-organisasi/profil/controller";
 
 export default function DetailLaporanSPPDPage() {
 	const [params] = useSearchParams();
@@ -37,6 +39,7 @@ export default function DetailLaporanSPPDPage() {
 		onSubmit,
 		setIsShow,
 		loading: loadingLaporan,
+		selected,
 	} = usePostLaporanSPPD();
 
 	const onSubmitFunc = async () => {
@@ -45,6 +48,9 @@ export default function DetailLaporanSPPDPage() {
 	};
 
 	const loading = loadingLaporan || loadingSPPD || loadingSuratTugas;
+
+	const { data: dataKopSurat } = useGetKopSurat();
+	const { data: dataProfil } = useGetProfilOrganisasi();
 
 	if (loading) {
 		return <LoadingSpinner className="min-h-[80vh]" />;
@@ -61,6 +67,14 @@ export default function DetailLaporanSPPDPage() {
 						border="#F5F9FF"
 						text="#161646"
 					/>
+
+					{dataKopSurat && dataProfil && selected && (
+						<ButtonCetakLaporan
+							data={selected}
+							kopSurat={dataKopSurat}
+							profil={dataProfil}
+						/>
+					)}
 				</div>
 
 				<div className="flex flex-col gap-0 border rounded-md">

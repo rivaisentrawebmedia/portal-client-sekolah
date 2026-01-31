@@ -16,12 +16,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { LoadingSpinner } from "@/components/ui/loading";
 import { SelectCommon } from "@/components/common/basic-input";
-import { useGetManajemenUser } from "../../../portal-admin/manajemen-user/list-user/controller";
 import {
-	useGetSuratTugasBendahara,
 	useGetSuratTugasJabatan,
+	useGetSuratTugasPenandatangan,
 } from "../surat-tugas/list-surat-tugas/controller";
 import { useGetAnggaran } from "../anggaran/controller";
+import { FormBiaya } from "./components";
+import { toast } from "react-toastify";
+import { Save } from "lucide-react";
 
 export default function UbahListLumpsumPage() {
 	const { fivethPathname, eightthPathname } = usePathname();
@@ -35,23 +37,20 @@ export default function UbahListLumpsumPage() {
 		if (isValid) setIsShow(true);
 	};
 
-	const { data: userOptions, loading: loadingUser } = useGetManajemenUser({
-		page: 1,
-	});
+	const { data: userOptions, loading: loadingUser } =
+		useGetSuratTugasPenandatangan({
+			page: 1,
+		});
 
 	const { data: jabatanOptions, loading: loadingJabatan } =
 		useGetSuratTugasJabatan({
 			page: 1,
 		});
 
-	const { data: bendaharaOptions, loading: loadingBendahara } =
-		useGetSuratTugasBendahara();
-
 	const { data: anggaranOptions, loading: loadingAnggaran } = useGetAnggaran({
 		page: 1,
 	});
 
-	const jabatan_pejabat_id = form.watch("jabatan_pejabat_id");
 	return (
 		<>
 			<div className="flex flex-col gap-4">
@@ -167,6 +166,44 @@ export default function UbahListLumpsumPage() {
 						<SelectCommon
 							form={form}
 							name="jabatan_pejabat_id"
+							options={jabatanOptions?.map((item) => {
+								return {
+									label: `${item?.nama}`,
+									value: item?.id,
+								};
+							})}
+							className="flex flex-col w-full gap-2 md:flex-row md:gap-4"
+							labelClassName="w-full md:w-1/4"
+							disabled={disabled}
+							isLoading={loadingJabatan}
+							label="Jabatan Pejabat"
+							placeholder="Pilih Jabatan"
+							selectClassName="flex-1"
+						/>
+
+						<SelectCommon
+							form={form}
+							name="bendahara_id"
+							options={userOptions
+								?.filter((list) => list?.jabatan?.toLowerCase() === "bendahara")
+								?.map((item) => {
+									return {
+										label: `${item?.nama}`,
+										value: item?.id,
+									};
+								})}
+							className="flex flex-col w-full gap-2 md:flex-row md:gap-4"
+							labelClassName="w-full md:w-1/4"
+							disabled={disabled}
+							isLoading={loadingUser}
+							label="Bendahara"
+							placeholder="Pilih Bendahara"
+							selectClassName="flex-1"
+						/>
+
+						<SelectCommon
+							form={form}
+							name="jabatan_bendahara_id"
 							options={jabatanOptions
 								?.filter((list) => list?.nama?.toLowerCase() === "bendahara")
 								?.map((item) => {
@@ -181,25 +218,6 @@ export default function UbahListLumpsumPage() {
 							isLoading={loadingJabatan}
 							label="Jabatan"
 							placeholder="Pilih Jabatan"
-							selectClassName="flex-1"
-						/>
-
-						<SelectCommon
-							form={form}
-							key={`jabatan_bendahara_id-${jabatan_pejabat_id}`}
-							name="jabatan_bendahara_id"
-							options={bendaharaOptions?.map((item) => {
-								return {
-									label: `${item?.nama}`,
-									value: item?.id,
-								};
-							})}
-							className="flex flex-col w-full gap-2 md:flex-row md:gap-4"
-							labelClassName="w-full md:w-1/4"
-							disabled={disabled || !jabatan_pejabat_id}
-							isLoading={loadingBendahara}
-							label="Bendahara"
-							placeholder="Pilih Bendahara"
 							selectClassName="flex-1"
 						/>
 
@@ -220,6 +238,39 @@ export default function UbahListLumpsumPage() {
 							placeholder="Pilih Sumber Dana"
 							selectClassName="flex-1"
 						/>
+
+						<FormBiaya form={form} isLoading={disabled} />
+
+						<div className="flex justify-end gap-2">
+							<Button
+								type="submit"
+								className="bg-[#161646] hover:bg-[#161646]"
+								onClick={async () => {
+									const isValid = await form.trigger();
+
+									if (!isValid) {
+										const invalidFields = Object.entries(
+											form.formState.errors,
+										).map(([field, error]: any) => {
+											const message =
+												error?.message ??
+												error?.root?.message ??
+												error?.[0]?.message ??
+												"Field tidak valid";
+
+											return { field, error: message };
+										});
+
+										console.log(invalidFields);
+
+										return toast.error(invalidFields?.[0]?.error?.toString());
+									}
+								}}
+							>
+								<Save />
+								Simpan Surat Tugas
+							</Button>
+						</div>
 					</form>
 				</Form>
 			</div>

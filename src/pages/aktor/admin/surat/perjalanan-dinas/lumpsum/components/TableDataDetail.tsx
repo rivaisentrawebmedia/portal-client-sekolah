@@ -53,9 +53,14 @@ export function TableLumpsum({
 
 				{
 					header: "Jumlah",
-					className: "font-light text-[#0f0f12]",
+					className: "font-light text-end text-[#0f0f12]",
 					render: (item) => (
-						<p>Rp. {formatRupiah(Number(item?.jumlah_anggaran)) || ""}</p>
+						<p className="text-end">
+							Rp.{" "}
+							{formatRupiah(
+								Number(item?.harga || 0) * Number(item?.qty || 1),
+							) || ""}
+						</p>
 					),
 				},
 
