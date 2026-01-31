@@ -261,8 +261,6 @@ export default function UbahListLumpsumPage() {
 											return { field, error: message };
 										});
 
-										console.log(invalidFields);
-
 										return toast.error(invalidFields?.[0]?.error?.toString());
 									}
 								}}

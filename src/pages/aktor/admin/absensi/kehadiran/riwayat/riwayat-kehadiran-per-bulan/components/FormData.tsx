@@ -127,7 +127,6 @@ export function FormRiwayatKehadiranPerBulan({
 										error: error?.message,
 									}),
 								);
-								console.log(invalidFields);
 
 								return toast.error(invalidFields?.[0]?.error?.toString());
 							}

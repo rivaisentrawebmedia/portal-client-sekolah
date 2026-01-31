@@ -12,6 +12,8 @@ import { ChevronsRight, Edit, Plus } from "lucide-react";
 import { TableSPPD } from "../../sppd/list-sppd/components";
 import { useGetKopSurat } from "../../../pengaturan/kop-surat/kop-sekolah/controller";
 import { useGetProfilOrganisasi } from "@/pages/aktor/admin/portal-admin/profil-organisasi/profil/controller";
+import { MenubarPrint1 } from "./MenubarPrint1";
+import { MenubarPrint2 } from "./MenubarPrint2";
 
 export default function DetailSuratTugasPage() {
 	const [params] = useSearchParams();
@@ -72,7 +74,7 @@ export default function DetailSuratTugasPage() {
 					<div className="flex flex-col md:flex-row md:justify-between gap-4">
 						<p>SPPD</p>
 						{sppd && (
-							<>
+							<div className="flex items-center gap-1.5">
 								<Button
 									type="button"
 									variant={"outline"}
@@ -86,7 +88,21 @@ export default function DetailSuratTugasPage() {
 									<Edit size={14} />
 									Edit SPPD
 								</Button>
-							</>
+								{data && dataKopSurat && dataProfil && (
+									<>
+										<MenubarPrint1
+											data={data}
+											kopSurat={dataKopSurat}
+											kabupaten={dataProfil?.kabupaten}
+										/>
+										<MenubarPrint2
+											data={data}
+											kopSurat={dataKopSurat}
+											kabupaten={dataProfil?.kabupaten}
+										/>
+									</>
+								)}
+							</div>
 						)}
 					</div>
 					{!sppd && (

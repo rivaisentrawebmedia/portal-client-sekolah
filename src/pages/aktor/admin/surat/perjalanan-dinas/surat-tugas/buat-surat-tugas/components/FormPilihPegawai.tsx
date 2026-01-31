@@ -54,8 +54,6 @@ export function FormPilihPegawai({
 		);
 	};
 
-	console.log(form.watch());
-
 	return (
 		<div className="space-y-6">
 			<div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">

@@ -91,7 +91,6 @@ export default function TambahShiftKerjaPage() {
 
 									if (!isValid) {
 										const message = getFirstErrorMessage(form.formState.errors);
-										console.log({ message });
 
 										return toast.error(message ?? "Form masih belum valid");
 									}
