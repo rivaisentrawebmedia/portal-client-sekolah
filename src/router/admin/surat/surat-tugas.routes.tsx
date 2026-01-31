@@ -1,4 +1,5 @@
 import AnggaranPage from "@/pages/aktor/admin/surat/perjalanan-dinas/anggaran";
+import DokumentasiSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/dokumentasi";
 import JenisBiayaPage from "@/pages/aktor/admin/surat/perjalanan-dinas/jenis-biaya";
 import DetailLaporanSPPDPage from "@/pages/aktor/admin/surat/perjalanan-dinas/laporan";
 import DetailListLumpsumPage from "@/pages/aktor/admin/surat/perjalanan-dinas/lumpsum/DetailLumpsum";
@@ -43,6 +44,10 @@ export const routesSuratTugas = [
 	{
 		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/lumpsum",
 		element: <ListLumpsumPage />,
+	},
+	{
+		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/dokumentasi",
+		element: <DokumentasiSPPDPage />,
 	},
 	{
 		path: "perjalanan-dinas/surat-tugas-spd/:bowo/detail/lumpsum/:owi/detail-lumpsum",

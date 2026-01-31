@@ -126,6 +126,9 @@ export default function DetailSuratTugasPage() {
 								</Button>
 								<Button
 									type="button"
+									onClick={() => {
+										navigate("dokumentasi");
+									}}
 									className="bg-[#3a6012] hover:bg-[#3a6012]/80"
 								>
 									Dokumentasi
