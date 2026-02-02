@@ -8,6 +8,7 @@ import { routesMading } from "./mading.routes";
 import { routesPengumuman } from "./pengumuman.routes";
 import { routesPrestasi } from "./prestasi.routes";
 import { routesAgenda } from "./agenda.routes";
+import { routesProfilSekolah } from "./profil-sekolah.routes";
 
 export const routewebsite = [
 	{
@@ -24,6 +25,8 @@ export const routewebsite = [
 				path: "",
 				element: <WebsiteDashboardPage />,
 			},
+
+			...routesProfilSekolah,
 
 			...routesBerita,
 
